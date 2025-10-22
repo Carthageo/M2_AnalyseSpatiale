@@ -1,0 +1,61 @@
+{
+  "index.qmd": {
+    "index.html": "b8349238"
+  },
+  "about.qmd": {
+    "about.html": "4536f1ff"
+  },
+  "anaspa_stats.qmd": {
+    "anaspa_stats.html": "f0e0fbb5"
+  },
+  "anaspa_interpolations.qmd": {
+    "anaspa_interpolations.html": "feb2e9e9"
+  },
+  "anaspa_sig.qmd": {
+    "anaspa_sig.html": "a05f995f"
+  },
+  "posts/TD1/TD1.qmd": {
+    "TD1.html": "5ef1e651",
+    "index.html": "c20bea12"
+  },
+  "posts/RC/TD1/TD1.qmd": {
+    "index.html": "a65fc514"
+  },
+  "posts/RC/TD2/TD2.qmd": {
+    "TD2.html": "fcd4a85f",
+    "index.html": "20881ebc"
+  },
+  "posts/RC/TD3/TD3.qmd": {
+    "index.html": "6294cd88"
+  },
+  "posts/RC/TD4/TD4.qmd": {
+    "index.html": "df7fdcef"
+  },
+  "posts/RC/TD2/TD2_Voisinages.qmd": {
+    "index.html": "d5a8a13a",
+    "TD2_Voisinages.html": "f30eb065"
+  },
+  "posts/RC/TD1/TD1_Intro.qmd": {
+    "index.html": "6522803f",
+    "TD1_Intro.html": "e8cbe623"
+  },
+  "posts/RC/TD3/TD3_IDW_TIN.qmd": {
+    "index.html": "a695e137",
+    "TD3_IDW_TIN.html": "682c9145"
+  },
+  "posts/RC/TD4/TD4_Potentiels.qmd": {
+    "index.html": "f5698cf8",
+    "TD4_Potentiels.html": "f5f65e75"
+  },
+  "posts/RC/TD5/TD5_AutoCor_Manuelle.qmd": {
+    "index.html": "23495e00",
+    "TD5_AutoCor_Manuelle.html": "ddbd1004"
+  },
+  "posts/RC/TD6/TD6_Krigeage.qmd": {
+    "index.html": "ad7aa962",
+    "TD6_Krigeage.html": "c671f450"
+  },
+  "posts/RC/TD7/TD7_Autocorrelation_Spatiale.qmd": {
+    "index.html": "02769ed4"
+  }
+}

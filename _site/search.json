@@ -1,0 +1,499 @@
+[
+  {
+    "objectID": "posts/TD1/TD1.html#pourquoi-ne-pas-se-contenter-de-points",
+    "href": "posts/TD1/TD1.html#pourquoi-ne-pas-se-contenter-de-points",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Pourquoi ne pas se contenter de points ?",
+    "text": "Pourquoi ne pas se contenter de points ?"
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "href": "posts/TD1/TD1.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes",
+    "text": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes\n\nDonnées issues de géolocalisation (Adresses, “Lieux”, …)\nDonnées de relevés (Indicidents, recensements, …)\nDonnées de capteurs (Statiques ou dynamiques)\nDonnées de suivi individuelles (GPS, GéoIP, …)"
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "href": "posts/TD1/TD1.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation",
+    "text": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation"
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#linterpolation",
+    "href": "posts/TD1/TD1.html#linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "L’interpolation",
+    "text": "L’interpolation\nDéfinition\n\n\n\n« L’interpolation spatiale est le processus d’utilisation de points dont les valeurs sont connues pour estimer des valeurs à d’autres points inconnus.\nPar exemple, pour faire une carte des précipitations (pluie) de votre pays, vous ne trouverez pas assez de stations météo réparties uniformément pour couvrir l’intégralité de la région. L’interpolation spatiale peut estimer la température à des endroits sans données enregistrées en utilisant des relevés de températures connus dans des stations météo à proximité. »\n\n\n\n\n\n\nDocumentation QGIS, “Une rapide introduction aux SIG”, 2022"
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#avant-linterpolation",
+    "href": "posts/TD1/TD1.html#avant-linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Avant l’interpolation",
+    "text": "Avant l’interpolation\nDes points aux mailles\nIl y a différentes possibilités pour mailler un territoire, c’est-à-dire le découper en un ensemble de zones contigües\n\n\nMailles uniformes\n\nCarroyages\nHexagones\nTriangles isocèles / losanges\n\n\nMailles hétérogènes\n\nMaillages administratifs\nTriangulations et tesselations"
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#exercice-collectif",
+    "href": "posts/TD1/TD1.html#exercice-collectif",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage)."
+  },
+  {
+    "objectID": "posts/TD1/TD1.html#exercice-collectif-1",
+    "href": "posts/TD1/TD1.html#exercice-collectif-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).\n\n\n\n\n\n\n\n\n\n\nPour aller plus loin\n\n\nEn restant dans un environnement SIG (QGIS), comment exécuter cette “analyse de sensibilité” plus rapidement ?"
+  },
+  {
+    "objectID": "posts/TD1/index.html#pourquoi-ne-pas-se-contenter-de-points",
+    "href": "posts/TD1/index.html#pourquoi-ne-pas-se-contenter-de-points",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Pourquoi ne pas se contenter de points ?",
+    "text": "Pourquoi ne pas se contenter de points ?"
+  },
+  {
+    "objectID": "posts/TD1/index.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "href": "posts/TD1/index.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes",
+    "text": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes\n\nDonnées issues de géolocalisation (Adresses, “Lieux”, …)\nDonnées de relevés (Indicidents, recensements, …)\nDonnées de capteurs (Statiques ou dynamiques)\nDonnées de suivi individuelles (GPS, GéoIP, …)"
+  },
+  {
+    "objectID": "posts/TD1/index.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "href": "posts/TD1/index.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation",
+    "text": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation"
+  },
+  {
+    "objectID": "posts/TD1/index.html#linterpolation",
+    "href": "posts/TD1/index.html#linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "L’interpolation",
+    "text": "L’interpolation\nDéfinition\n\n\n\n« L’interpolation spatiale est le processus d’utilisation de points dont les valeurs sont connues pour estimer des valeurs à d’autres points inconnus.\nPar exemple, pour faire une carte des précipitations (pluie) de votre pays, vous ne trouverez pas assez de stations météo réparties uniformément pour couvrir l’intégralité de la région. L’interpolation spatiale peut estimer la température à des endroits sans données enregistrées en utilisant des relevés de températures connus dans des stations météo à proximité. »\n\n\n\n\n\n\nDocumentation QGIS, “Une rapide introduction aux SIG”, 2022"
+  },
+  {
+    "objectID": "posts/TD1/index.html#avant-linterpolation",
+    "href": "posts/TD1/index.html#avant-linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Avant l’interpolation",
+    "text": "Avant l’interpolation\nDes points aux mailles\nIl y a différentes possibilités pour mailler un territoire, c’est-à-dire le découper en un ensemble de zones contigües\n\n\nMailles uniformes\n\nCarroyages\nHexagones\nTriangles isocèles / losanges\n\n\nMailles hétérogènes\n\nMaillages administratifs\nTriangulations et tesselations"
+  },
+  {
+    "objectID": "posts/TD1/index.html#exercice-collectif",
+    "href": "posts/TD1/index.html#exercice-collectif",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage)."
+  },
+  {
+    "objectID": "posts/TD1/index.html#exercice-collectif-1",
+    "href": "posts/TD1/index.html#exercice-collectif-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).\n\n\n\n\n\n\n\n\n\n\nPour aller plus loin\n\n\nEn restant dans un environnement SIG (QGIS), comment exécuter cette “analyse de sensibilité” plus rapidement ?"
+  },
+  {
+    "objectID": "anaspa_interpolations.html",
+    "href": "anaspa_interpolations.html",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "",
+    "text": "Archive complète\n MGB_Paris_L93.gpkg\n Velibs_Paris_20241013_17h30.gpkg\n Maillages_Limitrophes_Paris.gpkg\n BureauxVote_Paris_L93.gpkg\n BureauxVote_Paris_Resultats_Presi2022_T1.xlsx"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#pourquoi-ne-pas-se-contenter-de-points",
+    "href": "posts/RC/TD1/index.html#pourquoi-ne-pas-se-contenter-de-points",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Pourquoi ne pas se contenter de points ?",
+    "text": "Pourquoi ne pas se contenter de points ?"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "href": "posts/RC/TD1/index.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes",
+    "text": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes\n\nDonnées issues de géolocalisation (Adresses, “Lieux”, …)\nDonnées de relevés (Indicidents, recensements, …)\nDonnées de capteurs (Statiques ou dynamiques)\nDonnées de suivi individuelles (GPS, GéoIP, …)"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "href": "posts/RC/TD1/index.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation",
+    "text": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#linterpolation",
+    "href": "posts/RC/TD1/index.html#linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "L’interpolation",
+    "text": "L’interpolation\nDéfinition\n\n\n\n« L’interpolation spatiale est le processus d’utilisation de points dont les valeurs sont connues pour estimer des valeurs à d’autres points inconnus.\nPar exemple, pour faire une carte des précipitations (pluie) de votre pays, vous ne trouverez pas assez de stations météo réparties uniformément pour couvrir l’intégralité de la région. L’interpolation spatiale peut estimer la température à des endroits sans données enregistrées en utilisant des relevés de températures connus dans des stations météo à proximité. »\n\n\n\n\n\n\nDocumentation QGIS, “Une rapide introduction aux SIG”, 2022"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#avant-linterpolation",
+    "href": "posts/RC/TD1/index.html#avant-linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Avant l’interpolation",
+    "text": "Avant l’interpolation\nDes points aux mailles\nIl y a différentes possibilités pour mailler un territoire, c’est-à-dire le découper en un ensemble de zones contigües\n\n\nMailles uniformes\n\nCarroyages\nHexagones\nTriangles isocèles / losanges\n\n\nMailles hétérogènes\n\nMaillages administratifs\nTriangulations et tesselations"
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#exercice-collectif",
+    "href": "posts/RC/TD1/index.html#exercice-collectif",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage)."
+  },
+  {
+    "objectID": "posts/RC/TD1/index.html#exercice-collectif-1",
+    "href": "posts/RC/TD1/index.html#exercice-collectif-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nTester la sensibilité du maillage\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).\n\n\n\n\n\n\n\n\n\n\nPour aller plus loin\n\n\nEn restant dans un environnement SIG (QGIS), comment exécuter cette “analyse de sensibilité” plus rapidement ?"
+  },
+  {
+    "objectID": "anaspa_interpolations.html#jeux-de-données",
+    "href": "anaspa_interpolations.html#jeux-de-données",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "",
+    "text": "Archive complète\n MGB_Paris_L93.gpkg\n Velibs_Paris_20241013_17h30.gpkg\n Maillages_Limitrophes_Paris.gpkg\n BureauxVote_Paris_L93.gpkg\n BureauxVote_Paris_Resultats_Presi2022_T1.xlsx"
+  },
+  {
+    "objectID": "anaspa_interpolations.html#supports-de-cours",
+    "href": "anaspa_interpolations.html#supports-de-cours",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "Supports de cours",
+    "text": "Supports de cours\n\nTD1 : Des points aux polygones\nTD2 : Voisinages et densités\nTD3 : Vers l’interpolation : lissages et potentiels sur des informations valuées (IDW & TIN)\nTD4 : Vers l’interpolation : lissages et potentiels sur des informations valuées (Potentiels)\nTD5 : Distances et variations spatiales - Approche naïve de l’auto-corrélation spatiale\nTD6 : Distances et variations spatiales - Auto-corrélation spatiale orientée et krigeage\nTD7 : Mesurer l’auto-corrélation spatiale"
+  },
+  {
+    "objectID": "anaspa_interpolations.html#exercices",
+    "href": "anaspa_interpolations.html#exercices",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "Exercices",
+    "text": "Exercices"
+  },
+  {
+    "objectID": "anaspa_interpolations.html#rendus",
+    "href": "anaspa_interpolations.html#rendus",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "Rendus",
+    "text": "Rendus"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2.html#calculs-de-densité-et-interpolation",
+    "href": "posts/RC/TD2/TD2.html#calculs-de-densité-et-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Calculs de densité et interpolation",
+    "text": "Calculs de densité et interpolation\nTrois ensembles d’approches, quel que soit le type de données (valuées ou non)\n\n⇰ Toutes ces approches se basent sur du calcul raster, bien plus rapide que le calcul vecteur."
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2.html#section",
+    "href": "posts/RC/TD2/TD2.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "",
+    "text": "Comptes (approche efficace)\n\n\nL’outil Grille (Métrique des données) permet de créer une grille automatique à partir d’un compte des points dans un rayon donné.\nIl permet aussi de mesurer une distance moyenne (ie. accessibilité moyenne) au sein d’une grille"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "href": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur."
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "href": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\n\nFormes de gradients\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "href": "posts/RC/TD2/TD2.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\n\nFormes de gradients\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#calculs-de-densité-et-interpolation",
+    "href": "posts/RC/TD2/index.html#calculs-de-densité-et-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Calculs de densité et interpolation",
+    "text": "Calculs de densité et interpolation\nTrois ensembles d’approches, quel que soit le type de données (valuées ou non)\n\n⇰ Toutes ces approches se basent sur du calcul raster, bien plus rapide que le calcul vecteur."
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#section",
+    "href": "posts/RC/TD2/index.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "",
+    "text": "Comptes (approche efficace)\n\n\nL’outil Grille (Métrique des données) permet de créer une grille automatique à partir d’un compte des points dans un rayon donné.\nIl permet aussi de mesurer une distance moyenne (ie. accessibilité moyenne) au sein d’une grille"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "href": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur."
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "href": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\n\nFormes de gradients\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "href": "posts/RC/TD2/index.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nHeatmaps et kernel density\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\n\nFormes de gradients\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats"
+  },
+  {
+    "objectID": "posts/RC/TD3/index.html#voisinages-et-densités-sur-des-points-valués",
+    "href": "posts/RC/TD3/index.html#voisinages-et-densités-sur-des-points-valués",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Voisinages et densités sur des points valués",
+    "text": "Voisinages et densités sur des points valués\n \nDensité Pondérée"
+  },
+  {
+    "objectID": "posts/RC/TD3/index.html#données-valuées",
+    "href": "posts/RC/TD3/index.html#données-valuées",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Données valuées",
+    "text": "Données valuées"
+  },
+  {
+    "objectID": "posts/RC/TD3/index.html#section",
+    "href": "posts/RC/TD3/index.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "",
+    "text": "400m regular\n\n\n\n\n\n\n400m happy\n\n\n\n\n\n\n800m regular\n\n\n\n\n\n\n800m happy"
+  },
+  {
+    "objectID": "posts/RC/TD3/index.html#données-valuées-1",
+    "href": "posts/RC/TD3/index.html#données-valuées-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Données valuées",
+    "text": "Données valuées"
+  },
+  {
+    "objectID": "posts/RC/TD3/index.html#interpollation-et-lissage",
+    "href": "posts/RC/TD3/index.html#interpollation-et-lissage",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Interpollation et lissage",
+    "text": "Interpollation et lissage\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\n\n\n\n\n\n\n\n\nSource : QGIS Doc, “A gentle introduction to GIS”, by Mitas, L., Mitasova, H. (1999)."
+  },
+  {
+    "objectID": "posts/RC/TD4/index.html#interpollation-et-lissage",
+    "href": "posts/RC/TD4/index.html#interpollation-et-lissage",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 4",
+    "section": "Interpollation et lissage",
+    "text": "Interpollation et lissage\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\nGradients par pondération (addition) selon la distance dans l’espace complet (interaction) : Potentiels de Stewart\nGradients multiples selon des distances locales : Krigeage"
+  },
+  {
+    "objectID": "posts/RC/TD5/index.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "href": "posts/RC/TD5/index.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 5",
+    "section": "Comment choisir des seuils de distance pour les interpolations ?",
+    "text": "Comment choisir des seuils de distance pour les interpolations ?\nOn utilise deux grandes méthodes de choix :\n\nDes seuils basés d’après des connaissances thématiques\nDes seuils basés sur les distances empiriques de l’échantillon de mesures"
+  },
+  {
+    "objectID": "posts/RC/TD5/index.html#mesures-de-distances-empiriques",
+    "href": "posts/RC/TD5/index.html#mesures-de-distances-empiriques",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 5",
+    "section": "Mesures de distances empiriques",
+    "text": "Mesures de distances empiriques\nChargement des packages\n\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(readxl)\n  library(sf)\n  library(potential)\n  library(patchwork)\n  library(glue)\n})"
+  },
+  {
+    "objectID": "posts/RC/TD6/index.html#krigeage",
+    "href": "posts/RC/TD6/index.html#krigeage",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 6",
+    "section": "Krigeage",
+    "text": "Krigeage\n\n\n\n\n\n\nLe krigeage consiste à estimer, pour chaque point connu, une équation de prédiction des valeurs (dirigées ou non), ie. fonction de la valeur du point, de la distance et éventuellement de l’orientation.\n\n\n\n\n\n\ngstat::show.vgms(nugget = 0.25, sill = 1.5)"
+  },
+  {
+    "objectID": "posts/RC/TD5/TD5_AutoCor_Manuelle.html",
+    "href": "posts/RC/TD5/TD5_AutoCor_Manuelle.html",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 5",
+    "section": "",
+    "text": "On utilise deux grandes méthodes de choix :\n\nDes seuils basés d’après des connaissances thématiques\nDes seuils basés sur les distances empiriques de l’échantillon de mesures"
+  },
+  {
+    "objectID": "posts/RC/TD5/TD5_AutoCor_Manuelle.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "href": "posts/RC/TD5/TD5_AutoCor_Manuelle.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 5",
+    "section": "",
+    "text": "On utilise deux grandes méthodes de choix :\n\nDes seuils basés d’après des connaissances thématiques\nDes seuils basés sur les distances empiriques de l’échantillon de mesures"
+  },
+  {
+    "objectID": "posts/RC/TD5/TD5_AutoCor_Manuelle.html#mesures-de-distances-empiriques",
+    "href": "posts/RC/TD5/TD5_AutoCor_Manuelle.html#mesures-de-distances-empiriques",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 5",
+    "section": "Mesures de distances empiriques",
+    "text": "Mesures de distances empiriques\n\nChargement des packages\n\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(readxl)\n  library(sf)\n  library(potential)\n  library(patchwork)\n  library(glue)\n})\n\n\n\n\nImport des données\n\ncommunes_paris &lt;- st_read(\"../DATA/Maillages_Limitrophes_Paris.gpkg\", layer = \"Communes\", as_tibble = TRUE) %&gt;%\n  st_transform(2154) %&gt;%\n  filter(INSEE_DEP == \"75\") %&gt;% filter(INSEE_COM != \"75056\")\n\nReading layer `Communes' from data source \n  `D:\\Dropbox\\2_Enseignement\\2025-2026\\M2_AnaSpa\\SITE\\posts\\RC\\DATA\\Maillages_Limitrophes_Paris.gpkg' \n  using driver `GPKG'\nSimple feature collection with 50 features and 12 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 639863 ymin: 6855647 xmax: 663292 ymax: 6872673\nProjected CRS: RGF93 Lambert 93\n\ncontour_paris &lt;- communes_paris %&gt;% summarise() %&gt;% st_buffer(300)\n\n\n\nbureauxVote &lt;- st_read(\"../DATA/BureauxVote_Paris_L93.gpkg\", as_tibble = TRUE) %&gt;%\n  st_transform(2154)\n\nReading layer `BureauxVote_Paris_L93' from data source \n  `D:\\Dropbox\\2_Enseignement\\2025-2026\\M2_AnaSpa\\SITE\\posts\\RC\\DATA\\BureauxVote_Paris_L93.gpkg' \n  using driver `GPKG'\nSimple feature collection with 899 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 645317.8 ymin: 6857789 xmax: 656919 ymax: 6866868\nProjected CRS: RGF93 v1 / Lambert-93\n\nresultatsVote &lt;- read_xlsx(\"../DATA/BureauxVote_Paris_Resultats_Presi2022_T1.xlsx\") %&gt;%\n  select(-c(1:6))\n\nresultats_bureaux &lt;- bureauxVote %&gt;%\n  left_join(resultatsVote, by = c(\"CodeBVote\" = \"Code du b.vote\")) %&gt;%\n  mutate(Inscrits = as.numeric(Inscrits))\n\n\n\n\n1 - Distance au plus proche voisin\nLe package nngeo permet de calculer de nombreux types de distances entre des objets sf.\n\nlibrary(nngeo)\nlibrary(listviewer)\n\nliste_distance &lt;- st_nn(x = resultats_bureaux, y = resultats_bureaux,\n                        k = 1, returnDist = TRUE)\nlistviewer::jsonedit(liste_distance)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nEn paramétrant k, on choisit le nombre de plus proches voisins dont calculer la distance.\nIci, en choisissant une valeur de k = 1, la fonction calcule la distance entre chaque point et son plus proche voisin, ie. lui-même (voir les distances qui sont toutes à 0).\nPour calculer la distance au plus proche voisin réel, il faut donc indiquer k = 2 et ne conserver que le second voisin.\n\n\n\n\nlibrary(nngeo)\nlibrary(listviewer)\n\nliste_distance_2 &lt;- st_nn(x = resultats_bureaux, y = resultats_bureaux,\n                          k = 2, returnDist = TRUE)\ndistance_ppv &lt;- liste_distance_2$dist %&gt;% map_dbl(2)\nsummary(distance_ppv)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    0.00    0.00   55.85   66.05 1245.94 \n\n\n\n\n\n\n\n\nWarningQuel est le problème ici ?\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipLes bureaux de vote sont souvent regroupés dans des lieux municipaux communs.\n\n\n\n\nIl est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.\n\n\n\n\nSolution rapide : suppression pure des doublons géométriques\n\nbureaux_distincts &lt;- resultats_bureaux %&gt;% select() %&gt;% distinct()\ndistance_bureaux &lt;- st_nn(x = bureaux_distincts, y = bureaux_distincts,\n                          k = 2, returnDist = TRUE) %&gt;%\n  pluck(\"dist\") %&gt;%\n  map_dbl(2)\nsummary(distance_bureaux)\n\n     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. \n   0.0005   47.7112  125.9838  151.4778  229.5483 1245.9397 \n\n\n\n\n\n\n\n\n\nTipLes bureaux de vote sont souvent regroupés dans des lieux municipaux communs.\n\n\n\n\nIl est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.\n\n\n\n\n\nSolution plus juste : agrégation des votes des doublons\n\nbureaux_distincts &lt;- resultats_bureaux %&gt;% group_by(geom) %&gt;%\n  summarise(\n    across(where(is.character), ~first(.x)),\n    across(where(is.numeric), ~sum(.x)),\n    .groups = \"drop\"\n    )\n\ndistance_bureaux &lt;- st_nn(x = bureaux_distincts, y = bureaux_distincts,\n                          k = 2, returnDist = TRUE) %&gt;%\n  pluck(\"dist\") %&gt;%\n  map_dbl(2)\nsummary(distance_bureaux)\n\n     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. \n   0.0005   47.7112  125.9838  151.4778  229.5483 1245.9397 \n\n\n\n\n\nExercice : Tracer l’histogramme et la courbe de densité des distances au plus proche voisin des bureaux de vote\n\n\n\ndistance_bureaux_tbl &lt;- distance_bureaux %&gt;%\n  as_tibble() %&gt;%\n  rename(distance = value)\n\np1 &lt;- ggplot(distance_bureaux_tbl) +\n  aes(distance) +\n  geom_histogram(fill = \"#67c9ff\", colour = \"white\")\n\np2 &lt;- p1 + \n  geom_density()\n\np3 &lt;- ggplot(distance_bureaux_tbl) +\n  aes(distance) +\n  geom_histogram(aes(y = after_stat(density)),\n                 fill = \"#67c9ff\",\n                 colour = \"white\") +\n  geom_density(aes(y = after_stat(density)))\np3\n\n\n\n\n\n\n\n\n\n\nOù couper ?\n\nTracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin\n\n\n\nfrequence_cumulee &lt;- distance_bureaux_tbl %&gt;%\n  arrange(distance) %&gt;%\n  mutate(dummy = 1/nrow(distance_bureaux_tbl)) %&gt;%\n  mutate(cumfreq = cumsum(dummy))\n\n\n\nggplot(frequence_cumulee) +\n  aes(distance, cumfreq) +\n  geom_line() +\n  scale_y_continuous(labels = scales::percent)\n\n\n\n\n\n\n\n\n\n\nPourquoi s’arrêter au premier plus proche voisin ?\n\n\n\n\n2 - Distances aux n plus proche voisins\n\ndistance_bureaux_10 &lt;- st_nn(x = bureaux_distincts, y = bureaux_distincts,\n                          k = 11, returnDist = TRUE) %&gt;%\n  pluck(\"dist\") %&gt;%\n  enframe() %&gt;%\n  rename(ID = name) %&gt;%\n  unnest(value) %&gt;%\n  rename(distance = value) %&gt;%\n  group_by(ID) %&gt;%\n  mutate(num_voisin = row_number() - 1) %&gt;%\n  ungroup() %&gt;%\n  filter(num_voisin &gt; 0) %&gt;%\n  mutate(num_voisin = as.factor(num_voisin))\n\n\nExercice : Représentation des distances aux 10 plus proches voisins\n\n\n\nBasiqueFacetsRidgelinesRidge bins\n\n\n\nggplot(distance_bureaux_10) +\n  geom_histogram(aes(x = distance))\n\n\n\n\n\n\n\n\n\n\n\nggplot(distance_bureaux_10) +\n  geom_histogram(aes(x = distance)) +\n  facet_wrap(~num_voisin, ncol = 1)  \n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggridges)\n\nggplot(distance_bureaux_10) +\n  geom_density_ridges(aes(x = distance, y = num_voisin))\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggridges)\n\nggplot(distance_bureaux_10) +\n  geom_density_ridges(aes(x = distance, y = num_voisin), stat = \"binline\", scale = 0.9)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 - Distances moyennes\n\n\n\n\n\n\nNoteTant qu’à faire, autant analyser l’ensemble des distances entre tous les bureaux de vote\n\n\n\n\n\n\n\nExercice : Mesure de distances\n\nA l’aide de la fonction st_distance du package sf, calculez la matrice de distance entre tous les bureaux de vote de Paris et affichez-en l’histogramme\n\n\n\n\nmatrice_distance &lt;- st_distance(x = resultats_bureaux, y = resultats_bureaux,\n                                by_element = FALSE)\n\nliste_distances_BV &lt;- matrice_distance %&gt;%\n  as.matrix() %&gt;%\n  as_tibble() %&gt;%\n  mutate(ID_Origine = as.character(row_number()), .before = 1) %&gt;%\n  pivot_longer(-ID_Origine) %&gt;%\n  mutate(ID_Destination = str_remove(name, pattern = \"V\")) %&gt;%\n  mutate(distance = as.numeric(value)) %&gt;%\n  select(-value, -name) %&gt;%\n  filter(ID_Origine != ID_Destination)\n\nglimpse(liste_distances_BV)\n\nRows: 807,302\nColumns: 3\n$ ID_Origine     &lt;chr&gt; \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", …\n$ ID_Destination &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12…\n$ distance       &lt;dbl&gt; 973.0925, 2827.1982, 2807.4550, 2804.2950, 3033.7936, 3…\n\n\n\n\nggplot(liste_distances_BV) +\n  geom_histogram(aes(distance, after_stat(density)))\n\n\n\n\n\n\n\n\n\n\n\n4 - Distances et différences\n\n\n\n\n\n\nNoneMaintenant qu’on a une liste complète des distances, pourquoi est-ce qu’on n’explorerait pas le lien entre distance (dans Paris) et comportement de vote ?\n\n\n\n\n\n\n\nDit autrement, on peut chercher à voir si les comportements électoraux présentent une autocorrélation spatiale\n\n\nEn dépit de ce que nous avons fait lors des précédentes séances, il n’y a strictement aucune logique à réaliser une interpolation de variables qui ne sont pas corrélées spatialement.\n\n\n\nAutocorrélation spatiale naïve\n\nOn peut chercher à voir s’il y a un lien entre la variation d’une variable électorale et la distance entre les bureaux de vote.\nPrenons l’exemple des votes pour Emmanuel Macron lors du 1er tour des présidentielles 2022 à Paris\n\n\n\nvotes_macron &lt;- resultats_bureaux %&gt;%\n  st_drop_geometry() %&gt;%\n  mutate(pctMACRON = MACRON / Inscrits) %&gt;%\n  select(pctMACRON) %&gt;%\n  mutate(ID_bureau = as.character(row_number()))\n\ncouples_bureaux &lt;- liste_distances_BV %&gt;%\n  left_join(votes_macron, by = c(\"ID_Origine\" = \"ID_bureau\")) %&gt;%\n  rename(pctMACRON_Origine = pctMACRON) %&gt;%\n  left_join(votes_macron, by = c(\"ID_Destination\" = \"ID_bureau\")) %&gt;%\n  rename(pctMACRON_Destination = pctMACRON)\n\nglimpse(couples_bureaux)\n\nRows: 807,302\nColumns: 5\n$ ID_Origine            &lt;chr&gt; \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\"…\n$ ID_Destination        &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"1…\n$ distance              &lt;dbl&gt; 973.0925, 2827.1982, 2807.4550, 2804.2950, 3033.…\n$ pctMACRON_Origine     &lt;dbl&gt; 0.3164806, 0.3164806, 0.3164806, 0.3164806, 0.31…\n$ pctMACRON_Destination &lt;dbl&gt; 0.3083141, 0.4026051, 0.3781447, 0.3616541, 0.36…\n\n\n\n\n\nExercice - Comment analyser la différence ? 1/3\n\nProposer une métrique permettant de mesurer l’écart de votes, et représentez-la en fonction de la distance.\n\n\n\n\ndifference_votes &lt;- couples_bureaux %&gt;%\n  mutate(diffPCT = pctMACRON_Origine - pctMACRON_Destination)\n\n\nggplot(difference_votes) +\n  geom_point(aes(x = distance, y = diffPCT))\n\n\n\n\n\n\n\n\nExercice - Comment analyser la différence ? 2/3\n\nLa représentation des différences directes est rapidement illisibile en raison de la symétrie des données.\nFiltrer le jeu de données précédent pour n’afficher les différences qu’une fois, et uniquement de manière positive\n\n\n\ndifference_votes_assym &lt;- difference_votes %&gt;%\n  filter(ID_Origine &gt; ID_Destination) %&gt;%\n  mutate(diffAbs = abs(diffPCT))\n\n\n\nDirecteDensité\n\n\n\nggplot(difference_votes_assym) +\n  geom_point(aes(x = distance, y = diffAbs))\n\n\n\n\n\n\n\n\n\nggplot(difference_votes_assym) +\n  geom_density_2d(aes(x = distance, y = diffAbs))\n\n\n\n\n\n\n\n\n\n\n\nExercice - Comment analyser la différence ? 3/3\n\nLe lien entre distance et variation du taux de vote Macron n’est toujours pas évident à lire.\nProposer une méthode permettant de synthétiser la tendance\n\n\n\n\n\n5 - Vers le semi-variogramme\n\nOn discrétise la distance par bornes de 100m\n\ndistances_differences_discretes &lt;- difference_votes_assym %&gt;%\n  mutate(bande = cut(distance, breaks = c(0:120) * 100, labels = FALSE)) %&gt;%\n  mutate(bande = bande * 100)\n\nmeanDiff &lt;- distances_differences_discretes %&gt;%\n  group_by(bande) %&gt;%\n  summarise(diffmoyenne = mean(diffAbs), nb = n())\n\n\n\nggplot(meanDiff) +\n  aes(x = bande, y = diffmoyenne, size = nb) +\n  geom_point() +\n  scale_y_continuous(labels = scales::percent)\n\n\n\n\n\n\n\n\n\n\n\n\nLes semivariogrammes\n\n\n\n\n\n\nNoteCette manière de représenter l’autocorrélation spatiale entre des entités est à la base d’un outil de géostatistique, le semivariogramme.\n\n\n\n\nCela consiste à représenter la semi-variance en fonction de bandes de distances :\n\n\\(semivar(d_{ij}) = 0.5 \\times \\frac{\\sum_{i..j}{(valeur_{i} - valeur_j)^2}{}}{n}\\)\n\n\n\nsemivarDiff &lt;- distances_differences_discretes %&gt;%\n  group_by(bande) %&gt;%\n  summarise(semivar = 0.5 * mean(diffAbs^2), nb = n())\n\n\n\nggplot(semivarDiff) +\n  aes(x = bande, y = semivar, size = nb) +\n  geom_point() +\n  scale_y_continuous()"
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "",
+    "text": "WarningExercice 0 : Mise en bouche\n\n\n\n\nVia l’outil Carte de chaleur (Estimation par noyau), faites une carte de densité des bars à Paris, pondérée par le prix de la bière qui y est servie.\nTrouvez une méthode de pondération qui renforce l’importance locale des bars aux prix les moins élevés, et diminue celle des bars aux prix les plus élevés.\n\n\n\n\n\n\n\n\n\n\nWarningExercice 0 : Mise en bouche\n\n\n\n\nVia l’outil Carte de chaleur (Estimation par noyau), faites une carte de densité des bars à Paris, pondérée par le prix de la bière qui y est servie.\nTrouvez une méthode de pondération qui renforce l’importance locale des bars aux prix les moins élevés, et diminue celle des bars aux prix les plus élevés.\n\n\n\n\n\n\n\n\n\nWarningExercice 1 : densité pondérée réelle\n\n\n\n\nParmi les jeux de données à votre disposition, trouvez un attribut qui se prête bien à une carte de densité pondérée, ie. dont la carte produite aurait du sens."
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html#voisinages-et-densités-sur-des-points-valués",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html#voisinages-et-densités-sur-des-points-valués",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "",
+    "text": "WarningExercice 0 : Mise en bouche\n\n\n\n\nVia l’outil Carte de chaleur (Estimation par noyau), faites une carte de densité des bars à Paris, pondérée par le prix de la bière qui y est servie.\nTrouvez une méthode de pondération qui renforce l’importance locale des bars aux prix les moins élevés, et diminue celle des bars aux prix les plus élevés.\n\n\n\n\n\n\n\n\n\n\nWarningExercice 0 : Mise en bouche\n\n\n\n\nVia l’outil Carte de chaleur (Estimation par noyau), faites une carte de densité des bars à Paris, pondérée par le prix de la bière qui y est servie.\nTrouvez une méthode de pondération qui renforce l’importance locale des bars aux prix les moins élevés, et diminue celle des bars aux prix les plus élevés.\n\n\n\n\n\n\n\n\n\nWarningExercice 1 : densité pondérée réelle\n\n\n\n\nParmi les jeux de données à votre disposition, trouvez un attribut qui se prête bien à une carte de densité pondérée, ie. dont la carte produite aurait du sens."
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html#données-valuées",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html#données-valuées",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Données valuées",
+    "text": "Données valuées\n\n\n\n\n\n\n\n\n\n\n\n\nTipMoyennes mobiles sur des points valués\n\n\n\n\nOn peut calculer une moyenne mobile simple sur des points valués à l’aide de l’outil Grille (Moyenne mobile) (menu Raster -&gt; Analyse)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 2 : Valeur moyenne sur données de ratio\n\n\n\n\nConstruisez une carte de la valeur moyenne du prix de la pinte à Paris, dans des rayons de 400m (~ 5min) et 800m (~ 10min).\nComparez ces cartes avec celles du prix des bières en happy hour."
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html#section",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "",
+    "text": "400m regular\n\n\n\n\n\n\n400m happy\n\n\n\n\n\n\n800m regular\n\n\n\n\n\n\n800m happy"
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html#données-valuées-1",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html#données-valuées-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Données valuées",
+    "text": "Données valuées"
+  },
+  {
+    "objectID": "posts/RC/TD3/TD3_IDW_TIN.html#interpollation-et-lissage",
+    "href": "posts/RC/TD3/TD3_IDW_TIN.html#interpollation-et-lissage",
+    "title": "M2 Carthagéo - Du discret au continu - Séances 3",
+    "section": "Interpollation et lissage",
+    "text": "Interpollation et lissage\n\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\n\n\n\n\n\n\n\n\nSource : QGIS Doc, “A gentle introduction to GIS”, by Mitas, L., Mitasova, H. (1999).\n\n\n\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\n\n\n\n\n\n\n\n\nSource : QGIS Doc, “A gentle introduction to GIS”, by Mitas, L., Mitasova, H. (1999).\n\n\n\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\nGradients par pondération (addition) selon la distance dans l’espace complet (interaction) : Potentiels de Stewart\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource : Giraud T, Commenges H (2022). potential: Implementation of the Potential Model. R package version 0.2.0, https://github.com/riatelab/potential.\n\n\n\n4 grandes familles :\n\nGradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\nGradients par pondération (addition) selon la distance dans l’espace complet (interaction) : Potentiels de Stewart\nGradients multiples selon des distances locales : Krigeage\n\n\n\n\n\n\n\n\n\n\nSource : Sadeghi SH, Nouri H, Faramarzi M. (2017) Assessing the Spatial Distribution of Rainfall […]. Air, Soil and Water Research. 2017;10. doi:10.1177/1178622116686066\n\n\n\n\n\nIDW\n\nAlgorithme d’interpolation classique et simple, calcule une valeur estimée par pondération des valeurs de chacun des points connus dans un rayon défini, selon une fonction de la distance à l’exposant P.\nPlus P est important, plus la distance jouera un frein.\n\n\n\n\n\n  \n\n\n\n\n\nIDW\n\n\n\n\n\n\nWarningExercice 3 : IDW\n\n\n\n\nUtilisez l’outil Interpolation IDW pour estimer une interpolation des prix de la pinte à Paris.\nTestez plusieurs valeurs de P :\n\nQue se passe-t-il quand P vaut 0 ?\nQue se passe-t-il quand P est très fort ?\nComment choisir une valeur de P ?\n\n\n\n\n\n\n\nTIN\n\nInterpolation basée sur une triangulation de Delaunay : des triangles de points sont créés, et dans chaque triangle, un gradient de valeurs (pente) est ajusté à partir des valeurs des 3 sommets.\nPossibilité de faire varier la méthode de calcul de la pente : linéaire ou Clough-Toucher (polynômiale).\n\n\n\n\n\n\n\n\n\nTIN\n\nInterpolation basée sur une triangulation de Delaunay : des triangles de points sont créés, et dans chaque triangle, un gradient de valeurs (pente) est ajusté à partir des valeurs des 3 sommets.\nPossibilité de faire varier la méthode de calcul de la pente : linéaire ou Clough-Toucher (polynômiale).\n\n\n\n\n\n\n\nWarningExercice 4 : TIN\n\n\n\n\nUtilisez l’outil Interpolation TIN pour estimer une interpolation des prix de la pinte à Paris.\nComparez la méthode linéaire et Clough-Toucher : qu’est-ce qui varie ?\nLes interpollation TIN sont-elles adaptées à l’interpolation des prix des bars ? Testez cette méthode sur les vélibs.\nQuels sont les avantages de cette méthode par rapport à IDW ? Sur quels types de données les employer ?"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html",
+    "href": "posts/RC/TD1/TD1_Intro.html",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "",
+    "text": "WarningPour l’analyse visuelle\n\n\n\n\nLes points (nombreux) constituent de mauvais indicateurs visuels de la distribution spatiale.\n\n\n\n⇰ Ce semis est-il concentré ou dispersé ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningPour l’analyse visuelle\n\n\n\n\nLes points sont de mauvais indicateurs du contexte spatial.\n\n\n\n⇰ Depuis l’I.G., en période de grève, où ais-je le plus de chance de trouver un Vélib ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningPour le calcul\n\n\n\n\nDonnées par définition discrètes, qui n’ont pas de validité en dehors de leur propre localisation.\n\n\n\n⇰ Quelle température faisait-il à la Rochelle ce dimanche midi ?"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#pourquoi-ne-pas-se-contenter-de-points",
+    "href": "posts/RC/TD1/TD1_Intro.html#pourquoi-ne-pas-se-contenter-de-points",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "",
+    "text": "WarningPour l’analyse visuelle\n\n\n\n\nLes points (nombreux) constituent de mauvais indicateurs visuels de la distribution spatiale.\n\n\n\n⇰ Ce semis est-il concentré ou dispersé ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningPour l’analyse visuelle\n\n\n\n\nLes points sont de mauvais indicateurs du contexte spatial.\n\n\n\n⇰ Depuis l’I.G., en période de grève, où ais-je le plus de chance de trouver un Vélib ?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningPour le calcul\n\n\n\n\nDonnées par définition discrètes, qui n’ont pas de validité en dehors de leur propre localisation.\n\n\n\n⇰ Quelle température faisait-il à la Rochelle ce dimanche midi ?"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "href": "posts/RC/TD1/TD1_Intro.html#et-pourtant-les-sources-de-données-ponctuelles-sont-les-plus-fréquentes",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes",
+    "text": "Et pourtant, les sources de données ponctuelles sont les plus fréquentes\n\nDonnées issues de géolocalisation (Adresses, “Lieux”, …)\nDonnées de relevés (Indicidents, recensements, …)\nDonnées de capteurs (Statiques ou dynamiques)\nDonnées de suivi individuelles (GPS, GéoIP, …)"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "href": "posts/RC/TD1/TD1_Intro.html#on-a-souvent-besoin-de-passer-dune-donnée-ponctuelle-à-une-donnée-continue-ou-a-minima-zonale-donc-de-réaliser-une-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation",
+    "text": "On a souvent besoin de passer d’une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une interpolation"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#linterpolation",
+    "href": "posts/RC/TD1/TD1_Intro.html#linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "L’interpolation",
+    "text": "L’interpolation\n\nDéfinition\n\n\n\n« L’interpolation spatiale est le processus d’utilisation de points dont les valeurs sont connues pour estimer des valeurs à d’autres points inconnus.\nPar exemple, pour faire une carte des précipitations (pluie) de votre pays, vous ne trouverez pas assez de stations météo réparties uniformément pour couvrir l’intégralité de la région. L’interpolation spatiale peut estimer la température à des endroits sans données enregistrées en utilisant des relevés de températures connus dans des stations météo à proximité. »\n\n\n\n\n\n\n\nDocumentation QGIS, “Une rapide introduction aux SIG”, 2022"
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#avant-linterpolation",
+    "href": "posts/RC/TD1/TD1_Intro.html#avant-linterpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Avant l’interpolation",
+    "text": "Avant l’interpolation\n\nDes points aux mailles\n\nIl y a différentes possibilités pour mailler un territoire, c’est-à-dire le découper en un ensemble de zones contigües\n\n\nMailles uniformes\n\n\nCarroyages\nHexagones\nTriangles isocèles / losanges\n\n\n\nMailles hétérogènes\n\n\nMaillages administratifs\nTriangulations et tesselations\n\n\n\n\n\n\n\n\n\n\n\nTipLes diagrammes de Voronoï\n\n\n\n\n\nTriangulation de Delaunay  \n\n\nDiagramme de Voronoï / Polygones de Thiessen\n\n\n\n\n\n\n\n\n\n\n\n\nTipUn diagramme de Voronoï non équi-valué ?\n\n\n\n\n\n\n\n\nHeld, M., & de Lorenzo, S. (2020). On Implementing Multiplicatively Weighted Voronoi Diagrams. In Proc. 36th EuroCG."
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#exercice-collectif",
+    "href": "posts/RC/TD1/TD1_Intro.html#exercice-collectif",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nWarningTester la sensibilité du maillage\n\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage)."
+  },
+  {
+    "objectID": "posts/RC/TD1/TD1_Intro.html#exercice-collectif-1",
+    "href": "posts/RC/TD1/TD1_Intro.html#exercice-collectif-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 1",
+    "section": "Exercice collectif",
+    "text": "Exercice collectif\n\n\n\n\n\n\nWarningTester la sensibilité du maillage\n\n\n\n\nDans le tableur indiqué dans l’EPI, répartissez-vous les mailles.\nPour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.\nReportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l’écart-type et le coefficient de variation de ces valeurs.\nCollectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).\n\n\n\n\n\n\n\n\n\nWarningPour aller plus loin\n\n\n\nEn restant dans un environnement SIG (QGIS), comment exécuter cette “analyse de sensibilité” plus rapidement ?"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html",
+    "href": "posts/RC/TD2/TD2_Voisinages.html",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "",
+    "text": "WarningExercice 0 : Mise en bouche\n\n\n\nEn utilisant uniquement des outils de manipulation de vecteurs, proposez une méthode pour calculer le nombre de bars situés à moins de 500m de tout point de Paris.\n\n\n\n\n\n\n\n\n\nWarningExercice 0 : Mise en bouche\n\n\n\nEn utilisant uniquement des outils de manipulation de vecteurs, proposez une méthode pour calculer le nombre de bars situés à moins de 500m de tout point de Paris.\n\n\n\n\n\n\n\n\n\nflowchart TB\n  Points[Points] --&gt; Grille(Grille 100*100) --&gt; Buffer(Buffer 500m) --&gt; PtsInPolygons(PtsInPolygons) --&gt; JointureAttributaire(JointureAttributaire) --&gt; Cartographie(Cartographie)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 1 : Apéritif\n\n\n\nPour tout point de Paris, quelle est la distance au bar le plus proche ?\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 1 : Apéritif\n\n\n\nPour tout point de Paris, quelle est la distance au bar le plus proche ?\n\n\n\n\n\n\n\n\n\nflowchart TB\n  Points[Points] --&gt; Grille(Grille 100*100) --&gt; Jointure(Joindre les attributs&lt;br/&gt;par le plus proche) --&gt;  Cartographie(Cartographie du &lt;br/&gt;champ distance)"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html#calculs-de-densité-et-interpolation",
+    "href": "posts/RC/TD2/TD2_Voisinages.html#calculs-de-densité-et-interpolation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Calculs de densité et interpolation",
+    "text": "Calculs de densité et interpolation\nTrois ensembles d’approches, quel que soit le type de données (valuées ou non)\n\n\n\n\n\n⇰ Toutes ces approches se basent sur du calcul raster, bien plus rapide que le calcul vecteur."
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html#section",
+    "href": "posts/RC/TD2/TD2_Voisinages.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "",
+    "text": "Comptes (approche efficace)\n\n\n\n\n\n\nL’outil Grille (Métrique des données) permet de créer une grille automatique à partir d’un compte des points dans un rayon donné.\nIl permet aussi de mesurer une distance moyenne (ie. accessibilité moyenne) au sein d’une grille\n\n\n\n\nComptes (approche efficace)\n\n\n\n\n\n\nWarningExercice 2 : Comptes\n\n\n\nCalculer le nombre de bars situés à moins de 500m de tout point de Paris.\n\n\n\n\n\nComptes (approche efficace)\n\n\n\n\n\n\nWarningExercice 2 : Comptes\n\n\n\nCalculer le nombre de bars situés à moins de 500m de tout point de Paris.\n\n\n\n\n\n\n\n\n\nflowchart TB\n  Points[Points] --&gt; Métrique(Métrique des données) --&gt; Métrique2(Métrique : Compte) --&gt; Rayon(500m pour les 2 rayons) --&gt;  Cartographie(Cartographie)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistance (approche efficace)\n\n\n\n\n\n\nWarningExercice 3 : Distance moyenne\n\n\n\nProposez et mettez en application un cas d’usage de la métrique Distance moyenne de l’outil Grille (Métrique des données). Qu’est-ce que cette méthodologie permet de mettre en évidence ?\n\n\n\n\n\nDistance (approche efficace)\n\n\n\n\n\n\nWarningExercice 3 : Distance moyenne\n\n\n\nProposez et mettez en application un cas d’usage de la métrique Distance moyenne de l’outil Grille (Métrique des données). Qu’est-ce que cette méthodologie permet de mettre en évidence ?\n\n\n\n\n\n\n\n\n\nflowchart TB\n  Points[Points] --&gt; Métrique(Métrique des données) --&gt; Métrique2(Métrique : Distance moyenne) --&gt; Rayon(800m pour les 2 rayons) --&gt; \n  NbPoints(Points minimum : 5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nEn utilisant l’outil Grille (Métrique des données), on peut trouver des hotspots de localisation de bars à Paris, c’est-à-dire des lieux qui montrent une concentration de bars hyper-locale importante au sein d’une densité locale plus faible.\n\n\n\n\n\nDistance (approche efficace)\n\n\n\n\n\n\nWarningExercice 4 : Distance moyenne\n\n\n\nProposez une méthodologie alternative permettant de détecter des hotspots.\n\n\n\n\n\n\n\n\n\nTipDu continu au discret\n\n\n\n\nOn peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.\nOn effectue alors des opérations de “polygonisation”.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipDu continu au discret\n\n\n\n\nOn peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.\nOn effectue alors des opérations de “polygonisation”.\n\n\n\n\n\n\n\n\n\nWarningProblème : les polygones en sortie sont alors extrêmement nombreux et morcelés.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipDu continu au discret\n\n\n\n\nOn peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.\nOn effectue alors des opérations de “polygonisation”.\n\n\n\n\n\n\n\n\n\nWarningProblème : les polygones en sortie sont alors extrêmement nombreux et morcelés.\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Polygonisation\n\n\n\nProposer une méthode pour que les polygones résultants soient moins morcelés.\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Polygonisation\n\n\n\nProposer une méthode pour que les polygones résultants soient moins morcelés.\n\n\n⇰ On peut utiliser la reclassification (Reclassification par table) pour discrétiser les valeurs du raster, avant de le polygoniser."
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "href": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nTipHeatmaps et kernel density\n\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur."
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "href": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nTipHeatmaps et kernel density\n\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\nNoteFormes de gradients\n\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats"
+  },
+  {
+    "objectID": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "href": "posts/RC/TD2/TD2_Voisinages.html#prendre-en-compte-la-distance-dans-des-mesures-de-densité-2",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Prendre en compte la distance dans des mesures de densité",
+    "text": "Prendre en compte la distance dans des mesures de densité\n\n\n\n\n\n\nTipHeatmaps et kernel density\n\n\n\nQGIS propose l’outil Carte de chaleur (Estimation par noyau) qui permet de mesurer des densités pondérées par la distance à chaque valeur.\n\n\n\n\n\n\n\n\nNoteFormes de gradients\n\n\n\n\nPour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.\nLa forme de cette fonction influe donc très fortement sur les résultats\n\n\n\n\n\n\n\n\n\n\nApplication\n\n\n\n\n\n\nWarningExercice 6 : Heatmaps\n\n\n\n\nIsolez les zones de forte concentration de bars à Paris en justifiant thématiquement chaque paramètre technique.\nMême chose, mais en prenant en compte le prix de la pinte de bière (attribut regularPrice) dans vos calculs.\nFaites varier la forme du kernel, quelle est l’influence sur vos résultats ? Comment justifier thématiquement le choix de chaque kernel ?\nBonus — Mener une analyse de sensibilité systématique en faisant varier le kernel et le rayon de recherche et comparez les résultats."
+  },
+  {
+    "objectID": "posts/RC/TD4/TD4_Potentiels.html",
+    "href": "posts/RC/TD4/TD4_Potentiels.html",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 4",
+    "section": "",
+    "text": "Gradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\nGradients par pondération (addition) selon la distance dans l’espace complet (interaction) : Potentiels de Stewart\nGradients multiples selon des distances locales : Krigeage\n\n\n\n\n\n\n“Interpolation” basée sur la logique d’un modèle gravitaire : la valeur en un point est une somme de toutes les autres valeurs pondérées par leur distance à ce point.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGrande importance de la fonction de décroissance de la distance\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Fonctions distance et paramètres dans le calcul de potentiels\n\n\n\n\nEn utilisant le package R potential, avec l’aide de la fonction plot_inter(), menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : fonction, span et beta.\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Fonctions distance et paramètres dans le calcul de potentiels\n\n\n\n\nEn utilisant le package R potential, avec l’aide de la fonction plot_inter(), menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : fonction, span et beta.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 6 : Potentiels comme méthode d’interpolation\n\n\n\n\nEn utilisant le package R potential, et à l’aide de sa documentation (https://riatelab.github.io/potential/articles/potential.html), réalisez une carte continue :\n\nde la capacité des stations vélibs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 7 : Exercice d’application\n\n\n\n\nEn infra-urbain, les résultats électoraux sont communiqués à l’échelle du bureau de vote.\n\n\n\n\n\n\n\nWarningLes bureaux de vote n’ont pas d’enveloppe géométrique officielle, ils correspondent à des ensembles d’adresses et non à des découpages zonaux de l’espace.\n\n\n\n\n\n\n\nPour une représentation choroplèthe des scores de chaque candidat au premier tour de l’élection présidentielle, quelles méthodes utiliser ?\nRéalisez une carte des résultats électoraux de chaque candidat."
+  },
+  {
+    "objectID": "posts/RC/TD4/TD4_Potentiels.html#interpollation-et-lissage",
+    "href": "posts/RC/TD4/TD4_Potentiels.html#interpollation-et-lissage",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 4",
+    "section": "",
+    "text": "Gradients par pondération (moyenne) selon la distance dans un espace ellipsoïdal : Inverse Distance Weighted (IDW)\nGradients par pondération (moyenne) selon la distance dans un espace polygonal : Triangulated Irregular Network (TIN)\nGradients par pondération (addition) selon la distance dans l’espace complet (interaction) : Potentiels de Stewart\nGradients multiples selon des distances locales : Krigeage\n\n\n\n\n\n\n“Interpolation” basée sur la logique d’un modèle gravitaire : la valeur en un point est une somme de toutes les autres valeurs pondérées par leur distance à ce point.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGrande importance de la fonction de décroissance de la distance\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Fonctions distance et paramètres dans le calcul de potentiels\n\n\n\n\nEn utilisant le package R potential, avec l’aide de la fonction plot_inter(), menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : fonction, span et beta.\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 5 : Fonctions distance et paramètres dans le calcul de potentiels\n\n\n\n\nEn utilisant le package R potential, avec l’aide de la fonction plot_inter(), menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : fonction, span et beta.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 6 : Potentiels comme méthode d’interpolation\n\n\n\n\nEn utilisant le package R potential, et à l’aide de sa documentation (https://riatelab.github.io/potential/articles/potential.html), réalisez une carte continue :\n\nde la capacité des stations vélibs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningExercice 7 : Exercice d’application\n\n\n\n\nEn infra-urbain, les résultats électoraux sont communiqués à l’échelle du bureau de vote.\n\n\n\n\n\n\n\nWarningLes bureaux de vote n’ont pas d’enveloppe géométrique officielle, ils correspondent à des ensembles d’adresses et non à des découpages zonaux de l’espace.\n\n\n\n\n\n\n\nPour une représentation choroplèthe des scores de chaque candidat au premier tour de l’élection présidentielle, quelles méthodes utiliser ?\nRéalisez une carte des résultats électoraux de chaque candidat."
+  },
+  {
+    "objectID": "anaspa_interpolations.html#exercices-et-codes",
+    "href": "anaspa_interpolations.html#exercices-et-codes",
+    "title": "Du discret au continu - M2 Carthagéo",
+    "section": "Exercices et Codes",
+    "text": "Exercices et Codes\n\n TD1 - Analyse de sensibilité\n TD4 - Potentiels - Fonctions\n TD4 - Potentiels - Application\n TD4 - Potentiels - Carte des candidats\n TD6 - Auto-corrélation spatiale orientée\n TD7 - Krigeage"
+  }
+]

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../img/Carthageo_square.png" rel="icon" type="image/png">
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
+<link href="../../../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Robin Cura">
+  <title>M2 Carthagéo - Analyse Spatiale – M2 Carthagéo - Du discret au continu - Séance 5</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-5ae9c59b2727fcd5357d4f034d95f9e0.css">
+  <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+  <script src="../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="../../../site_libs/jsoneditor-0.18.7/jsoneditor.min.js"></script>
+
+  <script src="../../../site_libs/jsonedit-binding-4.0.0/jsonedit.js"></script>
+
+<meta name="twitter:title" content="M2 Carthagéo - Du discret au continu - Séance 5 – M2 Carthagéo - Analyse Spatiale">
+<meta name="twitter:description" content="Séance 5 - Distances et variations spatiales - Approche naïve de l’auto-corrélation spatiale">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+<script src="mathjax-config.js"></script>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">M2 Carthagéo - Du discret au continu - Séance 5</h1>
+  <p class="subtitle">Séance 5 - Distances et variations spatiales - Approche naïve de l’auto-corrélation spatiale</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Robin Cura 
+</div>
+        <p class="quarto-title-affiliation">
+            Université Paris 1 Panthéon-Sorbonne
+          </p>
+    </div>
+</div>
+
+  <p class="date">Mardi 22/10/2025</p>
+</section>
+<section id="comment-choisir-des-seuils-de-distance-pour-les-interpolations" class="slide level2">
+<h2>Comment choisir des seuils de distance pour les interpolations ?</h2>
+<p>On utilise deux grandes méthodes de choix :</p>
+<ul>
+<li>Des seuils basés d’après des connaissances thématiques</li>
+<li>Des seuils basés sur les distances empiriques de l’échantillon de mesures</li>
+</ul>
+</section>
+<section id="mesures-de-distances-empiriques" class="slide level2">
+<h2>Mesures de distances empiriques</h2>
+<h4 id="chargement-des-packages">Chargement des packages</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-2"><a></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a></a>  <span class="fu">library</span>(readxl)</span>
+<span id="cb1-4"><a></a>  <span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a></a>  <span class="fu">library</span>(potential)</span>
+<span id="cb1-6"><a></a>  <span class="fu">library</span>(patchwork)</span>
+<span id="cb1-7"><a></a>  <span class="fu">library</span>(glue)</span>
+<span id="cb1-8"><a></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="import-des-données">Import des données</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>communes_paris <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"../DATA/Maillages_Limitrophes_Paris.gpkg"</span>, <span class="at">layer =</span> <span class="st">"Communes"</span>, <span class="at">as_tibble =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">st_transform</span>(<span class="dv">2154</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">filter</span>(INSEE_DEP <span class="sc">==</span> <span class="st">"75"</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(INSEE_COM <span class="sc">!=</span> <span class="st">"75056"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `Communes' from data source 
+  `D:\Dropbox\2_Enseignement\2025-2026\M2_AnaSpa\SITE\posts\RC\DATA\Maillages_Limitrophes_Paris.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 50 features and 12 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 639863 ymin: 6855647 xmax: 663292 ymax: 6872673
+Projected CRS: RGF93 Lambert 93</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>contour_paris <span class="ot">&lt;-</span> communes_paris <span class="sc">%&gt;%</span> <span class="fu">summarise</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>bureauxVote <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"../DATA/BureauxVote_Paris_L93.gpkg"</span>, <span class="at">as_tibble =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">st_transform</span>(<span class="dv">2154</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `BureauxVote_Paris_L93' from data source 
+  `D:\Dropbox\2_Enseignement\2025-2026\M2_AnaSpa\SITE\posts\RC\DATA\BureauxVote_Paris_L93.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 899 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 645317.8 ymin: 6857789 xmax: 656919 ymax: 6866868
+Projected CRS: RGF93 v1 / Lambert-93</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>resultatsVote <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"../DATA/BureauxVote_Paris_Resultats_Presi2022_T1.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a>resultats_bureaux <span class="ot">&lt;-</span> bureauxVote <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">left_join</span>(resultatsVote, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CodeBVote"</span> <span class="ot">=</span> <span class="st">"Code du b.vote"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a></a>  <span class="fu">mutate</span>(<span class="at">Inscrits =</span> <span class="fu">as.numeric</span>(Inscrits))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="distance-au-plus-proche-voisin">1 - Distance au plus proche voisin</h3>
+<p>Le <em>package</em> <code>nngeo</code> permet de calculer de nombreux types de distances entre des objets <code>sf</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(nngeo)</span>
+<span id="cb8-2"><a></a><span class="fu">library</span>(listviewer)</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a>liste_distance <span class="ot">&lt;-</span> <span class="fu">st_nn</span>(<span class="at">x =</span> resultats_bureaux, <span class="at">y =</span> resultats_bureaux,</span>
+<span id="cb8-5"><a></a>                        <span class="at">k =</span> <span class="dv">1</span>, <span class="at">returnDist =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-6"><a></a>listviewer<span class="sc">::</span><span class="fu">jsonedit</span>(liste_distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display margin-caption">
+<div class="jsonedit html-widget html-fill-item" id="htmlwidget-6c4d33063a1ec805c6a9" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-6c4d33063a1ec805c6a9">{"x":{"data":{"nn":[848,2,606,328,5,7,7,751,180,767,430,12,13,14,143,16,144,18,19,486,21,22,835,24,25,26,27,28,29,30,31,845,33,38,550,606,37,38,814,502,810,42,43,44,710,300,47,818,49,50,676,299,224,367,55,56,57,723,59,60,388,62,63,64,734,309,67,68,69,70,411,72,73,74,75,76,456,166,79,848,81,37,5,747,460,86,461,88,89,90,91,710,615,94,95,377,97,98,846,100,101,103,103,104,105,835,585,108,109,450,111,112,113,114,115,421,117,118,119,120,121,677,123,124,50,126,127,287,129,130,131,176,754,134,135,136,137,820,712,676,143,142,143,144,827,146,147,148,149,150,151,152,153,154,155,105,157,896,159,160,276,162,892,164,165,166,167,168,169,170,170,172,173,856,812,176,177,864,179,180,181,182,466,770,19,186,188,188,189,400,24,192,487,194,195,196,801,198,199,198,201,166,203,127,205,38,207,208,209,210,211,212,213,214,215,216,217,218,219,510,221,166,179,224,228,226,227,228,229,568,231,872,825,781,716,236,237,238,239,240,241,242,243,688,245,246,846,304,249,250,251,252,259,787,255,256,266,258,259,260,261,249,263,103,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,75,281,282,742,284,285,205,287,288,329,334,751,292,293,709,218,360,50,298,299,300,301,519,828,304,788,306,307,308,309,310,311,312,313,314,315,316,317,318,319,696,321,198,282,415,325,326,440,328,329,329,747,850,333,334,86,336,337,338,339,340,341,857,343,344,90,346,347,671,179,350,351,515,94,773,355,356,621,358,868,360,361,362,363,772,95,511,367,368,369,370,144,561,373,468,144,682,377,685,379,380,381,201,383,384,385,386,387,388,389,390,391,392,272,272,310,647,487,398,399,400,401,402,403,882,405,406,802,408,409,410,411,412,576,414,415,416,417,418,419,597,421,422,423,601,895,603,427,428,429,430,81,850,130,434,131,436,672,438,439,440,441,301,723,237,381,446,447,448,449,450,451,452,421,454,455,456,457,430,459,460,461,400,463,417,863,466,761,468,126,169,471,472,473,474,475,238,686,721,479,480,386,482,483,484,255,486,487,488,489,490,491,115,595,695,495,496,329,498,499,207,501,502,503,504,337,641,832,135,509,510,511,512,513,514,515,716,517,517,519,520,521,522,523,524,525,573,251,528,529,530,531,532,533,534,535,29,593,281,539,540,541,542,543,285,543,430,703,766,549,550,551,43,553,757,555,556,300,231,762,564,561,622,563,564,702,360,510,568,473,781,148,572,573,574,575,576,577,578,579,391,581,398,583,584,585,586,24,588,589,590,591,592,593,74,595,29,597,801,599,600,601,602,603,5,205,606,607,333,855,610,216,612,613,181,615,616,284,618,619,438,621,622,623,439,848,848,627,358,629,143,631,236,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,860,651,652,653,654,655,656,657,658,659,743,661,606,550,859,665,666,209,131,669,670,671,672,167,762,561,676,677,677,360,13,681,682,876,383,685,686,381,688,689,255,400,692,693,694,695,696,76,601,699,700,701,702,703,205,705,706,707,347,709,710,711,712,229,298,629,716,301,520,250,720,721,186,723,720,725,726,727,728,729,730,790,732,308,734,735,736,893,738,739,740,741,742,743,744,329,746,747,748,130,750,751,752,753,754,665,756,757,758,759,79,761,762,438,762,361,766,767,768,769,770,824,772,773,681,56,776,631,377,18,780,781,782,783,243,785,446,787,788,789,790,791,792,104,794,488,796,797,798,599,491,801,802,696,804,2,806,550,606,747,810,340,812,813,814,815,615,769,818,819,820,821,822,616,824,825,373,827,828,641,830,831,832,833,834,835,402,837,838,839,840,319,842,843,844,845,846,47,848,849,850,38,287,854,854,855,856,857,858,859,860,861,862,863,864,509,866,899,868,510,870,772,872,143,143,301,876,246,525,879,880,881,882,883,884,535,886,887,888,889,410,891,892,893,416,895,896,897,167,899],"dist":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"options":{"mode":"tree","modes":["text","tree","table"]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>En paramétrant <code>k</code>, on choisit le nombre de plus proches voisins dont calculer la distance.</p>
+<p>Ici, en choisissant une valeur de <code>k = 1</code>, la fonction calcule la distance entre chaque point et son plus proche voisin, ie. lui-même (voir les distances qui sont toutes à 0).</p>
+<p>Pour calculer la distance au plus proche voisin réel, il faut donc indiquer <code>k = 2</code> et ne conserver que le second voisin.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(nngeo)</span>
+<span id="cb9-2"><a></a><span class="fu">library</span>(listviewer)</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a>liste_distance_2 <span class="ot">&lt;-</span> <span class="fu">st_nn</span>(<span class="at">x =</span> resultats_bureaux, <span class="at">y =</span> resultats_bureaux,</span>
+<span id="cb9-5"><a></a>                          <span class="at">k =</span> <span class="dv">2</span>, <span class="at">returnDist =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-6"><a></a>distance_ppv <span class="ot">&lt;-</span> liste_distance_2<span class="sc">$</span>dist <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="dv">2</span>)</span>
+<span id="cb9-7"><a></a><span class="fu">summary</span>(distance_ppv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.00    0.00   55.85   66.05 1245.94 </code></pre>
+</div>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Quel est le problème ici ?</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Les bureaux de vote sont souvent regroupés dans des lieux municipaux communs.</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Il est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="solution-rapide-suppression-pure-des-doublons-géométriques">Solution rapide : suppression pure des doublons géométriques</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>bureaux_distincts <span class="ot">&lt;-</span> resultats_bureaux <span class="sc">%&gt;%</span> <span class="fu">select</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb11-2"><a></a>distance_bureaux <span class="ot">&lt;-</span> <span class="fu">st_nn</span>(<span class="at">x =</span> bureaux_distincts, <span class="at">y =</span> bureaux_distincts,</span>
+<span id="cb11-3"><a></a>                          <span class="at">k =</span> <span class="dv">2</span>, <span class="at">returnDist =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">pluck</span>(<span class="st">"dist"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">map_dbl</span>(<span class="dv">2</span>)</span>
+<span id="cb11-6"><a></a><span class="fu">summary</span>(distance_bureaux)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+   0.0005   47.7112  125.9838  151.4778  229.5483 1245.9397 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Les bureaux de vote sont souvent regroupés dans des lieux municipaux communs.</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Il est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="solution-plus-juste-agrégation-des-votes-des-doublons">Solution plus juste : agrégation des votes des doublons</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>bureaux_distincts <span class="ot">&lt;-</span> resultats_bureaux <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(geom) <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-3"><a></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span><span class="fu">first</span>(.x)),</span>
+<span id="cb13-4"><a></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">sum</span>(.x)),</span>
+<span id="cb13-5"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb13-6"><a></a>    )</span>
+<span id="cb13-7"><a></a></span>
+<span id="cb13-8"><a></a>distance_bureaux <span class="ot">&lt;-</span> <span class="fu">st_nn</span>(<span class="at">x =</span> bureaux_distincts, <span class="at">y =</span> bureaux_distincts,</span>
+<span id="cb13-9"><a></a>                          <span class="at">k =</span> <span class="dv">2</span>, <span class="at">returnDist =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a></a>  <span class="fu">pluck</span>(<span class="st">"dist"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-11"><a></a>  <span class="fu">map_dbl</span>(<span class="dv">2</span>)</span>
+<span id="cb13-12"><a></a><span class="fu">summary</span>(distance_bureaux)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+   0.0005   47.7112  125.9838  151.4778  229.5483 1245.9397 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<section id="exercice-tracer-lhistogramme-et-la-courbe-de-densité-des-distances-au-plus-proche-voisin-des-bureaux-de-vote" class="callout-exercice">
+<h4>Exercice : Tracer l’histogramme et la courbe de densité des distances au plus proche voisin des bureaux de vote</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>distance_bureaux_tbl <span class="ot">&lt;-</span> distance_bureaux <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">rename</span>(<span class="at">distance =</span> value)</span>
+<span id="cb15-4"><a></a></span>
+<span id="cb15-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(distance_bureaux_tbl) <span class="sc">+</span></span>
+<span id="cb15-6"><a></a>  <span class="fu">aes</span>(distance) <span class="sc">+</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#67c9ff"</span>, <span class="at">colour =</span> <span class="st">"white"</span>)</span>
+<span id="cb15-8"><a></a></span>
+<span id="cb15-9"><a></a>p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> </span>
+<span id="cb15-10"><a></a>  <span class="fu">geom_density</span>()</span>
+<span id="cb15-11"><a></a></span>
+<span id="cb15-12"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(distance_bureaux_tbl) <span class="sc">+</span></span>
+<span id="cb15-13"><a></a>  <span class="fu">aes</span>(distance) <span class="sc">+</span></span>
+<span id="cb15-14"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb15-15"><a></a>                 <span class="at">fill =</span> <span class="st">"#67c9ff"</span>,</span>
+<span id="cb15-16"><a></a>                 <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb15-17"><a></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span>
+<span id="cb15-18"><a></a>p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-8-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<section id="où-couper" class="callout-tips">
+<h4>Où couper ?</h4>
+<ul>
+<li>Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin</li>
+</ul>
+</section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>frequence_cumulee <span class="ot">&lt;-</span> distance_bureaux_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">arrange</span>(distance) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">mutate</span>(<span class="at">dummy =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">nrow</span>(distance_bureaux_tbl)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">mutate</span>(<span class="at">cumfreq =</span> <span class="fu">cumsum</span>(dummy))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(frequence_cumulee) <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">aes</span>(distance, cumfreq) <span class="sc">+</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-10-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<section id="pourquoi-sarrêter-au-premier-plus-proche-voisin" class="callout-alert">
+<h4>Pourquoi s’arrêter au premier plus proche voisin ?</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<h3 id="distances-aux-n-plus-proche-voisins">2 - Distances aux n plus proche voisins</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>distance_bureaux_10 <span class="ot">&lt;-</span> <span class="fu">st_nn</span>(<span class="at">x =</span> bureaux_distincts, <span class="at">y =</span> bureaux_distincts,</span>
+<span id="cb18-2"><a></a>                          <span class="at">k =</span> <span class="dv">11</span>, <span class="at">returnDist =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">pluck</span>(<span class="st">"dist"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">enframe</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">rename</span>(<span class="at">ID =</span> name) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">unnest</span>(value) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">rename</span>(<span class="at">distance =</span> value) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a></a>  <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a></a>  <span class="fu">mutate</span>(<span class="at">num_voisin =</span> <span class="fu">row_number</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-10"><a></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a></a>  <span class="fu">filter</span>(num_voisin <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-12"><a></a>  <span class="fu">mutate</span>(<span class="at">num_voisin =</span> <span class="fu">as.factor</span>(num_voisin))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="exercice-représentation-des-distances-aux-10-plus-proches-voisins" class="callout-exercice">
+<h4>Exercice : Représentation des distances aux 10 plus proches voisins</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Basique</a></li><li><a href="#tabset-1-2">Facets</a></li><li><a href="#tabset-1-3">Ridgelines</a></li><li><a href="#tabset-1-4">Ridge bins</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(distance_bureaux_10) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-12-1.png" class="margin-caption" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(distance_bureaux_10) <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance)) <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>num_voisin, <span class="at">ncol =</span> <span class="dv">1</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-13-1.png" class="margin-caption" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="fu">ggplot</span>(distance_bureaux_10) <span class="sc">+</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> num_voisin))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-14-1.png" class="margin-caption" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a><span class="fu">ggplot</span>(distance_bureaux_10) <span class="sc">+</span></span>
+<span id="cb22-4"><a></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> num_voisin), <span class="at">stat =</span> <span class="st">"binline"</span>, <span class="at">scale =</span> <span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-15-1.png" class="margin-caption" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="distances-moyennes">3 - Distances moyennes</h3>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tant qu’à faire, autant analyser l’ensemble des distances entre tous les bureaux de vote</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<section id="exercice-mesure-de-distances" class="callout-exercice">
+<h4>Exercice : Mesure de distances</h4>
+<ul>
+<li>A l’aide de la fonction <code>st_distance</code> du package <code>sf</code>, calculez la matrice de distance entre tous les bureaux de vote de Paris et affichez-en l’histogramme</li>
+</ul>
+</section>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>matrice_distance <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(<span class="at">x =</span> resultats_bureaux, <span class="at">y =</span> resultats_bureaux,</span>
+<span id="cb23-2"><a></a>                                <span class="at">by_element =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>liste_distances_BV <span class="ot">&lt;-</span> matrice_distance <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a></a>  <span class="fu">mutate</span>(<span class="at">ID_Origine =</span> <span class="fu">as.character</span>(<span class="fu">row_number</span>()), <span class="at">.before =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>ID_Origine) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a></a>  <span class="fu">mutate</span>(<span class="at">ID_Destination =</span> <span class="fu">str_remove</span>(name, <span class="at">pattern =</span> <span class="st">"V"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a></a>  <span class="fu">mutate</span>(<span class="at">distance =</span> <span class="fu">as.numeric</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>value, <span class="sc">-</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb23-12"><a></a>  <span class="fu">filter</span>(ID_Origine <span class="sc">!=</span> ID_Destination)</span>
+<span id="cb23-13"><a></a></span>
+<span id="cb23-14"><a></a><span class="fu">glimpse</span>(liste_distances_BV)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 807,302
+Columns: 3
+$ ID_Origine     &lt;chr&gt; "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", …
+$ ID_Destination &lt;chr&gt; "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12…
+$ distance       &lt;dbl&gt; 973.0925, 2827.1982, 2807.4550, 2804.2950, 3033.7936, 3…</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(liste_distances_BV) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(distance, <span class="fu">after_stat</span>(density)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-17-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<h3 id="distances-et-différences">4 - Distances et différences</h3>
+<div class="callout callout-none no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Maintenant qu’on a une liste complète des distances, pourquoi est-ce qu’on n’explorerait pas le lien entre distance (dans Paris) et comportement de vote ?</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Dit autrement, on peut chercher à voir si les comportements électoraux présentent une <u>autocorrélation spatiale</u></strong></li>
+</ul>
+<section id="en-dépit-de-ce-que-nous-avons-fait-lors-des-précédentes-séances-il-ny-a-strictement-aucune-logique-à-réaliser-une-interpolation-de-variables-qui-ne-sont-pas-corrélées-spatialement." class="callout-alert">
+<h4>En dépit de ce que nous avons fait lors des précédentes séances, il n’y a strictement <u>aucune logique</u> à réaliser une interpolation de variables qui ne sont pas corrélées spatialement.</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<h4 id="autocorrélation-spatiale-naïve">Autocorrélation spatiale naïve</h4>
+<ul>
+<li><p>On peut chercher à voir s’il y a un lien entre la variation d’une variable électorale et la distance entre les bureaux de vote.</p></li>
+<li><p>Prenons l’exemple des votes pour Emmanuel Macron lors du 1er tour des présidentielles 2022 à Paris</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>votes_macron <span class="ot">&lt;-</span> resultats_bureaux <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a></a>  <span class="fu">mutate</span>(<span class="at">pctMACRON =</span> MACRON <span class="sc">/</span> Inscrits) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a></a>  <span class="fu">select</span>(pctMACRON) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">mutate</span>(<span class="at">ID_bureau =</span> <span class="fu">as.character</span>(<span class="fu">row_number</span>()))</span>
+<span id="cb26-6"><a></a></span>
+<span id="cb26-7"><a></a>couples_bureaux <span class="ot">&lt;-</span> liste_distances_BV <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a></a>  <span class="fu">left_join</span>(votes_macron, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ID_Origine"</span> <span class="ot">=</span> <span class="st">"ID_bureau"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-9"><a></a>  <span class="fu">rename</span>(<span class="at">pctMACRON_Origine =</span> pctMACRON) <span class="sc">%&gt;%</span></span>
+<span id="cb26-10"><a></a>  <span class="fu">left_join</span>(votes_macron, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ID_Destination"</span> <span class="ot">=</span> <span class="st">"ID_bureau"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-11"><a></a>  <span class="fu">rename</span>(<span class="at">pctMACRON_Destination =</span> pctMACRON)</span>
+<span id="cb26-12"><a></a></span>
+<span id="cb26-13"><a></a><span class="fu">glimpse</span>(couples_bureaux)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 807,302
+Columns: 5
+$ ID_Origine            &lt;chr&gt; "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"…
+$ ID_Destination        &lt;chr&gt; "2", "3", "4", "5", "6", "7", "8", "9", "10", "1…
+$ distance              &lt;dbl&gt; 973.0925, 2827.1982, 2807.4550, 2804.2950, 3033.…
+$ pctMACRON_Origine     &lt;dbl&gt; 0.3164806, 0.3164806, 0.3164806, 0.3164806, 0.31…
+$ pctMACRON_Destination &lt;dbl&gt; 0.3083141, 0.4026051, 0.3781447, 0.3616541, 0.36…</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<section id="exercice---comment-analyser-la-différence-13" class="callout-exercice">
+<h4>Exercice - Comment analyser la différence ? 1/3</h4>
+<ul>
+<li>Proposer une métrique permettant de mesurer l’écart de votes, et représentez-la en fonction de la distance.</li>
+</ul>
+</section>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>difference_votes <span class="ot">&lt;-</span> couples_bureaux <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">mutate</span>(<span class="at">diffPCT =</span> pctMACRON_Origine <span class="sc">-</span> pctMACRON_Destination)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">ggplot</span>(difference_votes) <span class="sc">+</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> diffPCT))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+<img data-src="../img/plot_distance_difference.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
+<section class="slide level2">
+
+<section id="exercice---comment-analyser-la-différence-23" class="callout-exercice">
+<h4>Exercice - Comment analyser la différence ? 2/3</h4>
+<ul>
+<li><p>La représentation des différences directes est rapidement illisibile en raison de la symétrie des données.</p></li>
+<li><p>Filtrer le jeu de données précédent pour n’afficher les différences qu’une fois, et uniquement de manière positive</p></li>
+</ul>
+</section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>difference_votes_assym <span class="ot">&lt;-</span> difference_votes <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">filter</span>(ID_Origine <span class="sc">&gt;</span> ID_Destination) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a></a>  <span class="fu">mutate</span>(<span class="at">diffAbs =</span> <span class="fu">abs</span>(diffPCT))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Directe</a></li><li><a href="#tabset-2-2">Densité</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">ggplot</span>(difference_votes_assym) <span class="sc">+</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> diffAbs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/plot_distance_absolu.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">ggplot</span>(difference_votes_assym) <span class="sc">+</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">geom_density_2d</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> diffAbs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/plot_distance_densite.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<section id="exercice---comment-analyser-la-différence-33" class="callout-exercice">
+<h4>Exercice - Comment analyser la différence ? 3/3</h4>
+<ul>
+<li><p>Le lien entre distance et variation du taux de vote Macron n’est toujours pas évident à lire.</p></li>
+<li><p>Proposer une méthode permettant de synthétiser la tendance</p></li>
+</ul>
+</section>
+</section>
+<section class="slide level2">
+
+<h3 id="vers-le-semi-variogramme">5 - Vers le semi-variogramme</h3>
+<h4 id="on-discrétise-la-distance-par-bornes-de-100m">On discrétise la distance par bornes de 100m</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>distances_differences_discretes <span class="ot">&lt;-</span> difference_votes_assym <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bande =</span> <span class="fu">cut</span>(distance, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">120</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a></a>  <span class="fu">mutate</span>(<span class="at">bande =</span> bande <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb33-4"><a></a></span>
+<span id="cb33-5"><a></a>meanDiff <span class="ot">&lt;-</span> distances_differences_discretes <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a></a>  <span class="fu">group_by</span>(bande) <span class="sc">%&gt;%</span></span>
+<span id="cb33-7"><a></a>  <span class="fu">summarise</span>(<span class="at">diffmoyenne =</span> <span class="fu">mean</span>(diffAbs), <span class="at">nb =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(meanDiff) <span class="sc">+</span></span>
+<span id="cb34-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> bande, <span class="at">y =</span> diffmoyenne, <span class="at">size =</span> nb) <span class="sc">+</span></span>
+<span id="cb34-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-4"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-27-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<h3 id="les-semivariogrammes">Les semivariogrammes</h3>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cette manière de représenter l’autocorrélation spatiale entre des entités est à la base d’un outil de géostatistique, le semivariogramme.</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Cela consiste à représenter la semi-variance en fonction de bandes de distances :</li>
+</ul>
+<p><span class="math inline">\(semivar(d_{ij}) = 0.5 \times \frac{\sum_{i..j}{(valeur_{i} - valeur_j)^2}{}}{n}\)</span></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>semivarDiff <span class="ot">&lt;-</span> distances_differences_discretes <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">group_by</span>(bande) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a></a>  <span class="fu">summarise</span>(<span class="at">semivar =</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">mean</span>(diffAbs<span class="sc">^</span><span class="dv">2</span>), <span class="at">nb =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(semivarDiff) <span class="sc">+</span></span>
+<span id="cb36-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> bande, <span class="at">y =</span> semivar, <span class="at">size =</span> nb) <span class="sc">+</span></span>
+<span id="cb36-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb36-4"><a></a>  <span class="fu">scale_y_continuous</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="TD5_AutoCor_Manuelle_files/figure-revealjs/unnamed-chunk-29-1.png" class="margin-caption" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div class="reveal-header">
+<div class="header-logo">
+<img data-src="../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg">
+</div>
+<div class="sc-title">
+<p> </p>
+</div>
+<div class="header-text">
+<p> </p>
+</div>
+<div class="sb-title">
+<p> </p>
+</div>
+</div>
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>M2 Carthagéo - Analyse Spatiale R.C. - Séance 5</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/carthageo\.github\.io\/analyse-spatiale\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

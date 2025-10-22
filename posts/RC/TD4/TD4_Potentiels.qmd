@@ -1,0 +1,151 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance  4"
+subtitle: "Séance 4 - Vers l'interpolation : lissages et potentiels sur des informations valuées (Potentiels)"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 4"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-10-22"
+date-format: "[Mardi] DD/MM/YYYY"
+---
+
+## Interpollation et lissage
+
+### 4 grandes familles :
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    ellipsoïdal : **Inverse Distance Weighted** (IDW)
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    polygonal : **Triangulated Irregular Network** (TIN)
+
+-   Gradients par pondération (addition) selon la distance dans l'espace
+    complet (interaction) : **Potentiels de Stewart**
+
+-   Gradients multiples selon des distances locales : **Krigeage**
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+-   "Interpolation" basée sur la logique d'un modèle gravitaire : la
+    valeur en un point est une somme de toutes les autres valeurs
+    pondérées par leur distance à ce point.
+
+::: columns
+::: column
+![](../img/TD3_potentiels1.png){fig-align="center" width="80%"}
+:::
+
+::: column
+![](../img/TD3_potentiels2.png){fig-align="center" width="80%"}
+:::
+:::
+
+-   **Grande importance de la fonction de décroissance de la distance**
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+::: callout-warning
+
+### Exercice 5 : Fonctions distance et paramètres dans le calcul de potentiels
+
+- En utilisant le package R `potential`, avec l'aide de la fonction `plot_inter()`, menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : `fonction`, `span` et `beta`.
+
+:::
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+::: callout-warning
+
+### Exercice 5 : Fonctions distance et paramètres dans le calcul de potentiels
+
+- En utilisant le package R `potential`, avec l'aide de la fonction `plot_inter()`, menez une analyse comparatoire pour expliciter le rôle des 3 paramètres principaux du calcul de potentiel : `fonction`, `span` et `beta`.
+
+:::
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+#### Fonction exponentielle - BETA
+
+![](../img/potential_function_e_beta.png){fig-align="center"  width="100%"}
+
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+#### Fonction exponentielle - SPAN
+
+![](../img/potential_function_e_span.png){fig-align="center" width="100%"}
+
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+#### Fonction puissance - BETA
+
+![](../img/potential_function_power_beta.png){fig-align="center" width="100%"}
+
+
+------------------------------------------------------------------------
+
+### Potentiels
+
+#### Fonction puissance - SPAN
+
+![](../img/potential_function_power_span.png){fig-align="center" width="100%"}
+
+
+------------------------------------------------------------------------
+
+::: callout-warning
+
+### Exercice 6 : Potentiels comme méthode d'interpolation
+
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue :
+
+  - de la capacité des stations vélibs
+
+:::
+
+------------------------------------------------------------------------
+
+### Du discret au continu : application
+
+::: callout-warning
+
+### Exercice 7 : Exercice d'application
+
+- En infra-urbain, les résultats électoraux sont communiqués à l'échelle du bureau de vote.
+
+::: callout-warning
+### Les bureaux de vote n'ont pas d'enveloppe géométrique officielle, ils correspondent à des ensembles d'adresses et non à des découpages zonaux de l'espace.
+:::
+
+- Pour une représentation choroplèthe des scores de chaque candidat au premier tour de l'élection présidentielle, quelles méthodes utiliser ?
+
+- Réalisez une carte des résultats électoraux de chaque candidat.
+
+:::

@@ -1,0 +1,550 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance 5"
+subtitle: "Séance 5 - Distances et variations spatiales - Approche naïve de l'auto-corrélation spatiale"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 5"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-10-22"
+date-format: "[Mardi] DD/MM/YYYY"
+params:
+  correction: true
+---
+
+## Comment choisir des seuils de distance pour les interpolations ?
+
+On utilise deux grandes méthodes de choix : 
+
+- Des seuils basés d'après des connaissances thématiques
+- Des seuils basés sur les distances empiriques de l'échantillon de mesures
+
+## Mesures de distances empiriques
+
+#### Chargement des packages
+```{r, echo = TRUE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(readxl)
+  library(sf)
+  library(potential)
+  library(patchwork)
+  library(glue)
+})
+```
+
+----------------
+
+
+#### Import des données
+
+```{r,  echo = TRUE}
+communes_paris <- st_read("../DATA/Maillages_Limitrophes_Paris.gpkg", layer = "Communes", as_tibble = TRUE) %>%
+  st_transform(2154) %>%
+  filter(INSEE_DEP == "75") %>% filter(INSEE_COM != "75056")
+contour_paris <- communes_paris %>% summarise() %>% st_buffer(300)
+```
+
+------------
+
+```{r,  echo = TRUE}
+bureauxVote <- st_read("../DATA/BureauxVote_Paris_L93.gpkg", as_tibble = TRUE) %>%
+  st_transform(2154)
+resultatsVote <- read_xlsx("../DATA/BureauxVote_Paris_Resultats_Presi2022_T1.xlsx") %>%
+  select(-c(1:6))
+
+resultats_bureaux <- bureauxVote %>%
+  left_join(resultatsVote, by = c("CodeBVote" = "Code du b.vote")) %>%
+  mutate(Inscrits = as.numeric(Inscrits))
+```
+
+
+----------------
+
+### 1 - Distance au plus proche voisin
+
+Le *package* `nngeo` permet de calculer de nombreux types de distances entre des objets `sf`.
+
+```{r,  echo = TRUE}
+library(nngeo)
+library(listviewer)
+
+liste_distance <- st_nn(x = resultats_bureaux, y = resultats_bureaux,
+                        k = 1, returnDist = TRUE)
+listviewer::jsonedit(liste_distance)
+```
+
+
+----------------
+
+
+::: callout-tip
+
+En paramétrant `k`, on choisit le nombre de plus proches voisins dont calculer la distance.
+
+Ici, en choisissant une valeur de `k = 1`, la fonction calcule la distance entre chaque point et son plus proche voisin, ie. lui-même (voir les distances qui sont toutes à 0).
+
+Pour calculer la distance au plus proche voisin réel, il faut donc indiquer `k = 2` et ne conserver que le second voisin.
+
+:::
+
+
+----------------
+
+```{r, results='hold', echo = TRUE}
+library(nngeo)
+library(listviewer)
+
+liste_distance_2 <- st_nn(x = resultats_bureaux, y = resultats_bureaux,
+                          k = 2, returnDist = TRUE)
+distance_ppv <- liste_distance_2$dist %>% map_dbl(2)
+summary(distance_ppv)
+```
+
+
+::: callout-warning
+#### Quel est le problème ici ?
+:::
+
+
+------------
+
+
+::: callout-tip
+
+### Les bureaux de vote sont souvent regroupés dans des lieux municipaux communs.
+
+- Il est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.
+:::
+
+#### Solution rapide : suppression pure des doublons géométriques
+
+```{r, echo = TRUE}
+bureaux_distincts <- resultats_bureaux %>% select() %>% distinct()
+distance_bureaux <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
+                          k = 2, returnDist = TRUE) %>%
+  pluck("dist") %>%
+  map_dbl(2)
+summary(distance_bureaux)
+```
+
+------------
+
+
+::: callout-tip
+
+### Les bureaux de vote sont souvent regroupés dans des lieux municipaux communs.
+
+- Il est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.
+:::
+
+#### Solution plus juste : agrégation des votes des doublons
+
+```{r, echo = TRUE}
+bureaux_distincts <- resultats_bureaux %>% group_by(geom) %>%
+  summarise(
+    across(where(is.character), ~first(.x)),
+    across(where(is.numeric), ~sum(.x)),
+    .groups = "drop"
+    )
+
+distance_bureaux <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
+                          k = 2, returnDist = TRUE) %>%
+  pluck("dist") %>%
+  map_dbl(2)
+summary(distance_bureaux)
+```
+
+----------------------
+
+::: callout-exercice
+
+#### Exercice : Tracer l'histogramme et la courbe de densité des distances au plus proche voisin des bureaux de vote
+
+:::
+
+
+------------------------
+```{r, eval = TRUE, echo = params$correction}
+distance_bureaux_tbl <- distance_bureaux %>%
+  as_tibble() %>%
+  rename(distance = value)
+
+p1 <- ggplot(distance_bureaux_tbl) +
+  aes(distance) +
+  geom_histogram(fill = "#67c9ff", colour = "white")
+
+p2 <- p1 + 
+  geom_density()
+
+p3 <- ggplot(distance_bureaux_tbl) +
+  aes(distance) +
+  geom_histogram(aes(y = after_stat(density)),
+                 fill = "#67c9ff",
+                 colour = "white") +
+  geom_density(aes(y = after_stat(density)))
+p3
+```
+
+
+------------------------
+
+::: callout-tips
+
+#### Où couper ?
+
+- Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin
+
+:::
+
+```{r, eval = TRUE, echo = params$correction}
+frequence_cumulee <- distance_bureaux_tbl %>%
+  arrange(distance) %>%
+  mutate(dummy = 1/nrow(distance_bureaux_tbl)) %>%
+  mutate(cumfreq = cumsum(dummy))
+
+```
+
+---------------------
+
+```{r, eval = TRUE, echo = params$correction}
+ggplot(frequence_cumulee) +
+  aes(distance, cumfreq) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent)
+```
+
+
+---------------------------
+
+::: callout-alert
+
+#### Pourquoi s'arrêter au premier plus proche voisin ?
+
+:::
+
+---------------------
+
+
+### 2 - Distances aux n plus proche voisins
+
+```{r, echo = TRUE}
+distance_bureaux_10 <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
+                          k = 11, returnDist = TRUE) %>%
+  pluck("dist") %>%
+  enframe() %>%
+  rename(ID = name) %>%
+  unnest(value) %>%
+  rename(distance = value) %>%
+  group_by(ID) %>%
+  mutate(num_voisin = row_number() - 1) %>%
+  ungroup() %>%
+  filter(num_voisin > 0) %>%
+  mutate(num_voisin = as.factor(num_voisin))
+
+```
+
+::: callout-exercice
+
+#### Exercice : Représentation des distances aux 10 plus proches voisins
+
+:::
+
+----------------------
+
+::: {.panel-tabset}
+
+
+
+#### Basique
+
+```{r, echo = params$correction, eval = TRUE, results='hold'}
+
+ggplot(distance_bureaux_10) +
+  geom_histogram(aes(x = distance))
+```
+
+#### Facets
+
+```{r, echo = params$correction, eval = TRUE, results='hold'}
+
+ggplot(distance_bureaux_10) +
+  geom_histogram(aes(x = distance)) +
+  facet_wrap(~num_voisin, ncol = 1)  
+```
+
+
+#### Ridgelines
+
+```{r, echo = params$correction, eval = TRUE, results='hold'}
+
+library(ggridges)
+
+ggplot(distance_bureaux_10) +
+  geom_density_ridges(aes(x = distance, y = num_voisin))
+```
+
+#### Ridge bins
+
+```{r, echo = params$correction, eval = TRUE, results='hold'}
+
+library(ggridges)
+
+ggplot(distance_bureaux_10) +
+  geom_density_ridges(aes(x = distance, y = num_voisin), stat = "binline", scale = 0.9)
+```
+
+:::
+
+------------------------
+
+
+### 3 - Distances moyennes
+
+::: callout-note
+
+#### Tant qu'à faire, autant analyser l'ensemble des distances entre tous les bureaux de vote
+
+:::
+
+::: callout-exercice
+
+#### Exercice : Mesure de distances
+
+- A l'aide de la fonction `st_distance` du package `sf`, calculez la matrice de distance entre tous les bureaux de vote de Paris et affichez-en l'histogramme
+:::
+
+------------
+
+```{r, echo = params$correction, eval = TRUE}
+matrice_distance <- st_distance(x = resultats_bureaux, y = resultats_bureaux,
+                                by_element = FALSE)
+
+liste_distances_BV <- matrice_distance %>%
+  as.matrix() %>%
+  as_tibble() %>%
+  mutate(ID_Origine = as.character(row_number()), .before = 1) %>%
+  pivot_longer(-ID_Origine) %>%
+  mutate(ID_Destination = str_remove(name, pattern = "V")) %>%
+  mutate(distance = as.numeric(value)) %>%
+  select(-value, -name) %>%
+  filter(ID_Origine != ID_Destination)
+
+glimpse(liste_distances_BV)
+```
+
+
+-------------------------
+
+```{r, echo = params$correction, eval = TRUE}
+
+ggplot(liste_distances_BV) +
+  geom_histogram(aes(distance, after_stat(density)))
+```
+
+
+------------------
+
+### 4 - Distances et différences
+
+::: callout
+#### Maintenant qu'on a une liste complète des distances, pourquoi est-ce qu'on n'explorerait pas le lien entre distance (dans Paris) et comportement de vote ?
+:::
+
+- **Dit autrement, on peut chercher à voir si les comportements électoraux présentent une <u>autocorrélation spatiale</u>**
+
+::: callout-alert
+
+#### En dépit de ce que nous avons fait lors des précédentes séances, il n'y a strictement <u>aucune logique</u> à réaliser une interpolation de variables qui ne sont pas corrélées spatialement.
+
+:::
+
+------------------
+
+#### Autocorrélation spatiale naïve
+
+- On peut chercher à voir s'il y a un lien entre la variation d'une variable électorale et la distance entre les bureaux de vote.
+
+- Prenons l'exemple des votes pour Emmanuel Macron lors du 1er tour des présidentielles 2022 à Paris
+
+--------------------
+
+```{r, echo = TRUE}
+votes_macron <- resultats_bureaux %>%
+  st_drop_geometry() %>%
+  mutate(pctMACRON = MACRON / Inscrits) %>%
+  select(pctMACRON) %>%
+  mutate(ID_bureau = as.character(row_number()))
+
+couples_bureaux <- liste_distances_BV %>%
+  left_join(votes_macron, by = c("ID_Origine" = "ID_bureau")) %>%
+  rename(pctMACRON_Origine = pctMACRON) %>%
+  left_join(votes_macron, by = c("ID_Destination" = "ID_bureau")) %>%
+  rename(pctMACRON_Destination = pctMACRON)
+
+glimpse(couples_bureaux)
+```
+
+-----------------
+
+::: callout-exercice
+
+#### Exercice - Comment analyser la différence ? 1/3
+
+- Proposer une métrique permettant de mesurer l'écart de votes, et représentez-la en fonction de la distance.
+
+:::
+
+-----------------
+
+```{r, echo = params$correction, eval = TRUE}
+difference_votes <- couples_bureaux %>%
+  mutate(diffPCT = pctMACRON_Origine - pctMACRON_Destination)
+
+```
+
+```{r, echo = params$correction, eval = FALSE}
+ggplot(difference_votes) +
+  geom_point(aes(x = distance, y = diffPCT))
+  
+```
+![](../img/plot_distance_difference.png){fig-align='center'}
+
+
+------------------------
+
+::: callout-exercice
+
+#### Exercice - Comment analyser la différence ? 2/3
+
+- La représentation des différences directes est rapidement illisibile en raison de la symétrie des données.
+
+- Filtrer le jeu de données précédent pour n'afficher les différences qu'une fois, et uniquement de manière positive
+
+:::
+
+```{r, eval = TRUE, echo = params$correction}
+difference_votes_assym <- difference_votes %>%
+  filter(ID_Origine > ID_Destination) %>%
+  mutate(diffAbs = abs(diffPCT))
+```
+
+---------
+
+::: {.panel-tabset}
+
+##### Directe
+```{r, echo = params$correction, eval = FALSE}
+ggplot(difference_votes_assym) +
+  geom_point(aes(x = distance, y = diffAbs))
+```
+```{r, echo = FALSE, eval = TRUE, results='asis'}
+cat("![](../img/plot_distance_absolu.png){fig-align='center'}")
+```
+
+##### Densité
+
+```{r, echo = params$correction, eval = FALSE}
+ggplot(difference_votes_assym) +
+  geom_density_2d(aes(x = distance, y = diffAbs))
+```
+```{r, echo = FALSE, eval = TRUE, results='asis'}
+cat("![](../img/plot_distance_densite.png){fig-align='center'}")
+```
+
+:::
+
+----------------------
+
+::: callout-exercice
+
+#### Exercice - Comment analyser la différence ? 3/3
+
+- Le lien entre distance et variation du taux de vote Macron n'est toujours pas évident à lire.
+
+- Proposer une méthode permettant de synthétiser la tendance
+
+:::
+
+---------------------------------
+
+### 5 - Vers le semi-variogramme
+
+#### On discrétise la distance par bornes de 100m
+
+```{r, eval = TRUE, echo = params$correction}
+distances_differences_discretes <- difference_votes_assym %>%
+  mutate(bande = cut(distance, breaks = c(0:120) * 100, labels = FALSE)) %>%
+  mutate(bande = bande * 100)
+
+meanDiff <- distances_differences_discretes %>%
+  group_by(bande) %>%
+  summarise(diffmoyenne = mean(diffAbs), nb = n())
+
+```
+
+-------------------------
+
+```{r, eval = TRUE, echo = params$correction}
+ggplot(meanDiff) +
+  aes(x = bande, y = diffmoyenne, size = nb) +
+  geom_point() +
+  scale_y_continuous(labels = scales::percent)
+```
+
+----------------------------
+
+### Les semivariogrammes
+
+::: callout-note
+#### Cette manière de représenter l'autocorrélation spatiale entre des entités est à la base d'un outil de géostatistique, le semivariogramme.
+
+- Cela consiste à représenter la semi-variance en fonction de bandes de distances :
+
+$semivar(d_{ij}) = 0.5 \times \frac{\sum_{i..j}{(valeur_{i} - valeur_j)^2}{}}{n}$
+:::
+
+```{r, echo = TRUE}
+
+semivarDiff <- distances_differences_discretes %>%
+  group_by(bande) %>%
+  summarise(semivar = 0.5 * mean(diffAbs^2), nb = n())
+
+```
+
+---------------------
+
+```{r, echo = TRUE}
+
+ggplot(semivarDiff) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  scale_y_continuous()
+
+```
+
+```{r}
+#| echo: false
+#| eval: false
+#| warning: false
+
+write_rds(resultats_bureaux, "../DATA/resultats_bureaux.rds")
+write_rds(difference_votes_assym, "../DATA/difference_votes_assym.rds", compress="xz")
+write_rds(contour_paris, "../DATA/contour_paris.rds")
+write_rds(communes_paris, "../DATA/communes_paris.rds")
+
+
+```

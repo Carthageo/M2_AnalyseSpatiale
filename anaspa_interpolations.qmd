@@ -1,0 +1,37 @@
+---
+title: "Du discret au continu - M2 Carthagéo"
+subtitle: "Lissages et interpolations"
+---
+
+## Jeux de données
+
+* {{< iconify hugeicons:zip-01 >}}[Archive complète](posts/RC/DATA/AS_RC.zip)
+* {{< iconify gis:multipoint >}} [MGB_Paris_L93.gpkg](posts/RC/DATA/MGB_Paris_L93.gpkg)
+* {{< iconify gis:multipoint >}} [Velibs_Paris_20241013_17h30.gpkg](posts/RC/DATA/Velibs_Paris_20241013_17h30.gpkg)
+* {{< iconify gis:polygon-pt >}} [Maillages_Limitrophes_Paris.gpkg](posts/RC/DATA/Maillages_Limitrophes_Paris.gpkg)
+* {{< iconify gis:multipoint >}} [BureauxVote_Paris_L93.gpkg](posts/RC/DATA/BureauxVote_Paris_L93.gpkg)
+* {{< iconify dashicons:media-spreadsheet >}} [BureauxVote_Paris_Resultats_Presi2022_T1.xlsx](posts/RC/DATA/BureauxVote_Paris_Resultats_Presi2022_T1.xlsx)
+
+
+
+## Supports de cours {{< iconify ri:slideshow-line >}}
+
+* [TD1 : Des points aux polygones](posts/RC/TD1/index.html) 
+* [TD2 : Voisinages et densités](posts/RC/TD2/index.html) 
+* [TD3 : Vers l'interpolation : lissages et potentiels sur des informations valuées (IDW & TIN)](posts/RC/TD3/index.html) 
+* [TD4 : Vers l'interpolation : lissages et potentiels sur des informations valuées (Potentiels)](posts/RC/TD4/index.html) 
+* [TD5 : Distances et variations spatiales - Approche naïve de l'auto-corrélation spatiale](posts/RC/TD5/index.html) 
+* [TD6 : Distances et variations spatiales - Auto-corrélation spatiale orientée et krigeage](posts/RC/TD6/index.html) 
+* [TD7 : Mesurer l'auto-corrélation spatiale](posts/RC/TD7/index.html) 
+
+## Exercices et Codes
+
+* {{< iconify file-icons:r >}} [TD1 - Analyse de sensibilité](posts/RC/scripts/TD1_analyse_sensib.R)
+* {{< iconify file-icons:r >}} [TD4 - Potentiels - Fonctions](posts/RC/scripts/TD4_Potentiels_1_Fonctions.R)
+* {{< iconify file-icons:r >}} [TD4 - Potentiels - Application](posts/RC/scripts/TD4_Potentiels_2_Correction.R)
+* {{< iconify hugeicons:pdf-02 >}} [TD4 - Potentiels - Carte des candidats](posts/RC/scripts/TD4_cartes_potentiels.pdf)
+* {{< iconify file-icons:r >}} [TD6 - Auto-corrélation spatiale orientée](posts/RC/scripts/TD6_Krigeage_1_Seuils_distance.R)
+* {{< iconify file-icons:r >}} [TD7 - Krigeage](posts/RC/scripts/TD6_Krigeage_2_Correction.R)
+
+## Rendus
+

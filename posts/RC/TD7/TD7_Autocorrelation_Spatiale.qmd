@@ -1,0 +1,26 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance 7"
+subtitle: "Séance 7 - Mesurer l'auto-corrélation spatiale"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 7"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-11-24"
+date-format: "[Lundi] DD/MM/YYYY"
+params:
+  correction: true
+---

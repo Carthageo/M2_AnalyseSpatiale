@@ -1,0 +1,224 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance 1"
+subtitle: "Séance 1 - Des points aux polygones"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 1"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-10-03"
+date-format: "[Vendredi] DD/MM/YYYY"
+---
+
+## Pourquoi ne pas se contenter de points ?
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Pour l'analyse visuelle
+
+-   Les points (nombreux) constituent de mauvais indicateurs visuels de
+    la distribution spatiale.
+
+::: columns
+::: {.column width="40%"}
+⇰ **Ce semis est-il concentré ou dispersé ?**
+:::
+
+::: {.column width="60%"}
+![](../img/paste-C04D71F7.png){fig-align="center" width=80%}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Pour l'analyse visuelle
+
+-   Les points sont de mauvais indicateurs du contexte spatial.
+
+::: columns
+::: {.column width="40%"}
+⇰ **Depuis l'I.G., en période de grève, où ais-je le plus de chance de
+trouver un Vélib ?**
+:::
+
+::: {.column width="60%"}
+![](../img/paste-C6A7928A.png){fig-align="center" width=80%}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Pour le calcul
+
+-   Données par définition discrètes, qui n'ont pas de validité en
+    dehors de leur propre localisation.
+
+::: columns
+::: {.column width="40%"}
+⇰ **Quelle température faisait-il à la Rochelle ce dimanche midi ?**
+:::
+
+::: {.column width="60%"}
+![](../img/paste-2F18D60F.png){fig-align="center" width=80%}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Et pourtant, les sources de données ponctuelles sont les plus fréquentes
+
+-   Données issues de géolocalisation (Adresses, "Lieux", ...)
+-   Données de relevés (Indicidents, recensements, ...)
+-   Données de capteurs (Statiques ou dynamiques)
+-   Données de suivi individuelles (GPS, GéoIP, ...)
+
+## On a souvent besoin de passer d'une donnée ponctuelle à une donnée continue ou a minima zonale, donc de réaliser une <u>interpolation</u>
+
+## L'interpolation {.smaller}
+
+### Définition
+
+::: columns
+::: {.column width="65%"}
+> « L'interpolation spatiale est le processus d'utilisation de points
+> dont les valeurs sont connues pour estimer des valeurs à d'autres
+> points inconnus.\
+> Par exemple, pour faire une carte des précipitations (pluie) de votre
+> pays, vous ne trouverez pas assez de stations météo réparties
+> uniformément pour couvrir l'intégralité de la région. L'interpolation
+> spatiale peut estimer la température à des endroits sans données
+> enregistrées en utilisant des relevés de températures connus dans des
+> stations météo à proximité. »
+:::
+
+::: {.column width="35%"}
+![](../img/temperature_map.png)
+:::
+:::
+
+::: aside
+[Documentation QGIS, "Une rapide introduction aux SIG",
+2022](https://docs.qgis.org/3.22/fr/docs/gentle_gis_introduction/spatial_analysis_interpolation.html)
+:::
+
+## Avant l'interpolation
+
+### Des points aux mailles
+
+#### Il y a différentes possibilités pour <u>mailler</u> un territoire, c'est-à-dire le découper en un ensemble de zones contigües
+
+::: columns
+::: column
+**Mailles uniformes**
+
+::: incremental
+-   Carroyages
+-   Hexagones
+-   Triangles isocèles / losanges
+:::
+:::
+
+::: column
+**Mailles hétérogènes**
+
+::: incremental
+-   Maillages administratifs
+-   Triangulations et tesselations
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: callout-tip
+### Les diagrammes de Voronoï
+
+:::: columns
+
+::::: column
+**Triangulation de Delaunay**
+<br/>
+<br/>
+
+![](../img/paste-17AA1176.png)
+:::::
+
+::::: column
+**Diagramme de Voronoï / Polygones de Thiessen**
+
+![](../img/paste-9681F236.png)
+:::::
+
+::::
+
+:::
+
+----------
+
+::: callout-tip
+### Un diagramme de Voronoï non équi-valué ?
+
+![](../img/2-Figure1-1.png)
+
+:::
+
+:::: aside
+Held, M., & de Lorenzo, S. (2020). On Implementing Multiplicatively Weighted Voronoi Diagrams. In Proc. 36th EuroCG.
+::::
+
+--------------
+
+## Exercice collectif
+
+::: callout-warning
+
+### Tester la sensibilité du maillage
+
+1. Dans le tableur indiqué dans l'EPI, répartissez-vous les mailles.
+2. Pour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.
+3. Reportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l'écart-type et le coefficient de variation de ces valeurs.
+4. Collectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).
+
+:::
+
+--------------
+
+## Exercice collectif
+
+::: callout-warning
+
+### Tester la sensibilité du maillage
+
+1. Dans le tableur indiqué dans l'EPI, répartissez-vous les mailles.
+2. Pour chaque type de maille, comptez le nombre de bars contenues dans chaque maille.
+3. Reportez dans le tableur le nombre de mailles, le nombre moyen de bars par maille, la médiane, l'écart-type et le coefficient de variation de ces valeurs.
+4. Collectivement, analysez les effets de chacun des paramètres (forme, taille et décalage).
+
+:::
+
+::: callout-warning
+
+### Pour aller plus loin
+
+En restant dans un environnement SIG (QGIS), comment exécuter cette "analyse de sensibilité" plus rapidement ?
+
+:::

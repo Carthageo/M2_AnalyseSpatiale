@@ -1,0 +1,34 @@
+project:
+  type: website
+
+website:
+  title: "M2 Carthagéo - Analyse Spatiale"
+  favicon: "img/Carthageo_square.png"
+  twitter-card: true
+  site-url: https://carthageo.github.io/analyse-spatiale/
+  description: "Cours d'analyse spatiale du M2 Carthagéo"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Accueil
+      - href: anaspa_stats.qmd
+        text: Analyse spatiale et statistiques (HC)
+      - href: anaspa_sig.qmd
+        text: Analyse spatiale et SIG (JB)
+      - href: anaspa_interpolations.qmd
+        text: Du discret au continu (RC)
+  page-footer: <img src="img/Logos_Tutelles_Carthageo_2025.png" height="50px"></img>
+  margin-header: |
+    ![](img/LOGO_CARTHAGEO.png)
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

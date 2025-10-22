@@ -1,0 +1,385 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance 6"
+subtitle: "Séance 6 - Distances et variations spatiales - Auto-corrélation spatiale orientée et krigeage"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 6"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-11-24"
+date-format: "[Lundi] DD/MM/YYYY"
+params:
+  correction: true
+---
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+library(tidyverse)
+library(sf)
+library(nngeo)
+
+resultats_bureaux <- read_rds("../DATA/resultats_bureaux.rds")
+difference_votes_assym <- read_rds("../DATA/difference_votes_assym.rds")
+contour_paris <- read_rds("../DATA/contour_paris.rds")
+communes_paris <- read_rds("../DATA/communes_paris.rds")
+```
+
+### 5 - Vers le semi-variogramme
+
+#### On discrétise la distance par bornes de 100m
+
+```{r, eval = TRUE, echo = params$correction}
+distances_differences_discretes <- difference_votes_assym %>%
+  mutate(bande = cut(distance, breaks = c(0:120) * 100, labels = FALSE)) %>%
+  mutate(bande = bande * 100)
+
+meanDiff <- distances_differences_discretes %>%
+  group_by(bande) %>%
+  summarise(diffmoyenne = mean(diffAbs), nb = n())
+
+```
+
+-------------------------
+
+```{r, eval = TRUE, echo = params$correction}
+ggplot(meanDiff) +
+  aes(x = bande, y = diffmoyenne, size = nb) +
+  geom_point() +
+  scale_y_continuous(labels = scales::percent)
+```
+
+----------------------------
+
+### Les semivariogrammes
+
+::: callout-note
+#### Cette manière de représenter l'autocorrélation spatiale entre des entités est à la base d'un outil de géostatistique, le semivariogramme.
+
+- Cela consiste à représenter la semi-variance en fonction de bandes de distances :
+
+$semivar(d_{ij}) = 0.5 \times \frac{\sum_{i..j}{(valeur_{i} - valeur_j)^2}{}}{n}$
+:::
+
+```{r, echo = TRUE}
+
+semivarDiff <- distances_differences_discretes %>%
+  group_by(bande) %>%
+  summarise(semivar = 0.5 * mean(diffAbs^2), nb = n())
+
+```
+
+---------------------
+
+```{r, echo = TRUE}
+
+ggplot(semivarDiff) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  scale_y_continuous()
+
+```
+
+
+
+---------------------------
+
+### 6 - Semi-variogramme orienté
+
+::: callout-warning
+
+#### On sait désormais qu'il y a une corrélation spatiale entre les comportements de votes : les bureaux de vote prochent présentent des résultats (en vote Macron) plus similaires que ceux qui sont éloignés.
+
+- **Mais on considère toujours l'espace de manière <u>isotropique</u>.**
+
+:::
+
+----------------------
+
+::: callout-exercice
+
+### Exercice - Semivariogrammes orientés
+
+- **Calculer un ensemble de semi-variogrammes en fonction de l'orientation des distances entre les bureaux de vote.**
+
+:::: callout-tip
+
+#### La fonction `st_azimuth` du package nngeo donne l'azimuth entre deux points.
+
+::::
+
+:::
+
+
+---------------------
+
+
+```{r, eval = TRUE, echo = params$correction}
+
+resultats_macron_geom <- resultats_bureaux %>%
+  mutate(ID = as.character(row_number())) %>%
+  mutate(pctMacron = MACRON / Inscrits) %>%
+  select(ID, pctMacron)
+
+pts_origine <- distances_differences_discretes %>%
+  select(ID_Origine) %>%
+  left_join(resultats_macron_geom, by = c("ID_Origine" = "ID")) %>%
+  st_sf()
+
+pts_destination <- distances_differences_discretes %>%
+  select(ID_Destination) %>%
+  left_join(resultats_macron_geom, by = c("ID_Destination" = "ID")) %>%
+  st_sf()
+
+```
+
+
+---------------------------
+
+```{r, eval = TRUE, echo = params$correction}
+
+differences_azimuthales <- st_azimuth(pts_origine, pts_destination)  
+
+distances_differences_discretes_azimuthales <- distances_differences_discretes %>%
+  mutate(azimuth = differences_azimuthales) %>%
+  mutate(direction = case_when(
+    azimuth >= 337.5 | azimuth <= 22.5 ~ "Nord",
+    between(azimuth, 22.5, 67.5) ~ "Nord-Est",
+    between(azimuth, 67.5, 112.5) ~ "Est",
+    between(azimuth, 112.5, 157.5) ~ "Sud-Est",
+    between(azimuth, 157.5, 202.5) ~ "Sud",
+    between(azimuth, 202.5, 247.5) ~ "Sud-Ouest",
+    between(azimuth, 247.5, 292.5) ~ "Ouest",
+    between(azimuth, 292.5, 337.5) ~ "Nord-Ouest"
+  )) %>%
+  filter(!is.na(direction)) %>%
+  group_by(bande, direction) %>%
+  summarise(
+    nb = n(),
+    semivar = 0.5 * mean(diffAbs^2)
+  ) %>%
+  ungroup()
+
+  
+ ggplot(distances_differences_discretes_azimuthales) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  facet_wrap(~direction)
+  
+```
+
+------------------------------
+
+```{r, eval = TRUE, echo = params$correction}
+
+distances_differences_discretes_azimuthales_symetriques <- distances_differences_discretes %>%
+  mutate(azimuth = differences_azimuthales) %>%
+  mutate(direction = case_when(
+    azimuth >= 337.5 | azimuth <= 22.5 ~ "Nord",
+    between(azimuth, 22.5, 67.5) ~ "Nord-Est",
+    between(azimuth, 67.5, 112.5) ~ "Est",
+    between(azimuth, 112.5, 157.5) ~ "Sud-Est",
+    between(azimuth, 157.5, 202.5) ~ "Sud",
+    between(azimuth, 202.5, 247.5) ~ "Sud-Ouest",
+    between(azimuth, 247.5, 292.5) ~ "Ouest",
+    between(azimuth, 292.5, 337.5) ~ "Nord-Ouest"
+  )) %>%
+  mutate(directionSym = case_when(
+    direction %in% c("Nord", "Sud") ~ "NS",
+    direction %in% c("Est", "Ouest") ~ "EW",
+    direction %in% c("Nord-Est", "Sud-Ouest") ~ "NE-SW",
+    direction %in% c("Nord-Ouest", "Sud-Est") ~ "NW-SE",
+  )) %>%
+  filter(!is.na(directionSym)) %>%
+  group_by(bande, directionSym) %>%
+  summarise(
+    nb = n(),
+    semivar = 0.5 * mean(diffAbs^2)
+  ) %>%
+  ungroup()
+
+  
+ ggplot(distances_differences_discretes_azimuthales_symetriques) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  facet_wrap(~directionSym, ncol = 1)
+  
+```
+
+--------------------------------------
+
+```{r, eval = TRUE, echo = params$correction}
+library(ggpubr)
+
+ggplot(distances_differences_discretes_azimuthales_symetriques) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm", lwd = 1) +
+  stat_cor(label.y = 0.02, label.x = 500) +
+  stat_regline_equation(label.y = 0.015, label.x = 500) +
+  facet_wrap(~directionSym, ncol = 1)
+  
+```
+
+
+------------------------------
+
+
+
+## Krigeage
+
+::: callout-note
+
+### Le krigeage consiste à estimer, pour chaque point connu, une équation de prédiction des valeurs (dirigées ou non), ie. fonction de la valeur du point, de la distance et éventuellement de l'orientation.
+:::
+
+
+```{r, echo = TRUE, results='asis'}
+
+gstat::show.vgms(nugget = 0.25, sill = 1.5)
+
+```
+
+-----------------------------
+
+#### Réalisation d'un krigeage automatique avec `automap`
+
+```{r, echo = TRUE}
+library(automap)
+
+# Le package automap fonctionne à partir d'objets sp, 
+# un ancien format de données spatiales dans R
+# désormais remplacé avantageusement par sf
+
+sp_resultats_macron_geom <- as_Spatial(resultats_macron_geom)
+sp_grille <- contour_paris %>%
+  st_make_grid(cellsize = 100, what = "centers") %>%
+  as_Spatial()
+
+
+```
+
+-------------------------------
+
+```{r, echo = TRUE}
+
+kriging_interpolation_pctMacron <- autoKrige(
+  formula = pctMacron ~ 1,
+  input_data = sp_resultats_macron_geom,
+  new_data = sp_grille, 
+  verbose = TRUE
+)
+
+```
+
+----------------------------------
+
+```{r, echo = TRUE}
+listviewer::jsonedit(kriging_interpolation_pctMacron)
+
+```
+
+-----------------------
+
+```{r, echo = TRUE}
+sf_kriging_interpolation_pctMacron <- st_as_sf(kriging_interpolation_pctMacron$krige_output)
+```
+
+::: {.panel-tabset}
+
+##### Valeurs prédites
+```{r, echo = TRUE}
+ggplot(sf_kriging_interpolation_pctMacron) +
+  geom_sf(aes(colour = var1.pred))
+```
+
+##### Variance
+```{r, echo = TRUE}
+ggplot(sf_kriging_interpolation_pctMacron) +
+  geom_sf(aes(colour = var1.var))
+```
+
+##### Ecart-type
+```{r, echo = TRUE}
+ggplot(sf_kriging_interpolation_pctMacron) +
+  geom_sf(aes(colour = var1.stdev))
+```
+
+:::
+
+
+------------------------
+
+### {.smaller}
+
+```{r, echo = TRUE}
+library(potential)
+
+equipotentiels_pctMacron <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.pred", nclass = 10) %>%
+  st_intersection(communes_paris)
+
+carte_prediction <- ggplot(equipotentiels_pctMacron) +
+  geom_sf(aes(fill = center)) +
+  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
+  scale_fill_steps(n.breaks = 7, low = "white", high = "#ffeb00")
+
+equipotentiels_pctMacron_variance <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.var", nclass = 10) %>%
+  st_intersection(communes_paris)
+
+carte_variance <- ggplot(equipotentiels_pctMacron_variance) +
+  geom_sf(aes(fill = center)) +
+  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
+  scale_fill_viridis_c()
+
+equipotentiels_pctMacron_stdev <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.stdev", nclass = 10) %>%
+  st_intersection(communes_paris)
+
+carte_stdev <- ggplot(equipotentiels_pctMacron_stdev) +
+  geom_sf(aes(fill = center)) +
+  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
+  scale_fill_viridis_c()
+```
+
+-----------------------------
+
+```{r, echo = TRUE}
+patchwork::wrap_plots(carte_prediction, carte_variance, carte_stdev)
+```
+
+----------------------------------
+
+::: {.panel-tabset}
+
+#### Prédiction
+
+```{r, echo = TRUE}
+carte_prediction
+```
+
+#### Variance
+
+```{r, echo = TRUE}
+carte_variance
+```
+
+#### StDev
+
+```{r, echo = TRUE}
+carte_stdev
+```
+
+:::

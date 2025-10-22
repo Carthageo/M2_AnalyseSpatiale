@@ -1,0 +1,308 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séances 3"
+subtitle: "Séance 3 - Vers l'interpolation : lissages et potentiels sur des informations valuées (IDW & TIN)"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 3"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-10-21"
+date-format: "[Lundi] DD/MM/YYYY"
+---
+
+
+## Voisinages et densités sur des points <u>valués</u>
+
+<br> <br>
+
+#### Densité Pondérée
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 0 : Mise en bouche
+
+-   Via l'outil `Carte de chaleur (Estimation par noyau)`, faites une
+    carte de densité des bars à Paris, pondérée par le prix de la bière
+    qui y est servie.
+
+-   Trouvez une méthode de pondération qui renforce l'importance locale
+    des bars aux prix les moins élevés, et diminue celle des bars aux
+    prix les plus élevés.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 0 : Mise en bouche
+
+-   Via l'outil `Carte de chaleur (Estimation par noyau)`, faites une
+    carte de densité des bars à Paris, pondérée par le prix de la bière
+    qui y est servie.
+
+-   Trouvez une méthode de pondération qui renforce l'importance locale
+    des bars aux prix les moins élevés, et diminue celle des bars aux
+    prix les plus élevés.
+:::
+
+::: callout-warning
+### Exercice 1 : densité pondérée réelle
+
+-   Parmi les jeux de données à votre disposition, trouvez un attribut
+    qui se prête bien à une carte de densité pondérée, ie. dont la carte
+    produite aurait du sens.
+:::
+
+------------------------------------------------------------------------
+
+## Données valuées
+
+![](../img/TD2_rasters_2_mobile.svg){fig-align="center" width="100%"}
+
+------------------------------------------------------------------------
+
+::: callout-tip
+### Moyennes mobiles sur des points valués
+
+-   On peut calculer une moyenne mobile simple sur des points valués à
+    l'aide de l'outil `Grille (Moyenne mobile)` (menu Raster -\>
+    Analyse)
+
+![](../img/paste-DFEF5135.png){fig-align="center" width="50%"}
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 2 : Valeur moyenne sur données de ratio
+
+-   Construisez une carte de la valeur moyenne du prix de la pinte à
+    Paris, dans des rayons de 400m (\~ 5min) et 800m (\~ 10min).
+
+-   Comparez ces cartes avec celles du prix des bières en *happy hour*.
+:::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+![](../img/TD3_legende.svg){width="50%" fig-align="center"}
+
+::: columns
+::: {.column width=25%}
+400m regular
+
+![](../img/paste-F49368B8.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width=25%}
+400m happy
+
+![](../img/paste-22167BD0.png){fig-align="center" width="100%"}
+:::
+::: {.column width=25%}
+800m regular
+
+![](../img/paste-D1D91612.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width=25%}
+800m happy
+
+![](../img/paste-E45720AD.png){fig-align="center" width="100%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Données valuées
+
+![](../img/TD2_rasters_3_gradient.svg){fig-align="center" width="100%"}
+
+------------------------------------------------------------------------
+
+## Interpollation et lissage
+
+### 4 grandes familles :
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    ellipsoïdal : **Inverse Distance Weighted** (IDW)
+
+![](../img/TD3_idw_interpolation.png){width="50%" fig-align="center"}
+
+::: aside
+Source : QGIS Doc, ["A gentle introduction to
+GIS"](https://docs.qgis.org/3.22/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html),
+by Mitas, L., Mitasova, H. (1999).
+:::
+
+------------------------------------------------------------------------
+
+### 4 grandes familles :
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    ellipsoïdal : **Inverse Distance Weighted** (IDW)
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    polygonal : **Triangulated Irregular Network** (TIN)
+
+![](../img/TD3_tin_interpolation.png){width="50%" fig-align="center"}
+
+::: aside
+Source : QGIS Doc, ["A gentle introduction to
+GIS"](https://docs.qgis.org/3.22/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html),
+by Mitas, L., Mitasova, H. (1999).
+:::
+
+------------------------------------------------------------------------
+
+### 4 grandes familles :
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    ellipsoïdal : **Inverse Distance Weighted** (IDW)
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    polygonal : **Triangulated Irregular Network** (TIN)
+
+-   Gradients par pondération (addition) selon la distance dans l'espace
+    complet (interaction) : **Potentiels de Stewart**
+
+---
+
+::: columns
+::: column
+![](../img/TD3_potentiels1.png){width="100%" fig-align="center"}
+:::
+
+::: column
+![](../img/TD3_potentiels2.png){width="100%" fig-align="center"}
+:::
+:::
+
+::: aside
+Source : Giraud T, Commenges H (2022). potential: Implementation of the
+Potential Model. R package version 0.2.0,
+<https://github.com/riatelab/potential>.
+:::
+
+------------------------------------------------------------------------
+
+### 4 grandes familles :
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    ellipsoïdal : **Inverse Distance Weighted** (IDW)
+
+-   Gradients par pondération (moyenne) selon la distance dans un espace
+    polygonal : **Triangulated Irregular Network** (TIN)
+
+-   Gradients par pondération (addition) selon la distance dans l'espace
+    complet (interaction) : **Potentiels de Stewart**
+
+-   Gradients multiples selon des distances locales : **Krigeage**
+
+---
+
+::: columns
+::: {.column width="70%"}
+![](../img/Spatial-distribution-of-annual-precipitation-using-kriging-methods-A-ordinary-kriging.jpeg){fig-align="center" width="75%"}
+
+:::
+
+::: {.column width="30%"}
+[Source : Sadeghi SH, Nouri H, Faramarzi M. (2017) Assessing the Spatial
+Distribution of Rainfall \[...\]. Air, Soil and Water Research. 2017;10.
+doi:[10.1177/1178622116686066](https://doi.org/10.1177/1178622116686066)]{.small}
+:::
+:::
+
+------------------------------------------------------------------------
+
+### IDW
+
+-   Algorithme d'interpolation classique et simple, calcule une valeur
+    estimée par pondération des valeurs de chacun des points connus dans
+    un rayon défini, selon une fonction de la distance à l'exposant P.
+
+-   Plus P est important, plus la distance jouera un frein.
+
+::: columns
+::: {.column width="65%"}
+![](../img/TD3_idw_interpolation.png)
+:::
+
+::: {.column width="35%"}
+<br/> <br/> ![](../img/TD3_idw-formula.png){fig-align="center"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+### IDW
+
+::: callout-warning
+### Exercice 3 : IDW
+
+-   Utilisez l'outil `Interpolation IDW` pour estimer une interpolation
+    des prix de la pinte à Paris.
+
+-   Testez plusieurs valeurs de P :
+
+    -   Que se passe-t-il quand P vaut 0 ?
+    -   Que se passe-t-il quand P est très fort ?
+    -   Comment choisir une valeur de P ?
+:::
+
+------------------------------------------------------------------------
+
+### TIN
+
+-   Interpolation basée sur une triangulation de Delaunay : des
+    triangles de points sont créés, et dans chaque triangle, un gradient
+    de valeurs (pente) est ajusté à partir des valeurs des 3 sommets.
+
+-   Possibilité de faire varier la méthode de calcul de la pente :
+    linéaire ou Clough-Toucher (polynômiale).
+
+![](../img/TD3_tin_interpolation.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### TIN
+
+-   Interpolation basée sur une triangulation de Delaunay : des
+    triangles de points sont créés, et dans chaque triangle, un gradient
+    de valeurs (pente) est ajusté à partir des valeurs des 3 sommets.
+
+-   Possibilité de faire varier la méthode de calcul de la pente :
+    linéaire ou Clough-Toucher (polynômiale).
+
+::: callout-warning
+### Exercice 4 : TIN
+
+-   Utilisez l'outil `Interpolation TIN` pour estimer une interpolation
+    des prix de la pinte à Paris.
+
+-   Comparez la méthode linéaire et Clough-Toucher : qu'est-ce qui varie
+    ?
+
+-   Les interpollation TIN sont-elles adaptées à l'interpolation des
+    prix des bars ? Testez cette méthode sur les vélibs.
+
+-   Quels sont les avantages de cette méthode par rapport à IDW ? Sur
+    quels types de données les employer ?
+:::
+
+------------------------------------------------------------------------

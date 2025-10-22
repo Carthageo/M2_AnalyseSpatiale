@@ -1,0 +1,382 @@
+---
+title: "M2 Carthagéo - Du discret au continu - Séance 2"
+subtitle: "Séance 2 - Voisinages et densités"
+format:
+  clean-revealjs:
+    output-file: "index.html"
+    mermaid-format: js
+    slide-number: c/t
+    show-slide-number: all
+    preview-links: true
+    chalkboard: false
+    header-logo: ../img/_logo-pantheon-sorbonne-RVB-bleu-or.svg
+    scrollable: false
+    favicon: ../img/favicon.ico
+    footer: "M2 Carthagéo - Analyse Spatiale R.C. - Séance 2"
+    fig-cap-location: margin
+filters:
+  - reveal-header
+author: 
+  name: "Robin Cura"
+  affiliations: "Université Paris 1 Panthéon-Sorbonne"
+date: "2025-10-03"
+date-format: "[Vendredi] DD/MM/YYYY"
+---
+
+### Voisinages et densités sur des points <br> <u>non valués</u>
+
+
+#### Préambule : une approche naïve des voisinages
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 0 : Mise en bouche
+
+En utilisant uniquement des outils de manipulation de vecteurs, proposez
+une méthode pour calculer le nombre de bars situés à moins de 500m de
+tout point de Paris.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 0 : Mise en bouche
+
+En utilisant uniquement des outils de manipulation de vecteurs, proposez
+une méthode pour calculer le nombre de bars situés à moins de 500m de
+tout point de Paris.
+:::
+
+::: columns
+::: {.column width="20%"}
+```{mermaid}
+%%| fig-width: 2
+flowchart TB
+  Points[Points] --> Grille(Grille 100*100) --> Buffer(Buffer 500m) --> PtsInPolygons(PtsInPolygons) --> JointureAttributaire(JointureAttributaire) --> Cartographie(Cartographie)
+```
+:::
+
+::: {.column width="80%"}
+![](../img/TD2_Exo0.png){fig-align="center" width="90%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+#### Raisonnement inverse : de la densité à l'accessibilité
+
+::: callout-warning
+### Exercice 1 : Apéritif
+
+Pour tout point de Paris, quelle est la distance au bar le plus proche ?
+:::
+
+------------------------------------------------------------------------
+
+#### Raisonnement inverse : de la densité à l'accessibilité
+
+::: callout-warning
+### Exercice 1 : Apéritif
+
+Pour tout point de Paris, quelle est la distance au bar le plus proche ?
+:::
+
+::: columns
+::: {.column width="20%"}
+```{mermaid}
+%%| fig-width: 2
+flowchart TB
+  Points[Points] --> Grille(Grille 100*100) --> Jointure(Joindre les attributs<br/>par le plus proche) -->  Cartographie(Cartographie du <br/>champ distance)
+```
+:::
+
+::: {.column width="80%"}
+![](../img/TD2_Exo1.png){fig-align="center" width="90%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Calculs de densité et interpolation
+
+**Trois ensembles d'approches, quel que soit le type de données (valuées
+ou non)**
+
+![](../img/TD2_rasters.svg){fig-align="center" width="60%"}
+
+⇰ Toutes ces approches se basent sur du calcul **raster**, bien plus
+rapide que le calcul vecteur.
+
+------------------------------------------------------------------------
+
+![](../img/TD2_rasters_1_comptes.svg){fig-align="center" width="100%"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+### Comptes (approche efficace)
+
+![](../img/paste-41F00F36.png){width="70%" fig-align="center"}
+
+-   L'outil `Grille (Métrique des données)` permet de créer une grille
+    automatique à partir d'un compte des points dans un rayon donné.
+-   Il permet aussi de mesurer une distance moyenne (ie. accessibilité
+    moyenne) au sein d'une grille
+
+------------------------------------------------------------------------
+
+### Comptes (approche efficace)
+
+::: callout-warning
+### Exercice 2 : Comptes
+
+Calculer le nombre de bars situés à moins de 500m de tout point de
+Paris.
+:::
+
+------------------------------------------------------------------------
+
+### Comptes (approche efficace)
+
+::: callout-warning
+### Exercice 2 : Comptes
+
+Calculer le nombre de bars situés à moins de 500m de tout point de
+Paris.
+:::
+
+::: columns
+::: {.column width="20%"}
+```{mermaid}
+%%| fig-width: 2
+flowchart TB
+  Points[Points] --> Métrique(Métrique des données) --> Métrique2(Métrique : Compte) --> Rayon(500m pour les 2 rayons) -->  Cartographie(Cartographie)
+```
+:::
+
+::: {.column width="80%"}
+![](../img/TD2_Exo2.png){fig-align="center" width="90%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+![](../img/TD2_rasters_2_mobile.svg){fig-align="center" width="100%"}
+
+------------------------------------------------------------------------
+
+### Distance (approche efficace)
+
+::: callout-warning
+### Exercice 3 : Distance moyenne
+
+Proposez et mettez en application un cas d'usage de la métrique
+`Distance moyenne` de l'outil `Grille (Métrique des données)`. Qu'est-ce
+que cette méthodologie permet de mettre en évidence ?
+:::
+
+------------------------------------------------------------------------
+
+### Distance (approche efficace)
+
+::: callout-warning
+### Exercice 3 : Distance moyenne
+
+Proposez et mettez en application un cas d'usage de la métrique
+`Distance moyenne` de l'outil `Grille (Métrique des données)`. Qu'est-ce
+que cette méthodologie permet de mettre en évidence ?
+:::
+
+::: columns
+::: {.column width="20%"}
+```{mermaid}
+%%| fig-width: 2
+%%| fig-height: 3.8
+flowchart TB
+  Points[Points] --> Métrique(Métrique des données) --> Métrique2(Métrique : Distance moyenne) --> Rayon(800m pour les 2 rayons) --> 
+  NbPoints(Points minimum : 5)
+```
+:::
+
+::: {.column width="80%"}
+![](../img/TD2_Exo3.png){fig-align="center" width="70%"}
+:::
+:::
+
+::: callout-tip
+En utilisant l'outil `Grille (Métrique des données)`, on peut trouver
+des hotspots de localisation de bars à Paris, c'est-à-dire des lieux qui
+montrent une concentration de bars hyper-locale importante au sein d'une
+densité locale plus faible.
+:::
+
+------------------------------------------------------------------------
+
+### Distance (approche efficace)
+
+::: callout-warning
+### Exercice 4 : Distance moyenne
+
+Proposez une méthodologie alternative permettant de détecter des
+hotspots.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-tip
+### Du continu au discret
+
+-   On peut avoir besoin de discrétiser une information continue, par
+    exemple pour la confronter/corréler à des données
+    socio-démographiques ou pour en faire une représentation plus
+    conformes aux besoins des acteurs territoriaux.
+
+-   On effectue alors des opérations de "polygonisation".
+
+![](../img/paste-EC07729E.png){fig-align="center" width="70%"}
+:::
+
+------------------------------------------------------------------------
+
+::: callout-tip
+### Du continu au discret
+
+-   On peut avoir besoin de discrétiser une information continue, par
+    exemple pour la confronter/corréler à des données
+    socio-démographiques ou pour en faire une représentation plus
+    conformes aux besoins des acteurs territoriaux.
+
+-   On effectue alors des opérations de "polygonisation".
+:::
+
+::: callout-warning
+### Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.
+
+![](../img/TD2_Polygonisation.png){fig-align="center" width="40%"}
+:::
+
+------------------------------------------------------------------------
+
+::: callout-tip
+### Du continu au discret
+
+-   On peut avoir besoin de discrétiser une information continue, par
+    exemple pour la confronter/corréler à des données
+    socio-démographiques ou pour en faire une représentation plus
+    conformes aux besoins des acteurs territoriaux.
+
+-   On effectue alors des opérations de "polygonisation".
+:::
+
+::: callout-warning
+### Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.
+:::
+
+::: callout-warning
+### Exercice 5 : Polygonisation
+
+Proposer une méthode pour que les polygones résultants soient moins
+morcelés.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-warning
+### Exercice 5 : Polygonisation
+
+Proposer une méthode pour que les polygones résultants soient moins
+morcelés.
+
+::: columns
+::: {.column width="35%"}
+⇰ On peut utiliser la reclassification (`Reclassification par table`)
+pour discrétiser les valeurs du raster, avant de le polygoniser.
+:::
+
+::: {.column width="65%"}
+![](../img/paste-AB47715B.png){fig-align="center" width="80%"}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+![](../img/TD2_rasters_3_gradient.svg){fig-align="center" width="100%"}
+
+------------------------------------------------------------------------
+
+## Prendre en compte la distance dans des mesures de densité
+
+::: callout-tip
+
+### Heatmaps et kernel density
+
+QGIS propose l'outil `Carte de chaleur (Estimation par noyau)` qui permet de mesurer des densités pondérées par la distance à chaque valeur.
+
+![](../img/paste-87C18985.png){fig-align="center" width="60%"}
+:::
+
+----------------------------------------------------------------------
+
+## Prendre en compte la distance dans des mesures de densité
+
+::: callout-tip
+
+### Heatmaps et kernel density
+
+QGIS propose l'outil `Carte de chaleur (Estimation par noyau)` qui permet de mesurer des densités pondérées par la distance à chaque valeur.
+:::
+
+::: callout-note
+
+### Formes de gradients
+
+* Pour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.
+
+* La forme de cette fonction influe donc très fortement sur les résultats
+
+:::
+
+----------------------------------------------------------------------
+
+## Prendre en compte la distance dans des mesures de densité
+
+::: callout-tip
+
+### Heatmaps et kernel density
+
+QGIS propose l'outil `Carte de chaleur (Estimation par noyau)` qui permet de mesurer des densités pondérées par la distance à chaque valeur.
+:::
+
+::: callout-note
+
+### Formes de gradients
+
+* Pour prendre en compte la distance, on applique une fonction qui diminue la pondération de chaque point en fonction de son éloignement.
+
+* La forme de cette fonction influe donc très fortement sur les résultats
+
+:::
+
+
+![](../img/TD2_kernels.svg){fig-align="center" width="100%"}
+
+-------------------------
+
+### Application
+
+::: callout-warning
+
+### Exercice 6 : Heatmaps
+
+1) Isolez les zones de forte concentration de bars à Paris en justifiant thématiquement chaque paramètre technique.
+
+2) Même chose, mais en prenant en compte le prix de la pinte de bière (attribut `regularPrice`) dans vos calculs.
+
+3) Faites varier la forme du kernel, quelle est l'influence sur vos résultats ? Comment justifier thématiquement le choix de chaque kernel ?
+
+4) *Bonus* --- *Mener une analyse de sensibilité systématique en faisant varier le kernel et le rayon de recherche et comparez les résultats.*
+:::
+
