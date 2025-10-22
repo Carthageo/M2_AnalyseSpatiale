@@ -11,9 +11,9 @@ website:
     left:
       - href: index.qmd
         text: Accueil
-      - href: anaspa_stats.qmd
+      - href: "" # anaspa_stats.qmd
         text: Analyse spatiale et statistiques (HC)
-      - href: anaspa_sig.qmd
+      - href: "" # anaspa_sig.qmd
         text: Analyse spatiale et SIG (JB)
       - href: anaspa_interpolations.qmd
         text: Du discret au continu (RC)

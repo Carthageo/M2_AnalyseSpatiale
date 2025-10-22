@@ -164,8 +164,8 @@
     "objectID": "anaspa_interpolations.html#supports-de-cours",
     "href": "anaspa_interpolations.html#supports-de-cours",
     "title": "Du discret au continu - M2 Carthagéo",
-    "section": "Supports de cours",
-    "text": "Supports de cours\n\nTD1 : Des points aux polygones\nTD2 : Voisinages et densités\nTD3 : Vers l’interpolation : lissages et potentiels sur des informations valuées (IDW & TIN)\nTD4 : Vers l’interpolation : lissages et potentiels sur des informations valuées (Potentiels)\nTD5 : Distances et variations spatiales - Approche naïve de l’auto-corrélation spatiale\nTD6 : Distances et variations spatiales - Auto-corrélation spatiale orientée et krigeage\nTD7 : Mesurer l’auto-corrélation spatiale"
+    "section": "Supports de cours ",
+    "text": "Supports de cours \n\nTD1 : Des points aux polygones\nTD2 : Voisinages et densités\nTD3 : Vers l’interpolation : lissages et potentiels sur des informations valuées (IDW & TIN)\nTD4 : Vers l’interpolation : lissages et potentiels sur des informations valuées (Potentiels)\nTD5 : Distances et variations spatiales - Approche naïve de l’auto-corrélation spatiale\nTD6 : Distances et variations spatiales - Auto-corrélation spatiale orientée et krigeage\nTD7 : Mesurer l’auto-corrélation spatiale"
   },
   {
     "objectID": "anaspa_interpolations.html#exercices",
