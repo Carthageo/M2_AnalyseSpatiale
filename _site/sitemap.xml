@@ -1,75 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_stats.html</loc>
-    <lastmod>2025-10-22T09:53:58.420Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_sig.html</loc>
-    <lastmod>2025-10-22T09:53:59.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_interpolations.html</loc>
-    <lastmod>2025-11-09T14:09:42.223Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/TD1/TD1.html</loc>
-    <lastmod>2025-10-22T07:51:27.852Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/TD1/index.html</loc>
-    <lastmod>2025-10-22T07:53:49.226Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD1/index.html</loc>
-    <lastmod>2025-11-09T10:49:04.857Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD2/TD2.html</loc>
-    <lastmod>2025-10-22T08:48:55.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD2/index.html</loc>
-    <lastmod>2025-11-09T10:48:57.503Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD3/index.html</loc>
-    <lastmod>2025-11-09T10:50:25.698Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD4/index.html</loc>
-    <lastmod>2025-11-09T11:57:09.289Z</lastmod>
+    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD7/index.html</loc>
+    <lastmod>2025-11-09T22:21:07.522Z</lastmod>
   </url>
   <url>
     <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD5/index.html</loc>
     <lastmod>2025-11-09T12:40:35.546Z</lastmod>
   </url>
   <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD3/index.html</loc>
+    <lastmod>2025-11-09T16:39:06.551Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD1/index.html</loc>
+    <lastmod>2025-11-09T10:49:04.857Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_stats.html</loc>
+    <lastmod>2025-10-22T09:53:58.420Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_interpolations.html</loc>
+    <lastmod>2025-11-09T14:09:42.223Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/anaspa_sig.html</loc>
+    <lastmod>2025-10-22T09:53:59.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD2/index.html</loc>
+    <lastmod>2025-11-09T10:48:57.503Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD4/index.html</loc>
+    <lastmod>2025-11-09T11:57:09.289Z</lastmod>
+  </url>
+  <url>
     <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD6/index.html</loc>
     <lastmod>2025-11-09T14:02:27.677Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD7/index.html</loc>
-    <lastmod>2025-11-09T22:21:07.522Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD5/TD5_AutoCor_Manuelle.html</loc>
-    <lastmod>2025-10-22T09:54:27.126Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD3/TD3_IDW_TIN.html</loc>
-    <lastmod>2025-10-22T09:54:25.733Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD1/TD1_Intro.html</loc>
-    <lastmod>2025-10-22T09:54:24.564Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD2/TD2_Voisinages.html</loc>
-    <lastmod>2025-10-22T09:54:25.222Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carthageo.github.io/analyse-spatiale/posts/RC/TD4/TD4_Potentiels.html</loc>
-    <lastmod>2025-10-22T09:54:26.168Z</lastmod>
   </url>
 </urlset>

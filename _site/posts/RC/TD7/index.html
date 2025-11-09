@@ -771,13 +771,13 @@ I_i = (X_i-\bar{X})\times{\sum_{j}w_{ij}(X_j-\bar{X})}
 <span id="cb30-7"><a></a><span class="fu">print</span>(bars_local_moran, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,873 × 12
-      ii      eii  var_ii   z_ii   p_ii p_ii_sim p_folded_sim skewness kurtosis
-   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 -2.84   0.0737   9.38   -0.950 0.342     0.36         0.18   -0.0870  -0.320 
-2  0.577  0.00881  0.0865  1.93  0.0533    0.064        0.032  -0.0622   0.0563
-3  8.49  -0.0273  15.3     2.17  0.0297    0.016        0.008  -0.303    0.182 
-4  7.39   0.214    9.32    2.35  0.0188    0.012        0.006  -0.160   -0.0921
-5  3.66  -0.0630   4.09    1.84  0.0657    0.084        0.042   0.140   -0.221 
+      ii      eii  var_ii  z_ii   p_ii p_ii_sim p_folded_sim skewness kurtosis
+   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 -2.84   0.189    8.21   -1.06 0.291     0.304        0.152  -0.0706  -0.0537
+2  0.577  0.00803  0.0973  1.82 0.0681    0.064        0.032  -0.0839  -0.294 
+3  8.49  -0.129   14.8     2.24 0.0249    0.044        0.022  -0.0276   0.306 
+4  7.39   0.0703  10.2     2.29 0.0220    0.02         0.01   -0.223   -0.0959
+5  3.66   0.0631   4.34    1.73 0.0844    0.104        0.052   0.385   -0.220 
 # ℹ 1,868 more rows
 # ℹ 3 more variables: mean &lt;fct&gt;, median &lt;fct&gt;, pysal &lt;fct&gt;</code></pre>
 </div>
@@ -788,11 +788,11 @@ I_i = (X_i-\bar{X})\times{\sum_{j}w_{ij}(X_j-\bar{X})}
 <pre><code># A tibble: 1,873 × 4
   kurtosis mean      median    pysal    
      &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;    
-1  -0.320  Low-Low   Low-High  Low-High 
-2   0.0563 Low-Low   Low-Low   Low-Low  
-3   0.182  Low-Low   Low-Low   Low-Low  
-4  -0.0921 Low-Low   Low-Low   Low-Low  
-5  -0.221  High-High High-High High-High
+1  -0.0537 Low-Low   Low-High  Low-High 
+2  -0.294  Low-Low   Low-Low   Low-Low  
+3   0.306  Low-Low   Low-Low   Low-Low  
+4  -0.0959 Low-Low   Low-Low   Low-Low  
+5  -0.220  High-High High-High High-High
 # ℹ 1,868 more rows</code></pre>
 </div>
 </div>
