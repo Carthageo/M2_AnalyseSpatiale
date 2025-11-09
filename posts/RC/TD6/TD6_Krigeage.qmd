@@ -19,10 +19,6 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-11-24"
-date-format: "[Lundi] DD/MM/YYYY"
-params:
-  correction: true
 ---
 
 ```{r}
@@ -43,7 +39,7 @@ communes_paris <- read_rds("../DATA/communes_paris.rds")
 
 #### On discrétise la distance par bornes de 100m
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = TRUE, echo = TRUE}
 distances_differences_discretes <- difference_votes_assym %>%
   mutate(bande = cut(distance, breaks = c(0:120) * 100, labels = FALSE)) %>%
   mutate(bande = bande * 100)
@@ -56,7 +52,7 @@ meanDiff <- distances_differences_discretes %>%
 
 -------------------------
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = TRUE, echo = TRUE}
 ggplot(meanDiff) +
   aes(x = bande, y = diffmoyenne, size = nb) +
   geom_point() +
@@ -128,7 +124,7 @@ ggplot(semivarDiff) +
 ---------------------
 
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = TRUE, echo = TRUE}
 
 resultats_macron_geom <- resultats_bureaux %>%
   mutate(ID = as.character(row_number())) %>%
@@ -150,7 +146,41 @@ pts_destination <- distances_differences_discretes %>%
 
 ---------------------------
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = FALSE, echo = TRUE}
+
+differences_azimuthales <- st_azimuth(pts_origine, pts_destination)  
+
+distances_differences_discretes_azimuthales <- distances_differences_discretes %>%
+  mutate(azimuth = differences_azimuthales) %>%
+  mutate(direction = case_when(
+    azimuth >= 337.5 | azimuth <= 22.5 ~ "Nord",
+    between(azimuth, 22.5, 67.5) ~ "Nord-Est",
+    between(azimuth, 67.5, 112.5) ~ "Est",
+    between(azimuth, 112.5, 157.5) ~ "Sud-Est",
+    between(azimuth, 157.5, 202.5) ~ "Sud",
+    between(azimuth, 202.5, 247.5) ~ "Sud-Ouest",
+    between(azimuth, 247.5, 292.5) ~ "Ouest",
+    between(azimuth, 292.5, 337.5) ~ "Nord-Ouest"
+  )) %>%
+  filter(!is.na(direction)) %>%
+  group_by(bande, direction) %>%
+  summarise(
+    nb = n(),
+    semivar = 0.5 * mean(diffAbs^2)
+  ) %>%
+  ungroup()
+
+  
+ ggplot(distances_differences_discretes_azimuthales) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  facet_wrap(~direction)
+  
+```
+
+---------------------------
+
+```{r, eval = TRUE, echo = FALSE}
 
 differences_azimuthales <- st_azimuth(pts_origine, pts_destination)  
 
@@ -184,7 +214,45 @@ distances_differences_discretes_azimuthales <- distances_differences_discretes %
 
 ------------------------------
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = FALSE, echo = TRUE}
+
+distances_differences_discretes_azimuthales_symetriques <- distances_differences_discretes %>%
+  mutate(azimuth = differences_azimuthales) %>%
+  mutate(direction = case_when(
+    azimuth >= 337.5 | azimuth <= 22.5 ~ "Nord",
+    between(azimuth, 22.5, 67.5) ~ "Nord-Est",
+    between(azimuth, 67.5, 112.5) ~ "Est",
+    between(azimuth, 112.5, 157.5) ~ "Sud-Est",
+    between(azimuth, 157.5, 202.5) ~ "Sud",
+    between(azimuth, 202.5, 247.5) ~ "Sud-Ouest",
+    between(azimuth, 247.5, 292.5) ~ "Ouest",
+    between(azimuth, 292.5, 337.5) ~ "Nord-Ouest"
+  )) %>%
+  mutate(directionSym = case_when(
+    direction %in% c("Nord", "Sud") ~ "NS",
+    direction %in% c("Est", "Ouest") ~ "EW",
+    direction %in% c("Nord-Est", "Sud-Ouest") ~ "NE-SW",
+    direction %in% c("Nord-Ouest", "Sud-Est") ~ "NW-SE",
+  )) %>%
+  filter(!is.na(directionSym)) %>%
+  group_by(bande, directionSym) %>%
+  summarise(
+    nb = n(),
+    semivar = 0.5 * mean(diffAbs^2)
+  ) %>%
+  ungroup()
+
+  
+ ggplot(distances_differences_discretes_azimuthales_symetriques) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  facet_wrap(~directionSym, ncol = 1)
+  
+```
+
+------------------------------
+
+```{r, eval = TRUE, echo = FALSE}
 
 distances_differences_discretes_azimuthales_symetriques <- distances_differences_discretes %>%
   mutate(azimuth = differences_azimuthales) %>%
@@ -222,7 +290,11 @@ distances_differences_discretes_azimuthales_symetriques <- distances_differences
 
 --------------------------------------
 
-```{r, eval = TRUE, echo = params$correction}
+```{r}
+#| eval: false
+#| echo: true
+#| warning: false
+
 library(ggpubr)
 
 ggplot(distances_differences_discretes_azimuthales_symetriques) +
@@ -235,6 +307,178 @@ ggplot(distances_differences_discretes_azimuthales_symetriques) +
   
 ```
 
+
+--------------------------------------
+
+```{r}
+#| eval: true
+#| echo: false
+#| warning: false
+
+library(ggpubr)
+
+ggplot(distances_differences_discretes_azimuthales_symetriques) +
+  aes(x = bande, y = semivar, size = nb) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm", lwd = 1) +
+  stat_cor(label.y = 0.02, label.x = 500) +
+  stat_regline_equation(label.y = 0.015, label.x = 500) +
+  facet_wrap(~directionSym, ncol = 1)
+  
+```
+
+
+------------------------------
+
+### 7 - Semi-variogrammes automatiques
+
+#### Il existe des fonctions rapides pour calculer un variogramme, notamment au sein du package `gstat`
+
+```{r}
+#| echo: true
+#| eval: true
+
+library(gstat)
+data_variogramme <- resultats_bureaux %>%
+            mutate(pct_macron = MACRON / `Exprimés`) %>%
+            filter(!is.na(pct_macron))
+variogramme_macron <- variogram(object = pct_macron~1, data = data_variogramme)
+plot(variogramme_macron)
+
+```
+
+
+------------------------------
+
+#### On peut aussi calculer un variogramme anisotropique
+
+```{r}
+#| echo: true
+#| eval: true
+
+variogramme_macron_oriente <- variogram(object = pct_macron~1, data = data_variogramme,
+                                        alpha = c(0,45,90,135))
+plot(variogramme_macron_oriente)
+
+```
+
+
+------------------------------
+
+### 8 - Semi-variogrammes et ajustement
+
+#### A partir d'un variogramme, on peut enfin chercher à ajuster une fonction pour le décrire, et ainsi en faire un outil de prédiction de valeurs
+
+
+```{r}
+#| echo: true
+#| eval: true
+show.vgms()
+```
+
+------------------------------
+
+#### Exemple avec le modèle "Sphérique"
+
+```{r}
+#| echo: true
+#| eval: true
+
+model_fit <- fit.variogram(variogramme_macron, vgm("Sph"))
+model_fit
+plot(variogramme_macron, model = model_fit)
+```
+
+----------
+
+#### Ajustement sur des variogrammes orientés
+
+
+```{r}
+#| eval: true
+#| echo: true
+#| warning: false
+
+library(glue)
+model_fit_oriente <- variogramme_macron_oriente %>%
+  group_split(dir.hor) %>%
+  map(function(x){class(x) <- c("gstatVariogram", "data.frame") ; x}) %>%
+  map(~fit.variogram(.x, vgm("Sph")))
+```
+
+----------
+
+#### Ajustement sur des variogrammes orientés
+
+::: {.panel-tabset .smaller}
+
+##### Nord - Sud
+
+```{r}
+#| echo: true
+plot(filter(variogramme_macron_oriente, dir.hor == 0), model = model_fit_oriente[[1]], add = FALSE)
+```
+
+##### Nord-Est - Sud-Ouest
+
+```{r}
+#| echo: true
+plot(filter(variogramme_macron_oriente, dir.hor == 45), model = model_fit_oriente[[2]], add = FALSE)
+```
+
+##### Est - Ouest
+
+```{r}
+#| echo: true
+plot(filter(variogramme_macron_oriente, dir.hor == 90), model = model_fit_oriente[[3]], add = FALSE)
+```
+
+##### Sud-Est - Nord-Ouest
+
+```{r}
+#| echo: true
+plot(filter(variogramme_macron_oriente, dir.hor == 135), model = model_fit_oriente[[4]], add = FALSE)
+```
+
+:::
+
+
+
+----------
+
+Dans le package `automap`, on dispose d'une fonction qui permet de tester le meilleur ajustement en fonction du variogramme
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(automap)
+
+autofit_macron <- autofitVariogram(formula = pct_macron ~ 1, input_data = data_variogramme)
+autofit_macron
+
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+library(automap)
+autofit_macron <- read_rds("../DATA/autofit_macron.rds")
+autofit_macron
+
+```
+
+--------
+
+Dans le package `automap`, on dispose d'une fonction qui permet de tester le meilleur ajustement en fonction du variogramme
+
+```{r}
+#| echo: true
+#| eval: true
+
+plot(autofit_macron)
+```
 
 ------------------------------
 
@@ -258,45 +502,56 @@ gstat::show.vgms(nugget = 0.25, sill = 1.5)
 
 #### Réalisation d'un krigeage automatique avec `automap`
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 library(automap)
 
-# Le package automap fonctionne à partir d'objets sp, 
-# un ancien format de données spatiales dans R
-# désormais remplacé avantageusement par sf
+grille <- contour_paris %>%
+  st_make_grid(cellsize = 100, what = "centers")
 
-sp_resultats_macron_geom <- as_Spatial(resultats_macron_geom)
-sp_grille <- contour_paris %>%
-  st_make_grid(cellsize = 100, what = "centers") %>%
-  as_Spatial()
-
+kriging_interpolation_pctMacron <- autoKrige(
+  formula = pct_macron ~ 1,
+  input_data = data_variogramme,
+  new_data = grille, 
+  verbose = TRUE
+)
+kriging_interpolation_pctMacron
 
 ```
 
 -------------------------------
 
-```{r, echo = TRUE}
+#### Réalisation d'un krigeage automatique avec `automap`
 
-kriging_interpolation_pctMacron <- autoKrige(
-  formula = pctMacron ~ 1,
-  input_data = sp_resultats_macron_geom,
-  new_data = sp_grille, 
-  verbose = TRUE
-)
+```{r, echo = FALSE, eval = TRUE}
+library(automap)
 
+grille <- contour_paris %>%
+  st_make_grid(cellsize = 100, what = "centers")
+kriging_interpolation_pctMacron <- read_rds("../DATA/kriging_interpolation_pctMacron.rds")
+kriging_interpolation_pctMacron
 ```
 
 ----------------------------------
+
+#### Réalisation d'un krigeage automatique avec `automap`
 
 ```{r, echo = TRUE}
 listviewer::jsonedit(kriging_interpolation_pctMacron)
 
 ```
 
------------------------
+----------------------------------
+
+#### Réalisation d'un krigeage automatique avec `automap`
+
+```{r, echo = TRUE, eval = TRUE}
+plot(kriging_interpolation_pctMacron)
+```
+
+----------------------------------
 
 ```{r, echo = TRUE}
-sf_kriging_interpolation_pctMacron <- st_as_sf(kriging_interpolation_pctMacron$krige_output)
+sf_kriging_interpolation_pctMacron <- kriging_interpolation_pctMacron$krige_output
 ```
 
 ::: {.panel-tabset}
@@ -356,12 +611,6 @@ carte_stdev <- ggplot(equipotentiels_pctMacron_stdev) +
 
 -----------------------------
 
-```{r, echo = TRUE}
-patchwork::wrap_plots(carte_prediction, carte_variance, carte_stdev)
-```
-
-----------------------------------
-
 ::: {.panel-tabset}
 
 #### Prédiction
@@ -383,3 +632,155 @@ carte_stdev
 ```
 
 :::
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| file: "../scripts/TD6_Krigeage_3_Bars_1.R"
+
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+#| file: "../scripts/TD6_Krigeage_3_Bars_1.R"
+
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+#| file: "../scripts/TD6_Krigeage_3_Bars_2.R"
+
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| file: "../scripts/TD6_Krigeage_3_Bars_3.R"
+
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+krigeage_bars <- read_rds("../DATA/krigeage_bars.rds")
+krigeage_bars
+
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+
+plot(krigeage_bars)
+
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+#| fig-align: center
+equipotential(x = krigeage_bars$krige_output, var = "var1.pred", nclass = 8, mask = paris) %>%
+  mutate(center = fct_rev(as.factor(round(center, 2)))) %>%
+  ggplot() +
+  geom_sf(aes(fill = center)) +
+  geom_sf(data = paris, fill = NA, colour = "white") +
+  scale_fill_viridis_d(name = "Prix de la pinte [€]", direction = -1)
+```
+
+-----------------------------
+
+::: callout-warning
+
+#### Exercice - Krigeage sur données peu autocorrélées
+
+- Réalisez un krigeage sur le prix des pintes de bière à Paris
+
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+equipotential(x = krigeage_bars$krige_output, var = "var1.pred", nclass = 8, mask = paris) %>%
+  mutate(center = fct_rev(as.factor(round(center, 2)))) %>%
+  ggplot() +
+  geom_sf(aes(fill = center)) +
+  geom_sf(data = paris, fill = NA, colour = "white") +
+  scale_fill_viridis_d(name = "Prix de la pinte [€]", direction = -1)
+```
+
+
+

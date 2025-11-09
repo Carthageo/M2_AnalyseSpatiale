@@ -152,11 +152,9 @@ Robin Cura
     </div>
 </div>
 
-  <p class="date">Vendredi 03/10/2025</p>
 </section>
-<section class="slide level2">
-
-<h3 id="voisinages-et-densités-sur-des-points-non-valués">Voisinages et densités sur des points <br> <u>non valués</u></h3>
+<section id="voisinages-et-densités-sur-des-points-non-valués" class="slide level2">
+<h2>Voisinages et densités sur des points <br> <u>non valués</u></h2>
 <h4 id="préambule-une-approche-naïve-des-voisinages">Préambule : une approche naïve des voisinages</h4>
 </section>
 <section class="slide level2">
@@ -279,9 +277,9 @@ Robin Cura
 
 
 <img data-src="../img/TD2_rasters_1_comptes.svg" class="margin-caption quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-<section id="section" class="slide level2 smaller">
-<h2></h2>
-<h3 id="comptes-approche-efficace">Comptes (approche efficace)</h3>
+<section class="slide level2">
+
+<h3 class="smaller" id="comptes-approche-efficace">Comptes (approche efficace)</h3>
 
 <img data-src="../img/paste-41F00F36.png" class="margin-caption quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
 <li>L’outil <code>Grille (Métrique des données)</code> permet de créer une grille automatique à partir d’un compte des points dans un rayon donné.</li>
@@ -437,95 +435,38 @@ Robin Cura
 </section>
 <section class="slide level2">
 
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Du continu au discret</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>On peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.</p></li>
-<li><p>On effectue alors des opérations de “polygonisation”.</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/paste-EC07729E.png" class="margin-caption quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Du continu au discret</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>On peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.</p></li>
-<li><p>On effectue alors des opérations de “polygonisation”.</p></li>
-</ul>
-</div>
-</div>
-</div>
+<h3 id="distance-approche-efficace-3">Distance (approche efficace)</h3>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.</strong></p>
+<p><strong>Exercice 4 : Distance moyenne</strong></p>
 </div>
 <div class="callout-content">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../img/TD2_Polygonisation.png" class="margin-caption quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
+<p>Proposez une méthodologie alternative permettant de détecter des hotspots.</p>
 </div>
 </div>
 </div>
-</div>
+<h4 id="comparaison-de-densités">Comparaison de densités</h4>
+<p>En calculant plusieurs densités de rayon différent et en les comparant, on peut faire ressortir des tendances locales. Par exemple, en mesurant la densité à 500m et la densité à 250m, puis en soustrayant (ou divisant) l’une à l’autre, on montre pour chaque point le ratio entre la densité moyenne du quartier environnant et celle du voisinage proche.</p>
 </section>
+<section id="discrétisation" class="slide level2">
+<h2>Discrétisation</h2>
+<h3 id="du-continu-au-discret">Du continu au discret</h3>
+<p>On peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.</p>
+<p>On effectue alors des opérations de “polygonisation”.</p>
+
+<img data-src="../img/paste-EC07729E.png" class="margin-caption quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
 <section class="slide level2">
 
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Du continu au discret</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>On peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.</p></li>
-<li><p>On effectue alors des opérations de “polygonisation”.</p></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.</strong></p>
-</div>
-<div class="callout-content">
+<h3 id="problème-les-polygones-en-sortie-sont-alors-extrêmement-nombreux-et-morcelés.">Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.</h3>
 
-</div>
-</div>
-</div>
+<img data-src="../img/TD2_Polygonisation.png" class="margin-caption quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section>
+<section class="slide level2">
+
+<h3 id="problème-les-polygones-en-sortie-sont-alors-extrêmement-nombreux-et-morcelés.-1">Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.</h3>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -552,6 +493,9 @@ Robin Cura
 </div>
 <div class="callout-content">
 <p>Proposer une méthode pour que les polygones résultants soient moins morcelés.</p>
+</div>
+</div>
+</div>
 <div class="columns">
 <div class="column" style="width:35%;">
 <p>⇰ On peut utiliser la reclassification (<code>Reclassification par table</code>) pour discrétiser les valeurs du raster, avant de le polygoniser.</p>
@@ -562,9 +506,6 @@ Robin Cura
 </figure>
 </div>
 </div></div>
-</div>
-</div>
-</div>
 </section>
 <section class="slide level2">
 

@@ -494,6 +494,174 @@
     "href": "anaspa_interpolations.html#exercices-et-codes",
     "title": "Du discret au continu - M2 Carthagéo",
     "section": "Exercices et Codes",
-    "text": "Exercices et Codes\n\n TD1 - Analyse de sensibilité\n TD4 - Potentiels - Fonctions\n TD4 - Potentiels - Application\n TD4 - Potentiels - Carte des candidats\n TD6 - Auto-corrélation spatiale orientée\n TD7 - Krigeage"
+    "text": "Exercices et Codes\n\n TD1 - Analyse de sensibilité\n TD4 - Potentiels - Fonctions\n TD4 - Potentiels - Capacité des Vélibs\n TD4 - Potentiels - Application\n TD4 - Potentiels - Carte des candidats\n TD5 - Auto-corrélation spatiale orientée\n TD6 - Krigeage sur les résultats electoraux\n TD6 - Krigeage sur les bars\n TD7 - Autocorrélation spatiale"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#voisinages-et-densités-sur-des-points-non-valués",
+    "href": "posts/RC/TD2/index.html#voisinages-et-densités-sur-des-points-non-valués",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Voisinages et densités sur des points  non valués",
+    "text": "Voisinages et densités sur des points  non valués\nPréambule : une approche naïve des voisinages"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#discrétisation",
+    "href": "posts/RC/TD2/index.html#discrétisation",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "Discrétisation",
+    "text": "Discrétisation\nDu continu au discret\nOn peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.\nOn effectue alors des opérations de “polygonisation”."
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#blob-.smaller",
+    "href": "posts/RC/TD2/index.html#blob-.smaller",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "{BLOB .smaller}",
+    "text": "{BLOB .smaller}\nComptes (approche efficace)\n\n\nL’outil Grille (Métrique des données) permet de créer une grille automatique à partir d’un compte des points dans un rayon donné.\nIl permet aussi de mesurer une distance moyenne (ie. accessibilité moyenne) au sein d’une grille"
+  },
+  {
+    "objectID": "posts/RC/TD2/index.html#truc",
+    "href": "posts/RC/TD2/index.html#truc",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 2",
+    "section": "TRUC",
+    "text": "TRUC\nProbleme : les polygones en sortie sont alors extrêmement nombreux et morcelés."
+  },
+  {
+    "objectID": "posts/RC/TD4/index.html#section",
+    "href": "posts/RC/TD4/index.html#section",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 4",
+    "section": "",
+    "text": "Exercice 6 : Potentiels comme méthode d’interpolation\n\n\n\nEn utilisant le package R potential, et à l’aide de sa documentation (https://riatelab.github.io/potential/articles/potential.html), réalisez une carte continue :\n\nde la capacité des stations vélibs\n\n\n\n\n\n\n# Discretisation\npotentiels_discrets &lt;- equipotential(x = grille, var = \"potentiel_capacite\", nclass = 8, mask = communes)\nggplot(potentiels_discrets) +\n  geom_sf(aes(fill = center)) +\n  geom_sf(data = communes, fill = NA, lwd = 0.5, colour  = \"white\") +\n  scale_fill_viridis_c()"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "href": "posts/RC/TD7/index.html#comment-choisir-des-seuils-de-distance-pour-les-interpolations",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Comment choisir des seuils de distance pour les interpolations ?",
+    "text": "Comment choisir des seuils de distance pour les interpolations ?\nTEST\n\nBLOB"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#auto-corrélation-spatiale",
+    "href": "posts/RC/TD7/index.html#auto-corrélation-spatiale",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Auto-corrélation spatiale",
+    "text": "Auto-corrélation spatiale\n\nL’autocorrélation mesure la corrélation d’une variable avec elle-même, lorsque les observations sont considérées avec un décalage dans le temps (autocorrélation temporelle) ou dans l’espace (autocorrélation spatiale).\nSi la présence d’une qualité dans une partie d’un territoire rend sa présence dans les zones voisines plus ou moins probable, il existe un effet de contiguïté dans la structure spatiale, le phénomène montre une autocorrélation spatiale.\nLorsque l’autocorrélation est positive, des régions voisines tendent à avoir des propriétés identiques ou des valeurs semblables : de telles configurations sont par exemple des régions homogènes*, ou bien des gradients réguliers. Lorsque l’autocorrélation est négative, des régions voisines ont des qualités différentes, ou bien les valeurs fortes et faibles alternent. Les mesures de l’autocorrélation spatiale dépendent de l’échelle d’analyse et du niveau de résolution de la grille à travers laquelle une distribution est observée.\nOliveau S., Autocorrélation spatiale, Hypergeo, 2017\n\n\nBLOB"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#définition",
+    "href": "posts/RC/TD7/index.html#définition",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Définition",
+    "text": "Définition\n\n\nL’autocorrélation mesure la corrélation d’une variable avec elle-même, lorsque les observations sont considérées avec un décalage dans le temps (autocorrélation temporelle) ou dans l’espace (autocorrélation spatiale).\nSi la présence d’une qualité dans une partie d’un territoire rend sa présence dans les zones voisines plus ou moins probable, il existe un effet de contiguïté dans la structure spatiale, le phénomène montre une autocorrélation spatiale.\nLorsque l’autocorrélation est positive, des régions voisines tendent à avoir des propriétés identiques ou des valeurs semblables : de telles configurations sont par exemple des régions homogènes, ou bien des gradients réguliers.\nLorsque l’autocorrélation est négative, des régions voisines ont des qualités différentes, ou bien les valeurs fortes et faibles alternent.\nLes mesures de l’autocorrélation spatiale dépendent de l’échelle d’analyse et du niveau de résolution de la grille à travers laquelle une distribution est observée.\nOliveau S., Autocorrélation spatiale, Hypergeo, 2017"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesure",
+    "href": "posts/RC/TD7/index.html#mesure",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesure",
+    "text": "Mesure\nL’autocorrélation spatiale peut être mesurée de manière globale ou de manière locale, et de nombreux indicateurs existent pour chacune de ces dimensions.\n\nAutocorrélation spatiale globale\n\n\\(I\\) de Moran,\n\\(C\\) de Geary,\n\\(G\\) de Getis-Ord\n…\n\n\n\nAutocorrélation spatiale locale : Local Indicators of Spatial Association “LISA”\n\n\\(I\\) local de Moran,\n\\(C\\) local de Geary,\n\\(Gi\\) local de Getis-Ord,\n…"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#les-indicateurs-dautocorrélation-globale",
+    "href": "posts/RC/TD7/index.html#les-indicateurs-dautocorrélation-globale",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Les indicateurs d’autocorrélation globale",
+    "text": "Les indicateurs d’autocorrélation globale"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#fonctionnement",
+    "href": "posts/RC/TD7/index.html#fonctionnement",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Fonctionnement",
+    "text": "Fonctionnement\nTous ces indicateurs fonctionnent à partir de trois composantes tirées d’un jeu de données spatial (ponctuel ou polygonal) :\n\nUne variable quantitative\nUne matrice de voisinage\nUne matrice de poids associés"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#voisinages",
+    "href": "posts/RC/TD7/index.html#voisinages",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Voisinages",
+    "text": "Voisinages\n\nFEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#voisinages-1",
+    "href": "posts/RC/TD7/index.html#voisinages-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Voisinages",
+    "text": "Voisinages\n\nFEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2025. Manuel de géographie quantitative. Armand Colin."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#voisinages-et-pondérations",
+    "href": "posts/RC/TD7/index.html#voisinages-et-pondérations",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Voisinages et pondérations",
+    "text": "Voisinages et pondérations\n\nFEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesures-globales-et-locales",
+    "href": "posts/RC/TD7/index.html#mesures-globales-et-locales",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesures globales et locales",
+    "text": "Mesures globales et locales\n\nLes mesures d’autocorrélation locales correspondent à une qualification de l’autocorrélation dans le voisinage de chacune des entités spatiales\nLes mesures d’autocorrélation globales sont généralement une moyenne* de ces mesures d’autocorrélation locale pour l’ensemble des entités"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesures-globales",
+    "href": "posts/RC/TD7/index.html#mesures-globales",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesures globales",
+    "text": "Mesures globales\n\\(I\\) de Moran - Théorie\n\\[\nI \\in [-1,1]={\\frac {N}{\\sum _{i}\\sum _{j}w_{ij}}} \\times {\\frac {\\sum _{i}\\sum _{j}w_{ij}(X_{i}-{\\bar {X}})(X_{j}-{\\bar {X}})}{\\sum _{i}(X_{i}-{\\bar {X}})^{2}}}\n\\]\navec :\n\n\n\n\\(N\\) : nombre d’entités\n\n\\(w_{ij}\\) : Poids (weight) de la relation \\(ij\\)\n\\(X_i\\) : valeur de la variable \\(X\\) pour l’entité \\(i\\)\n\\(X_j\\) : valeur de la variable \\(X\\) pour l’entité \\(j\\)\n\\({\\bar X}\\) : moyenne de la variable \\(X\\)\n\n\n\nd’où : \\({\\frac {N}{\\sum _{i}\\sum _{j}w_{ij}}}\\) : neutralisation des poids \n\\((X_{i}-{\\bar {X}})(X_{j}-{\\bar {X}})\\) : covariance \\(ij\\)\n\\({\\sum _{i}(X_{i}-{\\bar {X}})^{2}}\\) : variance de \\(X\\)\n\n\n\nL’indice \\(I\\) de Moran mesure donc le rapport normalisé entre une covariance pondérée et une variance, soit à peu de chose près, une corrélation linéaire entre les valeurs de X en \\(i\\) et \\(j\\) :\n\nPour \\(I\\) proche de 1 : autocorrélation spatiale positive\nPour \\(I\\) proche de -1 : autocorrélation spatiale négative\nPour \\(I\\) proche de 0 : pas d’autocorrélation spatiale"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesures-globales-1",
+    "href": "posts/RC/TD7/index.html#mesures-globales-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesures globales",
+    "text": "Mesures globales\n\\(C\\) de Geary - Théorie\n\nFEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin.\n\n\\[\nC \\in [0,2] = {\\frac{N-1}{2\\sum_i\\sum_jw_{ij}}} \\times \\frac{\\sum_i\\sum_jw_{ij}(X_i-X_j)^2}{\\sum_i(X_i - \\bar{X})^2}\n\\]\n\n\nUn indice similaire au \\(I\\) de Moran, mais qui ne mesure plus la covariance mais l’écart au carré entre \\(X_i\\) et \\(X_j\\), et est pondéré différement :\nPour \\(C\\) proche de 0 : autocorrélation spatiale positive\nPour \\(C\\) proche de 1 : pas d’autocorrélation spatiale\nPour \\(C\\) proche de 2 : autocorrélation spatiale négative"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesures-globales-en-pratique",
+    "href": "posts/RC/TD7/index.html#mesures-globales-en-pratique",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesures globales en pratique",
+    "text": "Mesures globales en pratique\n\nDéfinition d’une matrice de voisinages\nDéfinition d’une matrice de poids associés\nCalcul de l’indicateur"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#mesures-locales",
+    "href": "posts/RC/TD7/index.html#mesures-locales",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "Mesures locales",
+    "text": "Mesures locales\n\nSi les indicateurs globaux (I de Moran et C de Geary) permettent de savoir s’il existe des regroupements de valeurs similaires/dissimilaires, les indicateurs locaux permettent de savoir où ces regroupements se localisent.\nIls constituent donc un moyen de localiser des contextes spatiaux homogènes (ou au contraire très hétérogènes). L’autre intérêt de leur utilisation est de pouvoir révéler l’existence de regroupements locaux homogènes en dépit d’une analyse globale ayant conclu à l’absence d’autocorrélation, en raison de l’effet de lissage des analyses globales en général.\nCes indicateurs locaux d’autocorrélation sont désignés sous le nom de « LISA », pour Local Indicators of Spatial Association [ANSELIN, 1995]. Leur principe est simple : décliner la mesure de l’autocorrélation spatiale pour chaque observation en fonction du voisinage local.\n\nFEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#i-de-moran-local---théorie",
+    "href": "posts/RC/TD7/index.html#i-de-moran-local---théorie",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "\\(I\\) de Moran local - Théorie",
+    "text": "\\(I\\) de Moran local - Théorie\n\\[\nI_i = \\frac{(X_i-\\bar{X})}{{\\sum_{k}^{N}(X_k-\\bar{X})^2}/(N-1)}\\times{\\sum_j w_{ij}(X_j-\\bar{X})}\n\\] Si les poids sont standardisés (réduits), cela donne\n\\[\nI_i = (X_i-\\bar{X})\\times{\\sum_{j}w_{ij}(X_j-\\bar{X})}\n\\]\nC’est la somme pondérée de cet indicateur local qui donne le \\(I\\) de Moran global, et ce \\(I\\) local donne donc une valeur unifiée de l’autocorrélation locale de chaque point."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#i-de-moran-local---théorie-1",
+    "href": "posts/RC/TD7/index.html#i-de-moran-local---théorie-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "\\(I\\) de Moran local - Théorie",
+    "text": "\\(I\\) de Moran local - Théorie\nEn pratique, on cherche le plus souvent à identifier des clusters d’entités spatiale fortement auto-corrélées pour identifier des zones d’interêt.\nPour cela, on mène une étude de “quadrant” sur les valeurs locales et sur les valeurs (pondérées) de leurs voisinages, en les découpant par la moyenne/médiane/… de ces variables."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#i-de-moran-local---théorie-2",
+    "href": "posts/RC/TD7/index.html#i-de-moran-local---théorie-2",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "\\(I\\) de Moran local - Théorie",
+    "text": "\\(I\\) de Moran local - Théorie\n\n\n\n\n\n\n\n\n\nOn cherche notamment à observer les clusters “High-High” : valeurs fortes dans un contexte de valeurs fortes\n\nrégions performantes, poches de richesse, zones touristiques etc.\n\nEt les valeurs “Low-Low” : valeurs faibles dans un contexte de valeurs faibles\n\nghettos / poches de pauvreté, zones ségréguées etc."
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#i-de-moran-local---calcul-avec-r",
+    "href": "posts/RC/TD7/index.html#i-de-moran-local---calcul-avec-r",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "\\(I\\) de Moran local - Calcul avec R",
+    "text": "\\(I\\) de Moran local - Calcul avec R\n\nCréation d’une matrice de voisinage\nCréation d’une liste de pondérations\nAnalyse du quadrant\nCartographie des clusters"
+  },
+  {
+    "objectID": "posts/RC/TD7/index.html#i-de-moran-local---calcul-avec-r-1",
+    "href": "posts/RC/TD7/index.html#i-de-moran-local---calcul-avec-r-1",
+    "title": "M2 Carthagéo - Du discret au continu - Séance 7",
+    "section": "\\(I\\) de Moran local - Calcul avec R",
+    "text": "\\(I\\) de Moran local - Calcul avec R\n\n\nCréation d’une matrice de voisinage : on reprend la matrice des 20 plus proches bars précédemment créée\n\n\n\n\nmatrice_voisinage_bars &lt;- st_knn(bars, k = 20)\n\n\n\n\nCréation d’une liste de pondérations : on reprend une pondération par fonction quadratique\n\n\n\n\nmatrice_poids_bars &lt;- st_kernel_weights(geometry = bars, nb = knn20, kernel=\"quartic\")\n\n\n\n\nAnalyse du quadrant\n\n\n\n\nbars$prix_voisinage &lt;- st_lag(\n  x = bars$regularPrice,\n  nb = matrice_voisinage_bars,\n  wt = matrice_poids_bars\n)\nmoyenne_prix &lt;- mean(bars$regularPrice)\nmoyenne_prix_voisinage &lt;- mean(bars$prix_voisinage)\nggplot(bars) +\n  geom_point(aes(regularPrice, prix_voisinage)) +\n  geom_hline(yintercept = moyenne_prix_voisinage) +\n  geom_vline(xintercept = moyenne_prix)"
   }
 ]

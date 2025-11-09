@@ -19,11 +19,10 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-10-03"
-date-format: "[Vendredi] DD/MM/YYYY"
+
 ---
 
-### Voisinages et densités sur des points <br> <u>non valués</u>
+## Voisinages et densités sur des points <br> <u>non valués</u>
 
 
 #### Préambule : une approche naïve des voisinages
@@ -114,9 +113,7 @@ rapide que le calcul vecteur.
 
 ------------------------------------------------------------------------
 
-##  {.smaller}
-
-### Comptes (approche efficace)
+### Comptes (approche efficace) {.smaller}
 
 ![](../img/paste-41F00F36.png){width="70%" fig-align="center"}
 
@@ -218,61 +215,45 @@ densité locale plus faible.
 
 ::: callout-warning
 ### Exercice 4 : Distance moyenne
-
-Proposez une méthodologie alternative permettant de détecter des
-hotspots.
+Proposez une méthodologie alternative permettant de détecter des hotspots.
 :::
 
 ------------------------------------------------------------------------
 
-::: callout-tip
-### Du continu au discret
+### Distance (approche efficace)
 
--   On peut avoir besoin de discrétiser une information continue, par
-    exemple pour la confronter/corréler à des données
-    socio-démographiques ou pour en faire une représentation plus
-    conformes aux besoins des acteurs territoriaux.
+:::: callout-warning
+#### Exercice 4 : Distance moyenne
+Proposez une méthodologie alternative permettant de détecter des hotspots.
+::::
 
--   On effectue alors des opérations de "polygonisation".
 
-![](../img/paste-EC07729E.png){fig-align="center" width="70%"}
-:::
+#### Comparaison de densités
+En calculant plusieurs densités de rayon différent et en les comparant, on peut faire ressortir des tendances locales.
+Par exemple, en mesurant la densité à 500m et la densité à 250m, puis en soustrayant (ou divisant) l'une à l'autre, on montre pour chaque point le ratio entre la densité moyenne du quartier environnant et celle du voisinage proche.
 
 ------------------------------------------------------------------------
 
-::: callout-tip
+## Discrétisation
+
 ### Du continu au discret
 
--   On peut avoir besoin de discrétiser une information continue, par
-    exemple pour la confronter/corréler à des données
-    socio-démographiques ou pour en faire une représentation plus
-    conformes aux besoins des acteurs territoriaux.
+On peut avoir besoin de discrétiser une information continue, par exemple pour la confronter/corréler à des données socio-démographiques ou pour en faire une représentation plus conformes aux besoins des acteurs territoriaux.  
 
--   On effectue alors des opérations de "polygonisation".
-:::
+On effectue alors des opérations de "polygonisation".  
 
-::: callout-warning
+![](../img/paste-EC07729E.png){fig-align="center" width="70%"}  
+
+------------------------------------------------------------------------
+
 ### Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.
 
 ![](../img/TD2_Polygonisation.png){fig-align="center" width="40%"}
-:::
 
-------------------------------------------------------------------------
 
-::: callout-tip
-### Du continu au discret
+---------
 
--   On peut avoir besoin de discrétiser une information continue, par
-    exemple pour la confronter/corréler à des données
-    socio-démographiques ou pour en faire une représentation plus
-    conformes aux besoins des acteurs territoriaux.
-
--   On effectue alors des opérations de "polygonisation".
-:::
-
-::: callout-warning
 ### Problème : les polygones en sortie sont alors extrêmement nombreux et morcelés.
-:::
 
 ::: callout-warning
 ### Exercice 5 : Polygonisation
@@ -289,7 +270,10 @@ morcelés.
 Proposer une méthode pour que les polygones résultants soient moins
 morcelés.
 
-::: columns
+:::
+
+:::: columns
+
 ::: {.column width="35%"}
 ⇰ On peut utiliser la reclassification (`Reclassification par table`)
 pour discrétiser les valeurs du raster, avant de le polygoniser.
@@ -298,8 +282,8 @@ pour discrétiser les valeurs du raster, avant de le polygoniser.
 ::: {.column width="65%"}
 ![](../img/paste-AB47715B.png){fig-align="center" width="80%"}
 :::
-:::
-:::
+
+::::
 
 ------------------------------------------------------------------------
 

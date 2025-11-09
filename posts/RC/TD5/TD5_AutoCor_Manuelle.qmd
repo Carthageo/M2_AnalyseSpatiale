@@ -19,10 +19,6 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-10-22"
-date-format: "[Mardi] DD/MM/YYYY"
-params:
-  correction: true
 ---
 
 ## Comment choisir des seuils de distance pour les interpolations ?
@@ -85,6 +81,17 @@ library(listviewer)
 liste_distance <- st_nn(x = resultats_bureaux, y = resultats_bureaux,
                         k = 1, returnDist = TRUE)
 listviewer::jsonedit(liste_distance)
+```
+
+
+----------------
+
+### 1 - Distance au plus proche voisin
+
+Le *package* `nngeo` permet de calculer de nombreux types de distances entre des objets `sf`.
+
+```{r,  echo = TRUE}
+summary(unlist(liste_distance$dist))
 ```
 
 
@@ -154,7 +161,40 @@ summary(distance_bureaux)
 #### Solution plus juste : agrégation des votes des doublons
 
 ```{r, echo = TRUE}
-bureaux_distincts <- resultats_bureaux %>% group_by(geom) %>%
+bureaux_distincts <- resultats_bureaux %>%
+  group_by(geom) %>%
+  summarise(
+    across(where(is.character), ~first(.x)),
+    across(where(is.numeric), ~sum(.x)),
+    .groups = "drop"
+    )
+
+distance_bureaux <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
+                          k = 2, returnDist = TRUE) %>%
+  pluck("dist") %>%
+  map_dbl(2)
+summary(distance_bureaux)
+```
+
+------------
+
+
+::: callout-tip
+
+### Les bureaux de vote sont souvent regroupés dans des lieux municipaux communs.
+
+- Il est donc nécessaire de dé-doublonner les points pour en mesurer les distances réelles.
+:::
+
+#### Solution "parfaite" : agrégation des votes des doublons après arrondi des coordonnées à 10m
+
+```{r, echo = TRUE}
+bureaux_distincts <- resultats_bureaux %>%
+  bind_cols(st_coordinates(.)) %>%
+  st_drop_geometry() %>%
+  mutate(X = round(X, digits = -1), Y = round(Y, digits = -1)) %>%
+  st_as_sf(coords = c("X", "Y"), crs = "EPSG:2154") %>%
+  group_by(geometry) %>%
   summarise(
     across(where(is.character), ~first(.x)),
     across(where(is.numeric), ~sum(.x)),
@@ -170,7 +210,7 @@ summary(distance_bureaux)
 
 ----------------------
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice : Tracer l'histogramme et la courbe de densité des distances au plus proche voisin des bureaux de vote
 
@@ -178,7 +218,8 @@ summary(distance_bureaux)
 
 
 ------------------------
-```{r, eval = TRUE, echo = params$correction}
+
+```{r, eval = FALSE, echo = TRUE}
 distance_bureaux_tbl <- distance_bureaux %>%
   as_tibble() %>%
   rename(distance = value)
@@ -202,33 +243,86 @@ p3
 
 ------------------------
 
-::: callout-tips
+```{r, eval = TRUE, echo = FALSE}
+distance_bureaux_tbl <- distance_bureaux %>%
+  as_tibble() %>%
+  rename(distance = value)
 
-#### Où couper ?
+p1 <- ggplot(distance_bureaux_tbl) +
+  aes(distance) +
+  geom_histogram(fill = "#67c9ff", colour = "white")
 
-- Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin
+p2 <- p1 + 
+  geom_density()
+
+p3 <- ggplot(distance_bureaux_tbl) +
+  aes(distance) +
+  geom_histogram(aes(y = after_stat(density)),
+                 fill = "#67c9ff",
+                 colour = "white") +
+  geom_density(aes(y = after_stat(density)))
+p3
+```
+
+
+------------------------
+
+::: callout-warning
+
+#### Exercice : Où couper ?
+
+Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin
 
 :::
 
-```{r, eval = TRUE, echo = params$correction}
+------------------------
+
+::: callout-warning
+
+#### Exercice : Où couper ?
+
+Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin
+
+:::
+
+
+```{r, eval = FALSE, echo = TRUE}
 frequence_cumulee <- distance_bureaux_tbl %>%
   arrange(distance) %>%
   mutate(dummy = 1/nrow(distance_bureaux_tbl)) %>%
   mutate(cumfreq = cumsum(dummy))
 
-```
-
----------------------
-
-```{r, eval = TRUE, echo = params$correction}
 ggplot(frequence_cumulee) +
   aes(distance, cumfreq) +
   geom_line() +
   scale_y_continuous(labels = scales::percent)
 ```
 
+------------------------
 
----------------------------
+::: callout-warning
+
+#### Exercice : Où couper ?
+
+Tracer la courbe des fréquences cumulées en fonction de la distance au plus proche voisin
+
+:::
+
+
+```{r, eval = TRUE, echo = FALSE}
+frequence_cumulee <- distance_bureaux_tbl %>%
+  arrange(distance) %>%
+  mutate(dummy = 1/nrow(distance_bureaux_tbl)) %>%
+  mutate(cumfreq = cumsum(dummy))
+
+ggplot(frequence_cumulee) +
+  aes(distance, cumfreq) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent)
+```
+
+------------------------
+
 
 ::: callout-alert
 
@@ -257,7 +351,7 @@ distance_bureaux_10 <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
 
 ```
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice : Représentation des distances aux 10 plus proches voisins
 
@@ -271,7 +365,7 @@ distance_bureaux_10 <- st_nn(x = bureaux_distincts, y = bureaux_distincts,
 
 #### Basique
 
-```{r, echo = params$correction, eval = TRUE, results='hold'}
+```{r, echo = TRUE, eval = TRUE, results='hold'}
 
 ggplot(distance_bureaux_10) +
   geom_histogram(aes(x = distance))
@@ -279,7 +373,7 @@ ggplot(distance_bureaux_10) +
 
 #### Facets
 
-```{r, echo = params$correction, eval = TRUE, results='hold'}
+```{r, echo = TRUE, eval = TRUE, results='hold'}
 
 ggplot(distance_bureaux_10) +
   geom_histogram(aes(x = distance)) +
@@ -289,7 +383,7 @@ ggplot(distance_bureaux_10) +
 
 #### Ridgelines
 
-```{r, echo = params$correction, eval = TRUE, results='hold'}
+```{r, echo = TRUE, eval = TRUE, results='hold'}
 
 library(ggridges)
 
@@ -299,7 +393,7 @@ ggplot(distance_bureaux_10) +
 
 #### Ridge bins
 
-```{r, echo = params$correction, eval = TRUE, results='hold'}
+```{r, echo = TRUE, eval = TRUE, results='hold'}
 
 library(ggridges)
 
@@ -320,7 +414,7 @@ ggplot(distance_bureaux_10) +
 
 :::
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice : Mesure de distances
 
@@ -329,7 +423,7 @@ ggplot(distance_bureaux_10) +
 
 ------------
 
-```{r, echo = params$correction, eval = TRUE}
+```{r, echo = TRUE, eval = TRUE}
 matrice_distance <- st_distance(x = resultats_bureaux, y = resultats_bureaux,
                                 by_element = FALSE)
 
@@ -349,7 +443,7 @@ glimpse(liste_distances_BV)
 
 -------------------------
 
-```{r, echo = params$correction, eval = TRUE}
+```{r, echo = TRUE, eval = TRUE}
 
 ggplot(liste_distances_BV) +
   geom_histogram(aes(distance, after_stat(density)))
@@ -360,15 +454,15 @@ ggplot(liste_distances_BV) +
 
 ### 4 - Distances et différences
 
-::: callout
-#### Maintenant qu'on a une liste complète des distances, pourquoi est-ce qu'on n'explorerait pas le lien entre distance (dans Paris) et comportement de vote ?
-:::
+Maintenant qu'on a une liste complète des distances, pourquoi est-ce qu'on n'explorerait pas le lien entre distance (dans Paris) et comportement de vote ?
 
-- **Dit autrement, on peut chercher à voir si les comportements électoraux présentent une <u>autocorrélation spatiale</u>**
+- Dit autrement, on peut chercher à voir si les comportements électoraux présentent une <u>autocorrélation spatiale</u>
 
-::: callout-alert
+::: callout-warning
 
-#### En dépit de ce que nous avons fait lors des précédentes séances, il n'y a strictement <u>aucune logique</u> à réaliser une interpolation de variables qui ne sont pas corrélées spatialement.
+### Interpolation et autocorrélation spatiale
+
+En dépit de ce que nous avons fait lors des précédentes séances, il n'y a strictement <u>aucune logique</u> à réaliser une interpolation de variables qui ne sont pas corrélées spatialement.
 
 :::
 
@@ -400,7 +494,7 @@ glimpse(couples_bureaux)
 
 -----------------
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice - Comment analyser la différence ? 1/3
 
@@ -410,13 +504,16 @@ glimpse(couples_bureaux)
 
 -----------------
 
-```{r, echo = params$correction, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE}
 difference_votes <- couples_bureaux %>%
   mutate(diffPCT = pctMACRON_Origine - pctMACRON_Destination)
 
 ```
 
-```{r, echo = params$correction, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
+difference_votes <- couples_bureaux %>%
+  mutate(diffPCT = pctMACRON_Origine - pctMACRON_Destination)
+
 ggplot(difference_votes) +
   geom_point(aes(x = distance, y = diffPCT))
   
@@ -426,7 +523,7 @@ ggplot(difference_votes) +
 
 ------------------------
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice - Comment analyser la différence ? 2/3
 
@@ -436,7 +533,19 @@ ggplot(difference_votes) +
 
 :::
 
-```{r, eval = TRUE, echo = params$correction}
+------------------------
+
+::: callout-warning
+
+#### Exercice - Comment analyser la différence ? 2/3
+
+- La représentation des différences directes est rapidement illisibile en raison de la symétrie des données.
+
+- Filtrer le jeu de données précédent pour n'afficher les différences qu'une fois, et uniquement de manière positive
+
+:::
+
+```{r, eval = TRUE, echo = TRUE}
 difference_votes_assym <- difference_votes %>%
   filter(ID_Origine > ID_Destination) %>%
   mutate(diffAbs = abs(diffPCT))
@@ -447,7 +556,7 @@ difference_votes_assym <- difference_votes %>%
 ::: {.panel-tabset}
 
 ##### Directe
-```{r, echo = params$correction, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 ggplot(difference_votes_assym) +
   geom_point(aes(x = distance, y = diffAbs))
 ```
@@ -457,7 +566,7 @@ cat("![](../img/plot_distance_absolu.png){fig-align='center'}")
 
 ##### Densité
 
-```{r, echo = params$correction, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 ggplot(difference_votes_assym) +
   geom_density_2d(aes(x = distance, y = diffAbs))
 ```
@@ -469,7 +578,7 @@ cat("![](../img/plot_distance_densite.png){fig-align='center'}")
 
 ----------------------
 
-::: callout-exercice
+::: callout-warning
 
 #### Exercice - Comment analyser la différence ? 3/3
 
@@ -485,7 +594,7 @@ cat("![](../img/plot_distance_densite.png){fig-align='center'}")
 
 #### On discrétise la distance par bornes de 100m
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = TRUE, echo = TRUE}
 distances_differences_discretes <- difference_votes_assym %>%
   mutate(bande = cut(distance, breaks = c(0:120) * 100, labels = FALSE)) %>%
   mutate(bande = bande * 100)
@@ -498,7 +607,7 @@ meanDiff <- distances_differences_discretes %>%
 
 -------------------------
 
-```{r, eval = TRUE, echo = params$correction}
+```{r, eval = TRUE, echo = TRUE}
 ggplot(meanDiff) +
   aes(x = bande, y = diffmoyenne, size = nb) +
   geom_point() +

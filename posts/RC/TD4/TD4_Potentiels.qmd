@@ -19,8 +19,6 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-10-22"
-date-format: "[Mardi] DD/MM/YYYY"
 ---
 
 ## Interpollation et lissage
@@ -82,6 +80,14 @@ date-format: "[Mardi] DD/MM/YYYY"
 
 :::
 
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_1_Fonctions.R"
+```
+
+
 ------------------------------------------------------------------------
 
 ### Potentiels
@@ -124,13 +130,72 @@ date-format: "[Mardi] DD/MM/YYYY"
 
 ### Exercice 6 : Potentiels comme méthode d'interpolation
 
-- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue :
-
-  - de la capacité des stations vélibs
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue de la capacité des stations vélibs
 
 :::
 
 ------------------------------------------------------------------------
+
+::: callout-warning
+
+### Exercice 6 : Potentiels comme méthode d'interpolation
+
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue de la capacité des stations vélibs
+
+:::
+
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Velibs_1.R"
+```
+
+------------------------------------------------------------------------
+
+::: callout-warning
+
+### Exercice 6 : Potentiels comme méthode d'interpolation
+
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue de la capacité des stations vélibs
+
+:::
+
+
+![](../img/potentiels_velib_1.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+::: callout-warning
+
+### Exercice 6 : Potentiels comme méthode d'interpolation
+
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue de la capacité des stations vélibs
+
+:::
+
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Velibs_2.R"
+```
+
+------------------------------------------------------------------------
+
+::: callout-warning
+
+### Exercice 6 : Potentiels comme méthode d'interpolation
+
+- En utilisant le package R `potential`, et à l'aide de sa documentation ([https://riatelab.github.io/potential/articles/potential.html](https://riatelab.github.io/potential/articles/potential.html)), réalisez une carte continue de la capacité des stations vélibs
+
+:::
+
+
+![](../img/potentiels_velib_2.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
 
 ### Du discret au continu : application
 
@@ -149,3 +214,85 @@ date-format: "[Mardi] DD/MM/YYYY"
 - Réalisez une carte des résultats électoraux de chaque candidat.
 
 :::
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_1.R"
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_2.R"
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_3.R"
+```
+
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_4.R"
+```
+
+------------------------------------------------------------------------
+
+![](../img/potentiels_macron_naif.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_5.R"
+```
+
+------------------------------------------------------------------------
+
+![](../img/potentiels_touscandidats_stock.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_6.R"
+```
+
+------------------------------------------------------------------------
+
+![](../img/potentiels_touscandidats_pct.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_7.R"
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: "../scripts/TD4_Potentiels_2_Correction_8.R"
+```
+
+------------------------------------------------------------------------
+
+![](../img/potentiels_sensib_macron.png){fig-align="center"}

@@ -19,8 +19,6 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-10-21"
-date-format: "[Lundi] DD/MM/YYYY"
 ---
 
 
@@ -304,5 +302,3 @@ doi:[10.1177/1178622116686066](https://doi.org/10.1177/1178622116686066)]{.small
 -   Quels sont les avantages de cette méthode par rapport à IDW ? Sur
     quels types de données les employer ?
 :::
-
-------------------------------------------------------------------------

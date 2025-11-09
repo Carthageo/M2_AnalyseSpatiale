@@ -208,74 +208,9 @@ ggplot(distances_differences_discretes_azimuthales) +
 library(ggpubr)
 
 ggplot(distances_differences_discretes_azimuthales) +
-  aes(x = bande, y = semivar, size = nb) +
-  geom_point() +
-  geom_smooth(se = FALSE, method = "lm", lwd = 1) +
-  stat_cor(label.y = 0.015, label.x = 1000) +
-  stat_regline_equation(label.y = 0.01, label.x = 1000) +
-  facet_wrap(~directionSym, ncol = 1)
-
-
-ggplot(distances_differences_discretes_azimuthales) +
   aes(x = bande, y = semivar * 100) +
   geom_point(aes(size = nb)) +
   geom_smooth(se = FALSE, method = "lm", lwd = 1) +
   stat_cor(label.y = 1.5, label.x = 1000) +
   stat_regline_equation(label.y = 1.25, label.x = 1000) +
   facet_wrap(~directionSym, ncol = 1)
-
-
-gstat::show.vgms(nugget = 0.25, sill = 1.5)
-
-
-
-########## Réalisation du krigage en automatique ################
-
-library(automap)
-
-sp_resultats_macron_geom <- as_Spatial(resultats_macron_geom)
-sp_grille <- contour_paris %>%
-  st_make_grid(cellsize = 100, what = "centers") %>%
-  as_Spatial()
-
-kriging_interpolation_pctMacron <- autoKrige(
-  formula = pctMacron ~ 1,
-  input_data = sp_resultats_macron_geom,
-  new_data = sp_grille, 
-  verbose = TRUE
-)
-
-sf_kriging_interpolation_pctMacron <- st_as_sf(kriging_interpolation_pctMacron$krige_output)
-
-ggplot(sf_kriging_interpolation_pctMacron) +
-  geom_sf(aes(colour = var1.pred))
-ggplot(sf_kriging_interpolation_pctMacron) +
-  geom_sf(aes(colour = var1.var))
-ggplot(sf_kriging_interpolation_pctMacron) +
-  geom_sf(aes(colour = var1.stdev))
-
-equipotentiels_pctMacron <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.pred", nclass = 10) %>%
-  st_intersection(communes_paris)
-
-carte_prediction <- ggplot(equipotentiels_pctMacron) +
-  geom_sf(aes(fill = center)) +
-  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
-  scale_fill_steps(n.breaks = 7, low = "white", high = "#ffeb00")
-
-equipotentiels_pctMacron_variance <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.var", nclass = 10) %>%
-  st_intersection(communes_paris)
-
-carte_variance <- ggplot(equipotentiels_pctMacron_variance) +
-  geom_sf(aes(fill = center)) +
-  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
-  scale_fill_viridis_c()
-
-equipotentiels_pctMacron_stdev <- equipotential(sf_kriging_interpolation_pctMacron, var = "var1.stdev", nclass = 10) %>%
-  st_intersection(communes_paris)
-
-carte_stdev <- ggplot(equipotentiels_pctMacron_stdev) +
-  geom_sf(aes(fill = center)) +
-  geom_sf(data = communes_paris, fill = NA, colour = "grey80", lwd = 0.2) +
-  scale_fill_viridis_c()
-
-patchwork::wrap_plots(carte_prediction, carte_variance, carte_stdev, nrow = 1)

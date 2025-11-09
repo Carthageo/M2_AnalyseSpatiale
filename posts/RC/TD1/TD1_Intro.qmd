@@ -19,8 +19,7 @@ filters:
 author: 
   name: "Robin Cura"
   affiliations: "Université Paris 1 Panthéon-Sorbonne"
-date: "2025-10-03"
-date-format: "[Vendredi] DD/MM/YYYY"
+
 ---
 
 ## Pourquoi ne pas se contenter de points ?

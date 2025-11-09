@@ -28,10 +28,13 @@ subtitle: "Lissages et interpolations"
 
 * {{< iconify file-icons:r >}} [TD1 - Analyse de sensibilité](posts/RC/scripts/TD1_analyse_sensib.R)
 * {{< iconify file-icons:r >}} [TD4 - Potentiels - Fonctions](posts/RC/scripts/TD4_Potentiels_1_Fonctions.R)
+* {{< iconify file-icons:r >}} [TD4 - Potentiels - Capacité des Vélibs](posts/RC/scripts/TD4_Potentiels_2_Velibs.R)
 * {{< iconify file-icons:r >}} [TD4 - Potentiels - Application](posts/RC/scripts/TD4_Potentiels_2_Correction.R)
 * {{< iconify hugeicons:pdf-02 >}} [TD4 - Potentiels - Carte des candidats](posts/RC/scripts/TD4_cartes_potentiels.pdf)
-* {{< iconify file-icons:r >}} [TD6 - Auto-corrélation spatiale orientée](posts/RC/scripts/TD6_Krigeage_1_Seuils_distance.R)
-* {{< iconify file-icons:r >}} [TD7 - Krigeage](posts/RC/scripts/TD6_Krigeage_2_Correction.R)
+* {{< iconify file-icons:r >}} [TD5 - Auto-corrélation spatiale orientée](posts/RC/scripts/TD6_Krigeage_1_Seuils_distance.R)
+* {{< iconify file-icons:r >}} [TD6 - Krigeage sur les résultats electoraux](posts/RC/scripts/TD6_Krigeage_2_Correction.R)
+* {{< iconify file-icons:r >}} [TD6 - Krigeage sur les bars](posts/RC/scripts/TD6_Krigeage_3_Bars.R)
+* {{< iconify file-icons:r >}} [TD7 - Autocorrélation spatiale](posts/RC/scripts/TD7_Autocorrelation_spatiale.R)
 
 ## Rendus
 

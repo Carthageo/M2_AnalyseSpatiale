@@ -32,11 +32,78 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-5ae9c59b2727fcd5357d4f034d95f9e0.css">
   <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/reveal-attribution/attribution.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -149,10 +216,619 @@ Robin Cura
     </div>
 </div>
 
-  <p class="date">Lundi 24/11/2025</p>
+</section>
+<section id="définition" class="slide level2 smaller">
+<h2>Définition</h2>
+<p><br></p>
+<blockquote>
+<p>L’autocorrélation mesure la corrélation d’une variable avec elle-même, lorsque les observations sont considérées avec un décalage dans le temps (autocorrélation temporelle) ou dans l’espace (autocorrélation spatiale).<br>
+Si la présence d’une qualité dans une partie d’un territoire rend sa présence dans les zones voisines plus ou moins probable, il existe un effet de contiguïté dans la structure spatiale, le phénomène montre une autocorrélation spatiale.<br>
+Lorsque l’autocorrélation est positive, des régions voisines tendent à avoir des propriétés identiques ou des valeurs semblables : de telles configurations sont par exemple des régions homogènes, ou bien des gradients réguliers.<br>
+Lorsque l’autocorrélation est négative, des régions voisines ont des qualités différentes, ou bien les valeurs fortes et faibles alternent.<br>
+Les mesures de l’autocorrélation spatiale dépendent de l’échelle d’analyse et du niveau de résolution de la grille à travers laquelle une distribution est observée.<br>
+<a href="https://hypergeo.eu/autocorrelation-spatiale/">Oliveau S., Autocorrélation spatiale, Hypergeo, 2017</a></p>
+</blockquote>
+</section>
+<section id="mesure" class="slide level2">
+<h2>Mesure</h2>
+<p>L’autocorrélation spatiale peut être mesurée de manière <strong>globale</strong> ou de manière <strong>locale</strong>, et de nombreux indicateurs existent pour chacune de ces dimensions.</p>
+<ul>
+<li class="fragment">Autocorrélation spatiale globale
+<ul>
+<li class="fragment"><span class="math inline">\(I\)</span> de Moran,</li>
+<li class="fragment"><span class="math inline">\(C\)</span> de Geary,</li>
+<li class="fragment"><span class="math inline">\(G\)</span> de Getis-Ord</li>
+<li class="fragment">…</li>
+</ul></li>
+</ul>
+<ul>
+<li class="fragment">Autocorrélation spatiale locale : <em>Local Indicators of Spatial Association</em> “LISA”
+<ul>
+<li class="fragment"><span class="math inline">\(I\)</span> local de Moran,</li>
+<li class="fragment"><span class="math inline">\(C\)</span> local de Geary,</li>
+<li class="fragment"><span class="math inline">\(Gi\)</span> local de Getis-Ord,</li>
+<li class="fragment">…</li>
+</ul></li>
+</ul>
+</section>
+<section id="fonctionnement" class="slide level2">
+<h2>Fonctionnement</h2>
+<p>Tous ces indicateurs fonctionnent à partir de trois composantes tirées d’un jeu de données spatial (ponctuel ou polygonal) :</p>
+<ul>
+<li class="fragment">Une variable quantitative</li>
+<li class="fragment">Une matrice de voisinage</li>
+<li class="fragment">Une matrice de poids associés</li>
+</ul>
+</section>
+<section id="voisinages" class="slide level2">
+<h2>Voisinages</h2>
+<div class="attribution">
+<p>FEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin.</p>
+</div>
+
+<img data-src="../img/Voisinage_feuillet_et_al_1.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
+<section id="voisinages-et-pondérations" class="slide level2">
+<h2>Voisinages et pondérations</h2>
+<div class="attribution">
+<p>FEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin.</p>
+</div>
+
+<img data-src="../img/Voisinage_feuillet_et_al.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
+<section id="mesures-globales-et-locales" class="slide level2">
+<h2>Mesures globales et locales</h2>
+<ul>
+<li>Les mesures d’autocorrélation locales correspondent à une qualification de l’autocorrélation dans le voisinage de chacune des entités spatiales</li>
+<li>Les mesures d’autocorrélation globales sont généralement une moyenne* de ces mesures d’autocorrélation locale pour l’ensemble des entités</li>
+</ul>
+</section>
+<section id="mesures-globales" class="slide level2 smaller">
+<h2>Mesures globales</h2>
+<h3 id="i-de-moran---théorie"><span class="math inline">\(I\)</span> de Moran - Théorie</h3>
+<p><span class="math display">\[
+I \in [-1,1]={\frac {N}{\sum _{i}\sum _{j}w_{ij}}} \times {\frac {\sum _{i}\sum _{j}w_{ij}(X_{i}-{\bar {X}})(X_{j}-{\bar {X}})}{\sum _{i}(X_{i}-{\bar {X}})^{2}}}
+\]</span></p>
+<p>avec :</p>
+<div class="columns">
+<div class="column fragment">
+<ul>
+<li><span class="math inline">\(N\)</span> : nombre d’entités<br>
+</li>
+<li><span class="math inline">\(w_{ij}\)</span> : Poids (<em>weight</em>) de la relation <span class="math inline">\(ij\)</span></li>
+<li><span class="math inline">\(X_i\)</span> : valeur de la variable <span class="math inline">\(X\)</span> pour l’entité <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(X_j\)</span> : valeur de la variable <span class="math inline">\(X\)</span> pour l’entité <span class="math inline">\(j\)</span></li>
+<li><span class="math inline">\({\bar X}\)</span> : moyenne de la variable <span class="math inline">\(X\)</span></li>
+</ul>
+</div><div class="column fragment">
+<ul>
+<li>d’où : <span class="math inline">\({\frac {N}{\sum _{i}\sum _{j}w_{ij}}}\)</span> : neutralisation des poids <br></li>
+<li><span class="math inline">\((X_{i}-{\bar {X}})(X_{j}-{\bar {X}})\)</span> : covariance <span class="math inline">\(ij\)</span></li>
+<li><span class="math inline">\({\sum _{i}(X_{i}-{\bar {X}})^{2}}\)</span> : variance de <span class="math inline">\(X\)</span></li>
+</ul>
+</div></div>
+<div class="fragment">
+<p>L’indice <span class="math inline">\(I\)</span> de Moran mesure donc le rapport normalisé entre une covariance pondérée et une variance, soit à peu de chose près, une corrélation linéaire entre les valeurs de X en <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> :</p>
+<ul>
+<li>Pour <span class="math inline">\(I\)</span> proche de 1 : autocorrélation spatiale <strong>positive</strong></li>
+<li>Pour <span class="math inline">\(I\)</span> proche de -1 : autocorrélation spatiale <strong>négative</strong></li>
+<li>Pour <span class="math inline">\(I\)</span> proche de 0 : pas d’autocorrélation spatiale</li>
+</ul>
+</div>
+</section>
+<section id="mesures-globales-1" class="slide level2 smaller">
+<h2>Mesures globales</h2>
+<h3 id="c-de-geary---théorie"><span class="math inline">\(C\)</span> de Geary - Théorie</h3>
+<div class="attribution">
+<p>FEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin.</p>
+</div>
+<p><span class="math display">\[
+C \in [0,2] = {\frac{N-1}{2\sum_i\sum_jw_{ij}}} \times \frac{\sum_i\sum_jw_{ij}(X_i-X_j)^2}{\sum_i(X_i - \bar{X})^2}
+\]</span></p>
+<div class="fragment">
+<ul>
+<li><p>Un indice similaire au <span class="math inline">\(I\)</span> de Moran, mais qui ne mesure plus la covariance mais l’écart au carré entre <span class="math inline">\(X_i\)</span> et <span class="math inline">\(X_j\)</span>, et est pondéré différement :</p></li>
+<li><p>Pour <span class="math inline">\(C\)</span> proche de 0 : autocorrélation spatiale <strong>positive</strong></p></li>
+<li><p>Pour <span class="math inline">\(C\)</span> proche de 1 : pas d’autocorrélation spatiale</p></li>
+<li><p>Pour <span class="math inline">\(C\)</span> proche de 2 : autocorrélation spatiale <strong>négative</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="mesures-globales-en-pratique" class="slide level2">
+<h2>Mesures globales en pratique</h2>
+<ul>
+<li>Définition d’une matrice de voisinages</li>
+<li>Définition d’une matrice de poids associés</li>
+<li>Calcul de l’indicateur</li>
+</ul>
 </section>
 <section class="slide level2">
 
+<h3 id="matrices-de-voisinage-avec-r">Matrices de voisinage avec R</h3>
+<p>Via le package <code>sfdep</code> (conversion pour des objets <code>sf</code> du package <code>spdep</code> qui s’appuit sur des objets <code>sp</code>), de nombreuses fonctions à disposition :</p>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/Voisinage_feuillet_et_al_1.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/sfdep_voisinage.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+<div class="attribution">
+<p><a href="https://sfdep.josiahparry.com/reference/#neighbors">https://sfdep.josiahparry.com/reference/#neighbors</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="matrices-de-voisinage-avec-r-1">Matrices de voisinage avec R</h3>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(sfdep)</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>bars <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"../DATA/MGB_Paris_L93.gpkg"</span>, <span class="at">as_tibble =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(regularPrice))</span>
+<span id="cb1-7"><a></a>geom_bars <span class="ot">&lt;-</span> <span class="fu">st_geometry</span>(bars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="font-size:75%;">
+<h4 id="rayon-fixe">Rayon fixe</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>voisinage_bande <span class="ot">&lt;-</span> <span class="fu">st_dist_band</span>(bars, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">500</span>)</span>
+<span id="cb2-2"><a></a>voisinage_bande</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Neighbour list object:
+Number of regions: 1873 
+Number of nonzero links: 65320 
+Percentage nonzero weights: 1.861961 
+Average number of links: 34.87453 
+23 regions with no links:
+506, 520, 594, 602, 611, 629, 669, 675, 703, 773, 877, 1065, 1137,
+1172, 1226, 1235, 1316, 1322, 1335, 1445, 1471, 1677, 1737
+51 disjoint connected subgraphs</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="n-voisins">N-voisins</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>voisinage_knn <span class="ot">&lt;-</span> <span class="fu">st_knn</span>(bars, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb4-2"><a></a>voisinage_knn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Neighbour list object:
+Number of regions: 1873 
+Number of nonzero links: 9365 
+Percentage nonzero weights: 0.2669514 
+Average number of links: 5 
+Non-symmetric neighbours list</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="distance-graphe-delaunay-ici">Distance graphe (Delaunay ici)</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>voisinage_graphe <span class="ot">&lt;-</span> <span class="fu">st_nb_delaunay</span>(<span class="fu">st_geometry</span>(bars))</span>
+<span id="cb6-2"><a></a>voisinage_graphe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Neighbour list object:
+Number of regions: 1873 
+Number of nonzero links: 11196 
+Percentage nonzero weights: 0.3191445 
+Average number of links: 5.977576 </code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="structure-de-lobjet">Structure de l’objet</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">str</span>(voisinage_bande, <span class="at">list.len =</span> <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1873
+ $ : int [1:15] 44 76 205 273 299 375 415 590 679 702 ...
+ $ : int [1:3] 132 962 1297
+ $ : int [1:47] 46 147 206 208 213 274 287 309 321 361 ...
+ $ : int [1:33] 77 125 189 214 319 446 558 801 809 820 ...
+ $ : int [1:33] 50 144 149 204 269 444 459 504 509 518 ...
+ $ : int [1:52] 107 118 153 216 284 560 584 627 667 690 ...
+ $ : int [1:26] 20 188 307 413 499 524 636 739 801 809 ...
+  [list output truncated]
+ - attr(*, "class")= chr [1:2] "nb" "list"
+ - attr(*, "region.id")= chr [1:1873] "1" "2" "3" "4" ...
+ - attr(*, "call")= language spdep::dnearneigh(x = x, d1 = lower, d2 = upper)
+ - attr(*, "dnn")= num [1:2] 0 500
+ - attr(*, "bounds")= chr [1:2] "GE" "LE"
+ - attr(*, "nbtype")= chr "distance"
+ - attr(*, "sym")= logi TRUE
+ - attr(*, "ncomp")=List of 2
+  ..$ nc     : int 51
+  ..$ comp.id: int [1:1873] 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="matrices-de-poids-avec-r">Matrices de poids avec R</h3>
+<p>Toujours via <code>sfdep</code> :</p>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/Voisinage_feuillet_et_al.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/sfdep_poids.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+<div class="attribution">
+<p><a href="https://sfdep.josiahparry.com/reference/#weights">https://sfdep.josiahparry.com/reference/#weights</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="matrices-de-poids-avec-r-1">Matrices de poids avec R</h3>
+<div class="columns">
+<div class="column fragment" style="font-size:75%;">
+<h4 id="poids-égaux-normalisés">Poids égaux normalisés</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>poids_egaux <span class="ot">&lt;-</span> <span class="fu">st_weights</span>(voisinage_knn)</span>
+<span id="cb10-2"><a></a><span class="fu">str</span>(poids_egaux, <span class="at">list.len =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1873
+ $ : num [1:5] 0.2 0.2 0.2 0.2 0.2
+ $ : num [1:5] 0.2 0.2 0.2 0.2 0.2
+ $ : num [1:5] 0.2 0.2 0.2 0.2 0.2
+ $ : num [1:5] 0.2 0.2 0.2 0.2 0.2
+ $ : num [1:5] 0.2 0.2 0.2 0.2 0.2
+  [list output truncated]
+ - attr(*, "mode")= chr "binary"
+ - attr(*, "W")= logi TRUE
+ - attr(*, "comp")=List of 1
+  ..$ d: num [1:1873] 5 5 5 5 5 5 5 5 5 5 ...</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="poids-distance">Poids distance</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>poids_distance <span class="ot">&lt;-</span> <span class="fu">st_nb_dists</span>(<span class="at">x =</span> bars, <span class="at">nb =</span> voisinage_knn)</span>
+<span id="cb12-2"><a></a><span class="fu">str</span>(poids_distance, <span class="at">list.len =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1873
+ $ : num [1:5] 10 201 226 211 162
+ $ : num [1:5] 266 242 453 626 533
+ $ : num [1:5] 154.4 53.2 49.7 132.4 124.7
+ $ : num [1:5] 201 143 221 128 102
+ $ : num [1:5] 151.7 86.9 56.5 75.9 153.2
+  [list output truncated]
+ - attr(*, "class")= chr [1:2] "nbdist" "list"
+ - attr(*, "call")= language spdep::nbdists(nb = nb, coords = x, longlat = longlat)</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="poids-inverse-distance">Poids inverse distance</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>poids_IDW <span class="ot">&lt;-</span> <span class="fu">st_inverse_distance</span>(</span>
+<span id="cb14-2"><a></a>  <span class="at">geometry =</span> bars, <span class="at">nb =</span> voisinage_knn</span>
+<span id="cb14-3"><a></a>)</span>
+<span id="cb14-4"><a></a><span class="fu">str</span>(poids_IDW, <span class="at">list.len =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1873
+ $ : num [1:5] 9.956 0.498 0.442 0.474 0.618
+ $ : num [1:5] 0.376 0.413 0.221 0.16 0.188
+ $ : num [1:5] 0.648 1.878 2.011 0.755 0.802
+ $ : num [1:5] 0.498 0.7 0.452 0.78 0.98
+ $ : num [1:5] 0.659 1.151 1.771 1.318 0.653
+  [list output truncated]</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="font-size:75%;">
+<h4 id="poids-fonction-distance">Poids fonction distance</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>poids_kernel <span class="ot">&lt;-</span> <span class="fu">st_kernel_weights</span>(</span>
+<span id="cb16-2"><a></a>  <span class="at">geometry =</span> bars, <span class="at">nb =</span> voisinage_knn, <span class="at">kernel=</span><span class="st">"quartic"</span></span>
+<span id="cb16-3"><a></a>)</span>
+<span id="cb16-4"><a></a><span class="fu">str</span>(poids_kernel, <span class="at">list.len =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1873
+ $ : num [1:5] 0.937 0.901 0.892 0.898 0.914
+ $ : num [1:5] 0.875 0.885 0.761 0.616 0.698
+ $ : num [1:5] 0.916 0.935 0.935 0.922 0.923
+ $ : num [1:5] 0.901 0.919 0.894 0.923 0.928
+ $ : num [1:5] 0.917 0.931 0.935 0.932 0.916
+  [list output truncated]
+ - attr(*, "kernel")= chr "quartic"</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="calcul-des-indices-dautocorrélation-spatiale-globale">Calcul des indices d’autocorrélation spatiale globale</h3>
+<div class="columns">
+<div class="column">
+<h4 id="i-de-moran"><span class="math inline">\(I\)</span> de Moran</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>indice_i_moran <span class="ot">&lt;-</span> <span class="fu">global_moran</span>(</span>
+<span id="cb18-2"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb18-3"><a></a>  <span class="at">nb =</span> voisinage_knn,</span>
+<span id="cb18-4"><a></a>  <span class="at">wt =</span> poids_kernel</span>
+<span id="cb18-5"><a></a>  )</span>
+<span id="cb18-6"><a></a>indice_i_moran</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$I
+[1] 0.2603659
+
+$K
+[1] 3.312807</code></pre>
+</div>
+</div>
+</div><div class="column">
+<h4 id="c-de-geary"><span class="math inline">\(C\)</span> de Geary</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>indice_c_geary <span class="ot">&lt;-</span> <span class="fu">global_c</span>(</span>
+<span id="cb20-2"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb20-3"><a></a>  <span class="at">nb =</span> voisinage_knn,</span>
+<span id="cb20-4"><a></a>  <span class="at">wt =</span> poids_kernel</span>
+<span id="cb20-5"><a></a>  )</span>
+<span id="cb20-6"><a></a>indice_c_geary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$C
+[1] 0.7267271
+
+$K
+[1] 3.312807</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="calcul-des-indices-dautocorrélation-spatiale-globale-1">Calcul des indices d’autocorrélation spatiale globale</h3>
+<div class="columns">
+<div class="column">
+<h4 id="i-de-moran-1"><span class="math inline">\(I\)</span> de Moran</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>knn20 <span class="ot">&lt;-</span> <span class="fu">st_knn</span>(bars, <span class="at">k =</span> <span class="dv">20</span>)</span>
+<span id="cb22-2"><a></a>indice_i_moran <span class="ot">&lt;-</span> <span class="fu">global_moran</span>(</span>
+<span id="cb22-3"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb22-4"><a></a>  <span class="at">nb =</span> knn20,</span>
+<span id="cb22-5"><a></a>  <span class="at">wt =</span> <span class="fu">st_kernel_weights</span>(<span class="at">geometry =</span> bars,</span>
+<span id="cb22-6"><a></a>    <span class="at">nb =</span> knn20, <span class="at">kernel=</span><span class="st">"quartic"</span>)</span>
+<span id="cb22-7"><a></a>  )</span>
+<span id="cb22-8"><a></a>indice_i_moran</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$I
+[1] 0.2011401
+
+$K
+[1] 3.312807</code></pre>
+</div>
+</div>
+</div><div class="column">
+<h4 id="c-de-geary-1"><span class="math inline">\(C\)</span> de Geary</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>knn20 <span class="ot">&lt;-</span> <span class="fu">st_knn</span>(bars, <span class="at">k =</span> <span class="dv">20</span>)</span>
+<span id="cb24-2"><a></a>indice_c_geary <span class="ot">&lt;-</span> <span class="fu">global_c</span>(</span>
+<span id="cb24-3"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb24-4"><a></a>  <span class="at">nb =</span> knn20,</span>
+<span id="cb24-5"><a></a>  <span class="at">wt =</span> <span class="fu">st_kernel_weights</span>(<span class="at">geometry =</span> bars,</span>
+<span id="cb24-6"><a></a>    <span class="at">nb =</span> knn20, <span class="at">kernel=</span><span class="st">"quartic"</span>)</span>
+<span id="cb24-7"><a></a>  )</span>
+<span id="cb24-8"><a></a>indice_c_geary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$C
+[1] 0.7359231
+
+$K
+[1] 3.312807</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="mesures-locales" class="slide level2">
+<h2>Mesures locales</h2>
+<blockquote>
+<p>Si les indicateurs globaux (I de Moran et C de Geary) permettent de savoir s’il existe des regroupements de valeurs similaires/dissimilaires, les indicateurs locaux permettent de savoir où ces regroupements se localisent.<br>
+Ils constituent donc un moyen de localiser des contextes spatiaux homogènes (ou au contraire très hétérogènes). L’autre intérêt de leur utilisation est de pouvoir révéler l’existence de regroupements locaux homogènes en dépit d’une analyse globale ayant conclu à l’absence d’autocorrélation, en raison de l’effet de lissage des analyses globales en général.<br>
+Ces indicateurs locaux d’autocorrélation sont désignés sous le nom de « LISA », pour Local Indicators of Spatial Association [ANSELIN, 1995]. Leur principe est simple : décliner la mesure de l’autocorrélation spatiale pour chaque observation en fonction du voisinage local.</p>
+</blockquote>
+<p><span style="font-size:65%">FEUILLET, Thierry, COSSART, Etienne et COMMENGES, Hadrien, 2019. Manuel de géographie quantitative. Armand Colin</span></p>
+</section>
+<section id="i-de-moran-local---théorie" class="slide level2">
+<h2><span class="math inline">\(I\)</span> de Moran local - Théorie</h2>
+<p><span class="math display">\[
+I_i = \frac{(X_i-\bar{X})}{{\sum_{k}^{N}(X_k-\bar{X})^2}/(N-1)}\times{\sum_j w_{ij}(X_j-\bar{X})}
+\]</span> Si les poids sont standardisés (réduits), cela donne</p>
+<p><span class="math display">\[
+I_i = (X_i-\bar{X})\times{\sum_{j}w_{ij}(X_j-\bar{X})}
+\]</span></p>
+<p>C’est la somme pondérée de cet indicateur local qui donne le <span class="math inline">\(I\)</span> de Moran global, et ce <span class="math inline">\(I\)</span> local donne donc une valeur unifiée de l’autocorrélation locale de chaque point.</p>
+</section>
+<section id="i-de-moran-local---théorie-1" class="slide level2">
+<h2><span class="math inline">\(I\)</span> de Moran local - Théorie</h2>
+<p>En pratique, on cherche le plus souvent à identifier des <em>clusters</em> d’entités spatiale fortement auto-corrélées pour identifier des zones d’interêt.</p>
+<p>Pour cela, on mène une étude de “quadrant” sur les valeurs locales et sur les valeurs (pondérées) de leurs voisinages, en les découpant par la moyenne/médiane/… de ces variables.</p>
+
+<img data-src="../img/plot_quadrants_moran.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
+<section id="i-de-moran-local---théorie-2" class="slide level2">
+<h2><span class="math inline">\(I\)</span> de Moran local - Théorie</h2>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/plot_quadrants_moran.png" class="margin-caption quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column">
+<ul>
+<li>On cherche notamment à observer les clusters “High-High” : valeurs fortes dans un contexte de valeurs fortes
+<ul>
+<li>régions performantes, poches de richesse, zones touristiques etc.</li>
+</ul></li>
+<li>Et les valeurs “Low-Low” : valeurs faibles dans un contexte de valeurs faibles
+<ul>
+<li>ghettos / poches de pauvreté, zones ségréguées etc.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="i-de-moran-local---calcul-avec-r" class="slide level2">
+<h2><span class="math inline">\(I\)</span> de Moran local - Calcul avec R</h2>
+<ul>
+<li>Création d’une matrice de voisinage</li>
+<li>Création d’une liste de pondérations</li>
+<li>Analyse du quadrant</li>
+<li>Cartographie des clusters</li>
+</ul>
+</section>
+<section id="i-de-moran-local---calcul-avec-r-1" class="slide level2 incremental">
+<h2><span class="math inline">\(I\)</span> de Moran local - Calcul avec R</h2>
+<div class="fragment">
+<ul>
+<li>Création d’une matrice de voisinage : on reprend la matrice des 20 plus proches bars précédemment créée</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>matrice_voisinage_bars <span class="ot">&lt;-</span> <span class="fu">st_knn</span>(bars, <span class="at">k =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Création d’une liste de pondérations : on reprend une pondération par fonction quadratique</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>matrice_poids_bars <span class="ot">&lt;-</span> <span class="fu">st_kernel_weights</span>(<span class="at">geometry =</span> bars, <span class="at">nb =</span> knn20, <span class="at">kernel=</span><span class="st">"quartic"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Analyse du quadrant</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>bars<span class="sc">$</span>prix_voisinage <span class="ot">&lt;-</span> <span class="fu">st_lag</span>(</span>
+<span id="cb28-2"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb28-3"><a></a>  <span class="at">nb =</span> matrice_voisinage_bars,</span>
+<span id="cb28-4"><a></a>  <span class="at">wt =</span> matrice_poids_bars</span>
+<span id="cb28-5"><a></a>)</span>
+<span id="cb28-6"><a></a>moyenne_prix <span class="ot">&lt;-</span> <span class="fu">mean</span>(bars<span class="sc">$</span>regularPrice)</span>
+<span id="cb28-7"><a></a>moyenne_prix_voisinage <span class="ot">&lt;-</span> <span class="fu">mean</span>(bars<span class="sc">$</span>prix_voisinage)</span>
+<span id="cb28-8"><a></a><span class="fu">ggplot</span>(bars) <span class="sc">+</span></span>
+<span id="cb28-9"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(regularPrice, prix_voisinage)) <span class="sc">+</span></span>
+<span id="cb28-10"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> moyenne_prix_voisinage) <span class="sc">+</span></span>
+<span id="cb28-11"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> moyenne_prix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="TD7_Autocorrelation_Spatiale_files/figure-revealjs/unnamed-chunk-17-1.png" class="margin-caption r-stretch" width="960"><h4 id="problème-de-pondération-non-corrigée-il-faut-le-faire-manuellement">Problème de pondération non corrigée, il faut le faire manuellement</h4>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-code-line-numbers="1,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>poids_totaux <span class="ot">&lt;-</span> matrice_poids_bars <span class="sc">%&gt;%</span> <span class="fu">map</span>(<span class="sc">~</span><span class="fu">sum</span>(.x)) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb29-2"><a></a>bars<span class="sc">$</span>prix_voisinage <span class="ot">&lt;-</span> <span class="fu">st_lag</span>(</span>
+<span id="cb29-3"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb29-4"><a></a>  <span class="at">nb =</span> matrice_voisinage_bars,</span>
+<span id="cb29-5"><a></a>  <span class="at">wt =</span> matrice_poids_bars</span>
+<span id="cb29-6"><a></a>)</span>
+<span id="cb29-7"><a></a>bars<span class="sc">$</span>prix_voisinage <span class="ot">&lt;-</span> bars<span class="sc">$</span>prix_voisinage <span class="sc">/</span> poids_totaux</span>
+<span id="cb29-8"><a></a>moyenne_prix <span class="ot">&lt;-</span> <span class="fu">mean</span>(bars<span class="sc">$</span>regularPrice)</span>
+<span id="cb29-9"><a></a>moyenne_prix_voisinage <span class="ot">&lt;-</span> <span class="fu">mean</span>(bars<span class="sc">$</span>prix_voisinage)</span>
+<span id="cb29-10"><a></a><span class="fu">ggplot</span>(bars) <span class="sc">+</span></span>
+<span id="cb29-11"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(regularPrice, prix_voisinage)) <span class="sc">+</span></span>
+<span id="cb29-12"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> moyenne_prix_voisinage) <span class="sc">+</span></span>
+<span id="cb29-13"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> moyenne_prix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="TD7_Autocorrelation_Spatiale_files/figure-revealjs/unnamed-chunk-19-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<ul>
+<li>Calcul de l’indicateur local de Moran pour en extraire les clusters</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>bars_local_moran <span class="ot">&lt;-</span> <span class="fu">local_moran</span>(</span>
+<span id="cb30-2"><a></a>  <span class="at">x =</span> bars<span class="sc">$</span>regularPrice,</span>
+<span id="cb30-3"><a></a>  <span class="at">nb =</span> matrice_voisinage_bars,</span>
+<span id="cb30-4"><a></a>  <span class="at">wt =</span> matrice_poids_bars</span>
+<span id="cb30-5"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb30-7"><a></a><span class="fu">print</span>(bars_local_moran, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,873 × 12
+      ii      eii  var_ii   z_ii   p_ii p_ii_sim p_folded_sim skewness kurtosis
+   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 -2.84   0.0737   9.38   -0.950 0.342     0.36         0.18   -0.0870  -0.320 
+2  0.577  0.00881  0.0865  1.93  0.0533    0.064        0.032  -0.0622   0.0563
+3  8.49  -0.0273  15.3     2.17  0.0297    0.016        0.008  -0.303    0.182 
+4  7.39   0.214    9.32    2.35  0.0188    0.012        0.006  -0.160   -0.0921
+5  3.66  -0.0630   4.09    1.84  0.0657    0.084        0.042   0.140   -0.221 
+# ℹ 1,868 more rows
+# ℹ 3 more variables: mean &lt;fct&gt;, median &lt;fct&gt;, pysal &lt;fct&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>bars_local_moran <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,873 × 4
+  kurtosis mean      median    pysal    
+     &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;    
+1  -0.320  Low-Low   Low-High  Low-High 
+2   0.0563 Low-Low   Low-Low   Low-Low  
+3   0.182  Low-Low   Low-Low   Low-Low  
+4  -0.0921 Low-Low   Low-Low   Low-Low  
+5  -0.221  High-High High-High High-High
+# ℹ 1,868 more rows</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Cartographie des bars en fonction de leur quadrant vis-à-vis de la médiane</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>bars<span class="sc">$</span>quadrant <span class="ot">&lt;-</span> bars_local_moran<span class="sc">$</span>median</span>
+<span id="cb34-2"><a></a>bars<span class="sc">$</span>Ilocal <span class="ot">&lt;-</span> bars_local_moran<span class="sc">$</span>ii</span>
+<span id="cb34-3"><a></a>bars<span class="sc">$</span>pvalue <span class="ot">&lt;-</span> bars_local_moran<span class="sc">$</span>p_ii</span>
+<span id="cb34-4"><a></a><span class="fu">ggplot</span>(bars) <span class="sc">+</span></span>
+<span id="cb34-5"><a></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">colour =</span> quadrant, <span class="at">size =</span> <span class="fu">abs</span>(Ilocal), <span class="at">alpha =</span> <span class="fu">log10</span>(<span class="dv">1</span><span class="sc">/</span>pvalue))) <span class="sc">+</span></span>
+<span id="cb34-6"><a></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="TD7_Autocorrelation_Spatiale_files/figure-revealjs/unnamed-chunk-22-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exercice - Autocorrélation et résultats électoraux</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Menez une étude de l’autocorrélation spatiale d’un candidat au choix : choix du voisinage, choix de la pondération, indicateur global, indicateur local et cartographie</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 <div class="reveal-header">
@@ -184,6 +860,7 @@ Robin Cura
   <script src="../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/reveal-attribution/attribution.js"></script>
   <script src="../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -376,7 +1053,7 @@ Robin Cura
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealAttribution, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -385,6 +1062,82 @@ Robin Cura
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
