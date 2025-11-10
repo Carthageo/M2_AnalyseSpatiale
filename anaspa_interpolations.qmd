@@ -34,7 +34,9 @@ subtitle: "Lissages et interpolations"
 * {{< iconify file-icons:r >}} [TD5 - Auto-corrélation spatiale orientée](posts/RC/scripts/TD6_Krigeage_1_Seuils_distance.R)
 * {{< iconify file-icons:r >}} [TD6 - Krigeage sur les résultats electoraux](posts/RC/scripts/TD6_Krigeage_2_Correction.R)
 * {{< iconify file-icons:r >}} [TD6 - Krigeage sur les bars](posts/RC/scripts/TD6_Krigeage_3_Bars.R)
+<!--
 * {{< iconify file-icons:r >}} [TD7 - Autocorrélation spatiale](posts/RC/scripts/TD7_Autocorrelation_spatiale.R)
+-->
 
 ## Rendus
 
